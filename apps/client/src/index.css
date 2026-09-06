@@ -1,1 +1,65 @@
-@import "./app/styles/global.css";
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Roboto:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-neo-bg: var(--neo-bg);
+  --color-neo-text: var(--neo-text);
+  --color-neo-border: var(--neo-border);
+  --color-neo-shadow: var(--neo-shadow);
+  --color-neo-surface: var(--neo-surface);
+  --color-neo-primary: var(--neo-primary);
+  --color-neo-primary-text: var(--neo-primary-text);
+  --color-neo-accent: var(--neo-accent);
+  
+  --font-sans: 'Outfit', 'Inter', 'Roboto', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+@layer base {
+  :root {
+    /* Pure Dark Mode as base */
+    --neo-bg: #0B1120;
+    --neo-text: #F8FAFC;
+    --neo-border: rgba(255, 255, 255, 0.1);
+    --neo-shadow: rgba(0, 0, 0, 0.5);
+    --neo-surface: rgba(15, 23, 42, 0.6);
+    --neo-primary: #3B82F6;
+    --neo-primary-text: #ffffff;
+    --neo-accent: #06B6D4;
+  }
+
+  body {
+    @apply bg-neo-bg text-neo-text font-sans antialiased;
+    margin: 0;
+    /* Optional: Premium subtle background gradient */
+    background: radial-gradient(circle at top, #1e293b 0%, #0B1120 40%);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* Adapted to Glassmorphism */
+  .neo-card {
+    @apply border border-neo-border p-6 bg-neo-surface rounded-2xl backdrop-blur-xl shadow-lg hover:border-neo-accent/50 transition-colors duration-300;
+  }
+  
+  .neo-title {
+    @apply font-bold text-sm tracking-widest uppercase border-b border-neo-border pb-2 mb-4 block text-neo-accent;
+  }
+  
+  .neo-badge {
+    @apply border border-neo-accent/30 bg-neo-accent/10 text-neo-accent uppercase font-bold px-3 py-1 text-xs rounded-full;
+  }
+  
+  .neo-btn {
+    @apply px-5 py-2.5 bg-neo-surface text-neo-text border border-neo-border rounded-lg shadow-md hover:bg-white/5 active:scale-95 transition-all font-semibold cursor-pointer select-none backdrop-blur-md;
+  }
+  
+  .neo-btn-primary {
+    @apply px-5 py-2.5 bg-neo-primary/90 hover:bg-neo-primary text-neo-primary-text border border-blue-400/50 rounded-lg shadow-[0_0_15px_rgba(59,130,246,0.5)] active:scale-95 transition-all font-semibold cursor-pointer select-none;
+  }
+  
+  .neo-btn-purple {
+    @apply px-5 py-2.5 bg-purple-500/90 hover:bg-purple-500 text-white border border-purple-400/50 rounded-lg shadow-[0_0_15px_rgba(168,85,247,0.5)] active:scale-95 transition-all font-semibold cursor-pointer select-none;
+  }
+}
