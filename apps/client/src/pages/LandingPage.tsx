@@ -1,9 +1,7 @@
+import { CallToAction } from '../widgets/CallToAction';
 import { HeroSection } from '../widgets/HeroSection';
 import { MultiAgentFlow } from '../widgets/MultiAgentFlow';
 import { SupportedTech } from '../widgets/SupportedTech';
-import { CallToAction } from '../widgets/CallToAction';
-
-import { Link } from 'react-router-dom';
 
 export function LandingPage() {
   return (
