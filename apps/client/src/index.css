@@ -4,6 +4,7 @@
 @theme {
   --color-neo-bg: var(--neo-bg);
   --color-neo-text: var(--neo-text);
+  --color-neo-text-muted: var(--neo-text-muted);
   --color-neo-border: var(--neo-border);
   --color-neo-shadow: var(--neo-shadow);
   --color-neo-surface: var(--neo-surface);
@@ -17,22 +18,21 @@
 
 @layer base {
   :root {
-    /* Pure Dark Mode as base */
-    --neo-bg: #0B1120;
-    --neo-text: #F8FAFC;
-    --neo-border: rgba(255, 255, 255, 0.1);
+    /* Antigravity Dark Theme */
+    --neo-bg: #131314;
+    --neo-text: #E3E3E3;
+    --neo-text-muted: #9AA0A6;
+    --neo-border: #3C4043;
     --neo-shadow: rgba(0, 0, 0, 0.5);
-    --neo-surface: rgba(15, 23, 42, 0.6);
-    --neo-primary: #3B82F6;
+    --neo-surface: #1E1F22;
+    --neo-primary: #8AB4F8;
     --neo-primary-text: #ffffff;
-    --neo-accent: #06B6D4;
+    --neo-accent: #8AB4F8;
   }
 
   body {
     @apply bg-neo-bg text-neo-text font-sans antialiased;
     margin: 0;
-    /* Optional: Premium subtle background gradient */
-    background: radial-gradient(circle at top, #1e293b 0%, #0B1120 40%);
     min-height: 100vh;
   }
 }

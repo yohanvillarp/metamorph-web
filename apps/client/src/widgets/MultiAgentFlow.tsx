@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { GlassCard } from '../shared/ui/GlassCard';
-import { Badge } from '../shared/ui/Badge';
+import { GlassCard } from '@/shared/ui/GlassCard';
+import { Badge } from '@/shared/ui/Badge';
 import { Code2, GitMerge, FileCheck, FileOutput, PackageOpen } from 'lucide-react';
 
 const agents = [

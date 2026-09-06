@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
-import { GlassCard } from '../shared/ui/GlassCard';
+import { GlassCard } from '@/shared/ui/GlassCard';
 import { ArrowRight, ArrowRightLeft } from 'lucide-react';
-import { Badge } from '../shared/ui/Badge';
-import { cn } from '../shared/lib/utils';
+import { Badge } from '@/shared/ui/Badge';
+import { cn } from '@/shared/lib/utils';
+import { SUPPORTED_MIGRATIONS, TECH_METADATA } from '@/entities/migration';
 
 type MigrationData = {
   from: { name: string; icon: string };
@@ -11,59 +12,46 @@ type MigrationData = {
   targetColorClass: string;
 };
 
-const backendMigrations: MigrationData[] = [
-  { 
-    from: { name: 'Express', icon: 'https://cdn.simpleicons.org/express/white' }, 
-    to: { name: 'Fastify', icon: 'https://cdn.simpleicons.org/fastify/white' },
-    isBidirectional: true,
-    targetColorClass: 'hover:border-white hover:shadow-[0_0_25px_rgba(255,255,255,0.15)]'
-  },
-  { 
-    from: { name: 'Express', icon: 'https://cdn.simpleicons.org/express/white' }, 
-    to: { name: 'NestJS', icon: 'https://cdn.simpleicons.org/nestjs/E0234E' },
-    isBidirectional: false,
-    targetColorClass: 'hover:border-[#E0234E] hover:shadow-[0_0_25px_rgba(224,35,78,0.25)]'
-  },
-  { 
-    from: { name: 'Fastify', icon: 'https://cdn.simpleicons.org/fastify/white' }, 
-    to: { name: 'NestJS', icon: 'https://cdn.simpleicons.org/nestjs/E0234E' },
-    isBidirectional: false,
-    targetColorClass: 'hover:border-[#E0234E] hover:shadow-[0_0_25px_rgba(224,35,78,0.25)]'
-  }
-];
+// Generate flat array of unique migration pairs
+function generateMigrations(isFrontend: boolean): MigrationData[] {
+  const migrations: MigrationData[] = [];
+  const processedPairs = new Set<string>();
 
-const frontendMigrations: MigrationData[] = [
-  { 
-    from: { name: 'React', icon: 'https://cdn.simpleicons.org/react/61DAFB' }, 
-    to: { name: 'Next.js', icon: 'https://cdn.simpleicons.org/nextdotjs/white' },
-    isBidirectional: false,
-    targetColorClass: 'hover:border-white hover:shadow-[0_0_25px_rgba(255,255,255,0.15)]'
-  },
-  { 
-    from: { name: 'Vue', icon: 'https://cdn.simpleicons.org/vuedotjs/4FC08D' }, 
-    to: { name: 'React', icon: 'https://cdn.simpleicons.org/react/61DAFB' },
-    isBidirectional: false,
-    targetColorClass: 'hover:border-[#61DAFB] hover:shadow-[0_0_25px_rgba(97,218,251,0.25)]'
-  },
-  { 
-    from: { name: 'Vue', icon: 'https://cdn.simpleicons.org/vuedotjs/4FC08D' }, 
-    to: { name: 'Next.js', icon: 'https://cdn.simpleicons.org/nextdotjs/white' },
-    isBidirectional: false,
-    targetColorClass: 'hover:border-white hover:shadow-[0_0_25px_rgba(255,255,255,0.15)]'
-  },
-  { 
-    from: { name: 'Angular', icon: 'https://cdn.simpleicons.org/angular/DD0031' }, 
-    to: { name: 'React', icon: 'https://cdn.simpleicons.org/react/61DAFB' },
-    isBidirectional: false,
-    targetColorClass: 'hover:border-[#61DAFB] hover:shadow-[0_0_25px_rgba(97,218,251,0.25)]'
-  },
-  { 
-    from: { name: 'Svelte', icon: 'https://cdn.simpleicons.org/svelte/FF3E00' }, 
-    to: { name: 'Next.js', icon: 'https://cdn.simpleicons.org/nextdotjs/white' },
-    isBidirectional: false,
-    targetColorClass: 'hover:border-white hover:shadow-[0_0_25px_rgba(255,255,255,0.15)]'
+  for (const [sourceId, targets] of Object.entries(SUPPORTED_MIGRATIONS)) {
+    const sourceTech = TECH_METADATA[sourceId];
+    if (!sourceTech || sourceTech.isFrontend !== isFrontend) continue;
+
+    for (const targetId of targets) {
+      const targetTech = TECH_METADATA[targetId];
+      if (!targetTech) continue;
+
+      const pairKey1 = `${sourceId}-${targetId}`;
+      const pairKey2 = `${targetId}-${sourceId}`;
+
+      // Prevent duplicate bidirectional pairs (if A->B and B->A, just render one card with bidirectional arrow)
+      if (processedPairs.has(pairKey1) || processedPairs.has(pairKey2)) {
+        continue;
+      }
+
+      const isBidirectional = SUPPORTED_MIGRATIONS[targetId]?.includes(sourceId) || false;
+      
+      migrations.push({
+        from: { name: sourceTech.name, icon: sourceTech.icon },
+        to: { name: targetTech.name, icon: targetTech.icon },
+        isBidirectional,
+        targetColorClass: targetTech.targetColorClass,
+      });
+
+      processedPairs.add(pairKey1);
+      processedPairs.add(pairKey2);
+    }
   }
-];
+
+  return migrations;
+}
+
+const backendMigrations = generateMigrations(false);
+const frontendMigrations = generateMigrations(true);
 
 function MigrationCard({ mig, index }: { mig: MigrationData, index: number }) {
   return (
@@ -142,30 +130,34 @@ export function SupportedTech() {
         </div>
 
         {/* Backend Section */}
-        <div className="mb-16">
-          <div className="flex items-center gap-4 mb-8">
-            <h3 className="text-2xl font-bold text-white">Backend Refactoring</h3>
-            <div className="h-[1px] flex-1 bg-gradient-to-r from-white/10 to-transparent" />
+        {backendMigrations.length > 0 && (
+          <div className="mb-16">
+            <div className="flex items-center gap-4 mb-8">
+              <h3 className="text-2xl font-bold text-white">Backend Refactoring</h3>
+              <div className="h-[1px] flex-1 bg-gradient-to-r from-white/10 to-transparent" />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {backendMigrations.map((mig, idx) => (
+                <MigrationCard key={`backend-${idx}`} mig={mig} index={idx} />
+              ))}
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {backendMigrations.map((mig, idx) => (
-              <MigrationCard key={`backend-${idx}`} mig={mig} index={idx} />
-            ))}
-          </div>
-        </div>
+        )}
 
         {/* Frontend Section */}
-        <div>
-          <div className="flex items-center gap-4 mb-8">
-            <h3 className="text-2xl font-bold text-white">Frontend Modernization</h3>
-            <div className="h-[1px] flex-1 bg-gradient-to-r from-white/10 to-transparent" />
+        {frontendMigrations.length > 0 && (
+          <div>
+            <div className="flex items-center gap-4 mb-8">
+              <h3 className="text-2xl font-bold text-white">Frontend Modernization</h3>
+              <div className="h-[1px] flex-1 bg-gradient-to-r from-white/10 to-transparent" />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+              {frontendMigrations.map((mig, idx) => (
+                <MigrationCard key={`frontend-${idx}`} mig={mig} index={idx} />
+              ))}
+            </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-            {frontendMigrations.map((mig, idx) => (
-              <MigrationCard key={`frontend-${idx}`} mig={mig} index={idx} />
-            ))}
-          </div>
-        </div>
+        )}
       </div>
     </section>
   );

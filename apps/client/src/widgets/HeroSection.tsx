@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Terminal, Copy, Check } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '../shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 
 export function HeroSection() {
   const [typedCommand, setTypedCommand] = useState('');
@@ -49,7 +49,7 @@ export function HeroSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <Link to="/docs">
+            <Link to="/docs/getting-started">
               <Button variant="primary">
                 Get Started <ArrowRight size={18} />
               </Button>

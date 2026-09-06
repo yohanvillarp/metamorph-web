@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Terminal, ArrowRight } from 'lucide-react';
-import { Button } from '../shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 
 export function CallToAction() {
   return (
