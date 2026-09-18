@@ -2,44 +2,89 @@ import { useLocation } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
 import { generateGroupedSections } from '@/entities/migration';
 
+interface TocItem {
+  name: string;
+  id: string;
+}
+
 export const TableOfContents = () => {
   const location = useLocation();
-  const isBackend = location.pathname.includes(ROUTES.DOCS.MIGRATIONS.BACKEND);
-  const isFrontend = location.pathname.includes(ROUTES.DOCS.MIGRATIONS.FRONTEND);
-  const isGettingStarted = location.pathname.includes(ROUTES.DOCS.GETTING_STARTED);
+  const path = location.pathname;
 
-  let platforms: { name: string; id?: string }[] = [];
-  
-  if (isBackend) {
-    platforms = generateGroupedSections(false).map(g => ({ name: g.sourceTech.name, id: g.sourceTech.name.toLowerCase().replace(/\./g, '') }));
-  } else if (isFrontend) {
-    platforms = generateGroupedSections(true).map(g => ({ name: g.sourceTech.name, id: g.sourceTech.name.toLowerCase().replace(/\./g, '') }));
-  } else if (isGettingStarted) {
-    platforms = [
+  let items: TocItem[] = [];
+
+  if (path.includes(ROUTES.DOCS.MIGRATIONS.BACKEND)) {
+    items = generateGroupedSections(false).map(g => ({ 
+      name: g.sourceTech.name, 
+      id: g.sourceTech.name.toLowerCase().replace(/\./g, '') 
+    }));
+  } else if (path.includes(ROUTES.DOCS.MIGRATIONS.FRONTEND)) {
+    items = generateGroupedSections(true).map(g => ({ 
+      name: g.sourceTech.name, 
+      id: g.sourceTech.name.toLowerCase().replace(/\./g, '') 
+    }));
+  } else if (path.includes(ROUTES.DOCS.GETTING_STARTED)) {
+    items = [
       { name: 'Installation', id: 'installation' },
       { name: 'Quick Start', id: 'quick-start' },
+      { name: 'Monitoring the Swarm', id: 'monitoring-the-swarm' },
+      { name: 'Review and Apply', id: 'review-and-apply' },
+    ];
+  } else if (path.includes(ROUTES.DOCS.CONCEPTS)) {
+    items = [
+      { name: '1. Shadow Workspace', id: 'shadow-workspace' },
+      { name: '2. Mozaik v4 Event Swarm', id: 'mozaik-swarm' },
+      { name: '3. Hexagonal Architecture', id: 'hexagonal-architecture' },
+      { name: '4. Atomic Git Application', id: 'atomic-git-apply' },
+    ];
+  } else if (path.includes(ROUTES.DOCS.SWARM)) {
+    items = [
+      { name: 'MapperAgent', id: 'mapper-agent' },
+      { name: 'PackageManagerAgent', id: 'package-manager-agent' },
+      { name: 'WorkerAgent', id: 'worker-agent' },
+      { name: 'ReviewerAgent', id: 'reviewer-agent' },
+      { name: 'CoordinatorAgent', id: 'coordinator-agent' },
+      { name: 'IntegrationAgent', id: 'integration-agent' },
+      { name: 'ReporterAgent', id: 'reporter-agent' },
+      { name: 'Concurrency Watchdogs', id: 'concurrency-watchdogs' },
+    ];
+  } else if (path.includes(ROUTES.DOCS.CLI_REFERENCE)) {
+    items = [
+      { name: 'metamorph run', id: 'command-run' },
+      { name: 'metamorph ui', id: 'command-ui' },
+      { name: 'metamorph apply', id: 'command-apply' },
+      { name: 'metamorph rollback', id: 'command-rollback' },
+      { name: 'metamorph detect', id: 'command-detect' },
+      { name: 'list & reset', id: 'command-list-reset' },
+      { name: 'Environment Variables', id: 'env-variables' },
+    ];
+  } else if (path === ROUTES.DOCS.ROOT || path === ROUTES.DOCS.ROOT + '/') {
+    items = [
+      { name: 'The Problem', id: 'the-problem' },
+      { name: 'The Metamorph Solution', id: 'the-metamorph-solution' },
+      { name: 'Next Steps', id: 'next-steps' },
     ];
   }
 
+  if (items.length === 0) return null;
+
   return (
-    <aside className="w-64 flex-shrink-0 hidden lg:block h-[calc(100vh-4rem)] overflow-y-auto sticky top-16 pt-8 pb-12 pl-6">
-      <h3 className="text-sm font-semibold text-neo-text mb-4 tracking-wide">
+    <aside className="w-64 flex-shrink-0 hidden lg:block h-[calc(100vh-5rem)] overflow-y-auto sticky top-20 pt-8 pb-12 pl-6 border-l border-cyan-500/10">
+      <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-cyan-400 mb-3">
         On this page
       </h3>
-      <nav className="flex flex-col gap-1 border-l border-white/5">
-        {platforms.map((p) => {
-          const sectionId = p.id || p.name.toLowerCase().replace(/\./g, '');
-          return (
-            <a 
-              key={p.name} 
-              href={`#${sectionId}`} 
-              className="block px-3 py-2 ml-4 rounded-xl text-sm text-neo-text-muted hover:text-neo-text hover:bg-white/5 transition-colors"
-            >
-              {p.name}
-            </a>
-          );
-        })}
+      <nav className="flex flex-col gap-1 border-l border-slate-800">
+        {items.map((item) => (
+          <a 
+            key={item.id} 
+            href={`#${item.id}`} 
+            className="block px-3 py-1.5 ml-2 rounded-lg text-xs font-mono text-slate-400 hover:text-cyan-300 hover:bg-cyan-950/30 transition-colors truncate"
+          >
+            {item.name}
+          </a>
+        ))}
       </nav>
     </aside>
   );
 };
+

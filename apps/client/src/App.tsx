@@ -4,6 +4,9 @@ import { DocsLayout } from './pages/docs-layout';
 import { BackendMigrationsPage, FrontendMigrationsPage } from './pages/migrations';
 import { GettingStartedPage } from './pages/getting-started';
 import { OverviewPage } from './pages/overview';
+import { ConceptsPage } from './pages/concepts';
+import { SwarmPage } from './pages/swarm';
+import { CliReferencePage } from './pages/cli-reference';
 import { Header } from './shared/ui/Header';
 import { ROUTES } from './shared/config/routes';
 import './index.css';
@@ -18,6 +21,9 @@ function App() {
         <Route path={ROUTES.DOCS.ROOT} element={<DocsLayout />}>
           <Route index element={<OverviewPage />} />
           <Route path="getting-started" element={<GettingStartedPage />} />
+          <Route path="concepts" element={<ConceptsPage />} />
+          <Route path="swarm" element={<SwarmPage />} />
+          <Route path="cli-reference" element={<CliReferencePage />} />
           <Route path="migrations/backend" element={<BackendMigrationsPage />} />
           <Route path="migrations/frontend" element={<FrontendMigrationsPage />} />
         </Route>
@@ -27,3 +33,4 @@ function App() {
 }
 
 export default App;
+

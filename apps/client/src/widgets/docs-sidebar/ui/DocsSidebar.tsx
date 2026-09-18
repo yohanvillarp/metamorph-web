@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
-import { ChevronDown, ChevronRight, X } from 'lucide-react';
+import { ChevronDown, ChevronRight, X, BookOpen, Layers, Cpu, Terminal, Shield } from 'lucide-react';
 import { cn } from '@/shared/lib/utils';
 
 interface DocsSidebarProps {
@@ -19,79 +19,111 @@ export const DocsSidebar = ({ mobileOpen, setMobileOpen }: DocsSidebarProps) => 
   }, [location.pathname, setMobileOpen]);
 
   const isActive = (path: string) => location.pathname === path || location.pathname + '/' === path;
-  const isMigrationActive = location.pathname.includes(ROUTES.DOCS.MIGRATIONS.ROOT);
+
+  const getLinkClasses = (path: string) => `
+    px-3 py-2 rounded-xl text-xs md:text-sm font-medium transition-all flex items-center gap-2.5 ${
+      isActive(path)
+        ? 'bg-cyan-950/80 text-cyan-300 font-semibold border border-cyan-500/40 shadow-[0_0_15px_rgba(0,242,254,0.15)]'
+        : 'text-slate-400 hover:text-slate-200 hover:bg-white/5'
+    }
+  `;
 
   const SidebarContent = (
-    <div className="mb-8">
-      <div className="flex items-center justify-between mb-6 md:mb-3 px-3">
-        <h3 className="text-sm font-semibold text-neo-text uppercase tracking-wider flex items-center justify-between w-full">
-          <span>Metamorph</span>
-          <span className="text-[10px] bg-white/10 px-2 py-0.5 rounded-full border border-white/5 font-mono text-neo-text-muted">v2.0.0</span>
-        </h3>
+    <div className="space-y-6">
+      {/* Header Info */}
+      <div className="flex items-center justify-between px-3 pb-3 border-b border-white/5">
+        <div className="flex items-center gap-2">
+          <img src="/logo_metamorph.png" alt="Logo" className="w-5 h-5 object-contain" />
+          <span className="text-xs font-mono font-bold tracking-wider uppercase text-cyan-400">
+            Metamorph Docs
+          </span>
+        </div>
+        <span className="text-[10px] bg-cyan-950/80 px-2 py-0.5 rounded-full border border-cyan-500/30 font-mono text-cyan-300">
+          v2.1.1
+        </span>
       </div>
-      <nav className="flex flex-col gap-1">
-        <Link
-          to={ROUTES.DOCS.ROOT}
-          className={`px-3 py-2 rounded-xl text-sm transition-colors ${
-            isActive(ROUTES.DOCS.ROOT) && !isMigrationActive && !isActive(ROUTES.DOCS.GETTING_STARTED)
-              ? 'bg-[#1a2332] text-neo-accent font-medium border border-neo-accent/20' 
-              : 'text-neo-text-muted hover:text-neo-text hover:bg-white/5'
-          }`}
-        >
-          Overview
-        </Link>
 
-        <Link
-          to={ROUTES.DOCS.GETTING_STARTED}
-          className={`px-3 py-2 rounded-xl text-sm transition-colors ${
-            isActive(ROUTES.DOCS.GETTING_STARTED)
-              ? 'bg-[#1a2332] text-neo-accent font-medium border border-neo-accent/20' 
-              : 'text-neo-text-muted hover:text-neo-text hover:bg-white/5'
-          }`}
-        >
-          Getting Started
-        </Link>
+      {/* 1. Getting Started */}
+      <div>
+        <div className="px-3 mb-2 text-[11px] font-mono uppercase tracking-wider text-slate-500 font-bold flex items-center gap-1.5">
+          <BookOpen size={12} className="text-cyan-400" />
+          <span>Getting Started</span>
+        </div>
+        <nav className="flex flex-col gap-1">
+          <Link to={ROUTES.DOCS.ROOT} className={getLinkClasses(ROUTES.DOCS.ROOT)}>
+            Overview & Philosophy
+          </Link>
+          <Link to={ROUTES.DOCS.GETTING_STARTED} className={getLinkClasses(ROUTES.DOCS.GETTING_STARTED)}>
+            Installation & Quickstart
+          </Link>
+        </nav>
+      </div>
 
-        {/* Nested Migrations Menu */}
-        <div className="mt-1">
+      {/* 2. Architecture & Concepts */}
+      <div>
+        <div className="px-3 mb-2 text-[11px] font-mono uppercase tracking-wider text-slate-500 font-bold flex items-center gap-1.5">
+          <Shield size={12} className="text-cyan-400" />
+          <span>Core Architecture</span>
+        </div>
+        <nav className="flex flex-col gap-1">
+          <Link to={ROUTES.DOCS.CONCEPTS} className={getLinkClasses(ROUTES.DOCS.CONCEPTS)}>
+            Shadow Workspace & Hexagonal
+          </Link>
+        </nav>
+      </div>
+
+      {/* 3. The Swarm */}
+      <div>
+        <div className="px-3 mb-2 text-[11px] font-mono uppercase tracking-wider text-slate-500 font-bold flex items-center gap-1.5">
+          <Cpu size={12} className="text-cyan-400" />
+          <span>Mozaik v4 Swarm</span>
+        </div>
+        <nav className="flex flex-col gap-1">
+          <Link to={ROUTES.DOCS.SWARM} className={getLinkClasses(ROUTES.DOCS.SWARM)}>
+            The 7 Agents Reference
+          </Link>
+        </nav>
+      </div>
+
+      {/* 4. Migration Matrix */}
+      <div>
+        <div className="flex items-center justify-between px-3 mb-2">
+          <span className="text-[11px] font-mono uppercase tracking-wider text-slate-500 font-bold flex items-center gap-1.5">
+            <Layers size={12} className="text-cyan-400" />
+            Migration Matrix
+          </span>
           <button
             onClick={() => setMigrationsOpen(!migrationsOpen)}
-            className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-sm transition-colors ${
-              isMigrationActive && !migrationsOpen
-                ? 'bg-[#1a2332] text-neo-accent font-medium border border-neo-accent/20'
-                : 'text-neo-text-muted hover:text-neo-text hover:bg-white/5'
-            }`}
+            className="text-slate-500 hover:text-slate-300"
           >
-            <span>Migrations</span>
-            {migrationsOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+            {migrationsOpen ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
           </button>
-          
-          {migrationsOpen && (
-            <div className="flex flex-col gap-1 mt-1 pl-4 border-l border-white/5 ml-3">
-              <Link
-                to={ROUTES.DOCS.MIGRATIONS.BACKEND}
-                className={`px-3 py-2 rounded-xl text-sm transition-colors ${
-                  isActive(ROUTES.DOCS.MIGRATIONS.BACKEND)
-                    ? 'text-neo-accent font-medium'
-                    : 'text-neo-text-muted hover:text-neo-text hover:bg-white/5'
-                }`}
-              >
-                Backend Frameworks
-              </Link>
-              <Link
-                to={ROUTES.DOCS.MIGRATIONS.FRONTEND}
-                className={`px-3 py-2 rounded-xl text-sm transition-colors ${
-                  isActive(ROUTES.DOCS.MIGRATIONS.FRONTEND)
-                    ? 'text-neo-accent font-medium'
-                    : 'text-neo-text-muted hover:text-neo-text hover:bg-white/5'
-                }`}
-              >
-                Frontend Frameworks
-              </Link>
-            </div>
-          )}
         </div>
-      </nav>
+        
+        {migrationsOpen && (
+          <nav className="flex flex-col gap-1 pl-2 border-l border-white/5 ml-3">
+            <Link to={ROUTES.DOCS.MIGRATIONS.FRONTEND} className={getLinkClasses(ROUTES.DOCS.MIGRATIONS.FRONTEND)}>
+              Frontend Frameworks
+            </Link>
+            <Link to={ROUTES.DOCS.MIGRATIONS.BACKEND} className={getLinkClasses(ROUTES.DOCS.MIGRATIONS.BACKEND)}>
+              Backend Frameworks
+            </Link>
+          </nav>
+        )}
+      </div>
+
+      {/* 5. CLI Reference */}
+      <div>
+        <div className="px-3 mb-2 text-[11px] font-mono uppercase tracking-wider text-slate-500 font-bold flex items-center gap-1.5">
+          <Terminal size={12} className="text-cyan-400" />
+          <span>Tools & Reference</span>
+        </div>
+        <nav className="flex flex-col gap-1">
+          <Link to={ROUTES.DOCS.CLI_REFERENCE} className={getLinkClasses(ROUTES.DOCS.CLI_REFERENCE)}>
+            CLI Commands & Env
+          </Link>
+        </nav>
+      </div>
     </div>
   );
 
@@ -100,25 +132,25 @@ export const DocsSidebar = ({ mobileOpen, setMobileOpen }: DocsSidebarProps) => 
       {/* Mobile Backdrop */}
       {mobileOpen && (
         <div 
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden" 
+          className="fixed inset-0 bg-black/70 backdrop-blur-md z-40 md:hidden" 
           onClick={() => setMobileOpen?.(false)} 
         />
       )}
 
       {/* Sidebar Container */}
       <aside className={cn(
-        "w-64 flex-shrink-0 border-r border-neo-border overflow-y-auto pt-8 pb-12",
+        "w-64 flex-shrink-0 border-r border-cyan-500/10 overflow-y-auto pt-8 pb-12",
         // Desktop styles
         "md:block md:sticky md:top-20 md:h-[calc(100vh-5rem)] md:z-0 md:bg-transparent md:pr-6",
         // Mobile styles
-        mobileOpen ? "fixed inset-y-0 left-0 z-50 bg-neo-bg h-full px-6 shadow-2xl transition-transform transform translate-x-0" : "hidden"
+        mobileOpen ? "fixed inset-y-0 left-0 z-50 bg-[#06090e] h-full px-6 shadow-2xl transition-transform transform translate-x-0" : "hidden"
       )}>
         {/* Mobile Floating Close Button */}
         {mobileOpen && setMobileOpen && (
-          <div className="md:hidden mb-6 mt-2">
+          <div className="md:hidden mb-6 mt-2 flex justify-end">
             <button 
               onClick={() => setMobileOpen(false)} 
-              className="p-2 rounded-lg bg-[#1a2332] border border-white/10 text-neo-text-muted hover:text-white transition-colors flex items-center justify-center shadow-md"
+              className="p-2 rounded-lg bg-[#0d1424] border border-white/10 text-slate-400 hover:text-white transition-colors"
             >
               <X size={18} />
             </button>
@@ -130,3 +162,4 @@ export const DocsSidebar = ({ mobileOpen, setMobileOpen }: DocsSidebarProps) => 
     </>
   );
 };
+
