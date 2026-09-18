@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Roboto:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -11,55 +11,99 @@
   --color-neo-primary: var(--neo-primary);
   --color-neo-primary-text: var(--neo-primary-text);
   --color-neo-accent: var(--neo-accent);
+  --color-neo-cyan: var(--neo-cyan);
+  --color-neo-cyan-glow: var(--neo-cyan-glow);
   
-  --font-sans: 'Outfit', 'Inter', 'Roboto', sans-serif;
+  --font-sans: 'Outfit', 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
 
 @layer base {
   :root {
-    /* Antigravity Dark Theme */
-    --neo-bg: #131314;
-    --neo-text: #E3E3E3;
-    --neo-text-muted: #9AA0A6;
-    --neo-border: #3C4043;
-    --neo-shadow: rgba(0, 0, 0, 0.5);
-    --neo-surface: #1E1F22;
-    --neo-primary: #8AB4F8;
-    --neo-primary-text: #ffffff;
-    --neo-accent: #8AB4F8;
+    /* Cyber-Polygonal Cyan & Deep Obsidian Palette (Matches Butterfly Logo) */
+    --neo-bg: #06090e;
+    --neo-text: #f1f5f9;
+    --neo-text-muted: #94a3b8;
+    --neo-border: #1e293b;
+    --neo-shadow: rgba(0, 242, 254, 0.15);
+    --neo-surface: #0b111e;
+    --neo-primary: #06b6d4;
+    --neo-primary-text: #06090e;
+    --neo-accent: #00f2fe;
+    --neo-cyan: #22d3ee;
+    --neo-cyan-glow: rgba(0, 242, 254, 0.4);
   }
 
   body {
-    @apply bg-neo-bg text-neo-text font-sans antialiased;
+    @apply bg-neo-bg text-neo-text font-sans antialiased selection:bg-cyan-500/30 selection:text-cyan-200;
     margin: 0;
     min-height: 100vh;
+    background-color: #06090e;
+    background-image: 
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 242, 254, 0.12), transparent),
+      radial-gradient(circle at 100% 30%, rgba(6, 182, 212, 0.06), transparent 50%),
+      radial-gradient(circle at 0% 70%, rgba(14, 165, 233, 0.05), transparent 50%);
   }
 }
 
 @layer components {
-  /* Adapted to Glassmorphism */
+  /* Faceted Cyber Glass Card */
   .neo-card {
-    @apply border border-neo-border p-6 bg-neo-surface rounded-2xl backdrop-blur-xl shadow-lg hover:border-neo-accent/50 transition-colors duration-300;
+    @apply relative border border-slate-800/80 p-6 bg-[#0b111e]/90 rounded-2xl backdrop-blur-xl shadow-xl hover:border-cyan-500/50 hover:shadow-[0_0_25px_rgba(0,242,254,0.15)] transition-all duration-300;
+  }
+
+  .cyber-facet-border {
+    position: relative;
+    border: 1px solid rgba(6, 182, 212, 0.2);
+    box-shadow: inset 0 0 15px rgba(0, 242, 254, 0.03);
+  }
+
+  .cyber-facet-border:hover {
+    border-color: rgba(0, 242, 254, 0.5);
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.2), inset 0 0 15px rgba(0, 242, 254, 0.08);
   }
   
   .neo-title {
-    @apply font-bold text-sm tracking-widest uppercase border-b border-neo-border pb-2 mb-4 block text-neo-accent;
+    @apply font-bold text-xs tracking-widest uppercase border-b border-white/10 pb-2 mb-4 block text-cyan-400 font-mono;
   }
   
   .neo-badge {
-    @apply border border-neo-accent/30 bg-neo-accent/10 text-neo-accent uppercase font-bold px-3 py-1 text-xs rounded-full;
+    @apply border border-cyan-400/40 bg-cyan-950/40 text-cyan-300 uppercase font-bold px-3 py-1 text-xs rounded-full shadow-[0_0_10px_rgba(0,242,254,0.15)];
   }
   
   .neo-btn {
-    @apply px-5 py-2.5 bg-neo-surface text-neo-text border border-neo-border rounded-lg shadow-md hover:bg-white/5 active:scale-95 transition-all font-semibold cursor-pointer select-none backdrop-blur-md;
+    @apply px-5 py-2.5 bg-[#0e1626] text-slate-200 border border-slate-700/80 rounded-xl shadow-md hover:bg-[#131d33] hover:text-white hover:border-cyan-500/50 hover:shadow-[0_0_15px_rgba(0,242,254,0.2)] active:scale-95 transition-all font-semibold cursor-pointer select-none backdrop-blur-md;
   }
   
   .neo-btn-primary {
-    @apply px-5 py-2.5 bg-neo-primary/90 hover:bg-neo-primary text-neo-primary-text border border-blue-400/50 rounded-lg shadow-[0_0_15px_rgba(59,130,246,0.5)] active:scale-95 transition-all font-semibold cursor-pointer select-none;
+    @apply px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-cyan-400 hover:from-cyan-400 hover:to-cyan-300 text-slate-950 border border-cyan-300/60 rounded-xl shadow-[0_0_25px_rgba(0,242,254,0.45)] hover:shadow-[0_0_35px_rgba(0,242,254,0.65)] active:scale-95 transition-all font-bold cursor-pointer select-none tracking-wide;
   }
   
-  .neo-btn-purple {
-    @apply px-5 py-2.5 bg-purple-500/90 hover:bg-purple-500 text-white border border-purple-400/50 rounded-lg shadow-[0_0_15px_rgba(168,85,247,0.5)] active:scale-95 transition-all font-semibold cursor-pointer select-none;
+  .neo-btn-secondary {
+    @apply px-5 py-2.5 bg-[#0b1220]/80 hover:bg-[#10192e] text-slate-200 border border-cyan-500/30 hover:border-cyan-400/60 rounded-xl shadow-[0_0_15px_rgba(0,242,254,0.1)] active:scale-95 transition-all font-medium cursor-pointer select-none;
   }
+
+  .text-glow-cyan {
+    text-shadow: 0 0 15px rgba(0, 242, 254, 0.6), 0 0 30px rgba(0, 242, 254, 0.3);
+  }
+
+  .glow-box-cyan {
+    box-shadow: 0 0 25px rgba(0, 242, 254, 0.35);
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #06090e;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #06b6d4;
 }
