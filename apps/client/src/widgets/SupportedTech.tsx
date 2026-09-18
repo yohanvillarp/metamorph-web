@@ -1,25 +1,25 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { GlassCard } from '@/shared/ui/GlassCard';
-import { ArrowRight, ArrowRightLeft } from 'lucide-react';
-import { Badge } from '@/shared/ui/Badge';
+import { ArrowRight, ArrowRightLeft, Layers } from 'lucide-react';
 import { cn } from '@/shared/lib/utils';
 import { SUPPORTED_MIGRATIONS, TECH_METADATA } from '@/entities/migration';
 
 type MigrationData = {
-  from: { name: string; icon: string };
-  to: { name: string; icon: string };
+  from: { id: string; name: string; icon: string };
+  to: { id: string; name: string; icon: string };
   isBidirectional: boolean;
+  isFrontend: boolean;
   targetColorClass: string;
 };
 
-// Generate flat array of unique migration pairs
-function generateMigrations(isFrontend: boolean): MigrationData[] {
+function generateAllMigrations(): MigrationData[] {
   const migrations: MigrationData[] = [];
   const processedPairs = new Set<string>();
 
   for (const [sourceId, targets] of Object.entries(SUPPORTED_MIGRATIONS)) {
     const sourceTech = TECH_METADATA[sourceId];
-    if (!sourceTech || sourceTech.isFrontend !== isFrontend) continue;
+    if (!sourceTech) continue;
 
     for (const targetId of targets) {
       const targetTech = TECH_METADATA[targetId];
@@ -28,7 +28,6 @@ function generateMigrations(isFrontend: boolean): MigrationData[] {
       const pairKey1 = `${sourceId}-${targetId}`;
       const pairKey2 = `${targetId}-${sourceId}`;
 
-      // Prevent duplicate bidirectional pairs (if A->B and B->A, just render one card with bidirectional arrow)
       if (processedPairs.has(pairKey1) || processedPairs.has(pairKey2)) {
         continue;
       }
@@ -36,9 +35,10 @@ function generateMigrations(isFrontend: boolean): MigrationData[] {
       const isBidirectional = SUPPORTED_MIGRATIONS[targetId]?.includes(sourceId) || false;
       
       migrations.push({
-        from: { name: sourceTech.name, icon: sourceTech.icon },
-        to: { name: targetTech.name, icon: targetTech.icon },
+        from: { id: sourceTech.id, name: sourceTech.name, icon: sourceTech.icon },
+        to: { id: targetTech.id, name: targetTech.name, icon: targetTech.icon },
         isBidirectional,
+        isFrontend: sourceTech.isFrontend,
         targetColorClass: targetTech.targetColorClass,
       });
 
@@ -50,65 +50,75 @@ function generateMigrations(isFrontend: boolean): MigrationData[] {
   return migrations;
 }
 
-const backendMigrations = generateMigrations(false);
-const frontendMigrations = generateMigrations(true);
+const allMigrations = generateAllMigrations();
 
-function MigrationCard({ mig, index }: { mig: MigrationData, index: number }) {
+function MigrationCard({ mig, index }: { mig: MigrationData; index: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.1, duration: 0.4 }}
+      transition={{ delay: (index % 6) * 0.06, duration: 0.35 }}
     >
       <GlassCard 
         hoverEffect={false}
         initial="initial"
         whileHover="hover"
-        className={cn("flex flex-col items-center justify-center p-6 text-center group h-full transition-all duration-300 hover:-translate-y-2", mig.targetColorClass)}
+        className={cn(
+          "flex flex-col items-center justify-between p-5 text-center group h-full transition-all duration-300 hover:-translate-y-1.5 border border-slate-800/80 bg-[#0a101d]/90 rounded-2xl hover:border-cyan-500/50 hover:shadow-[0_0_20px_rgba(0,242,254,0.15)]",
+          mig.targetColorClass
+        )}
       >
-        <div className="flex items-center justify-between w-full mb-6 px-4">
+        <div className="flex items-center justify-between w-full mb-4 px-2">
           {/* From Tech */}
-          <div className="flex flex-col items-center gap-2">
-            <div className="w-14 h-14 rounded-xl bg-[#0f172a] border border-white/10 flex items-center justify-center p-3 shadow-inner group-hover:scale-110 transition-transform duration-300">
+          <div className="flex flex-col items-center gap-1.5">
+            <div className="w-12 h-12 rounded-xl bg-[#06090e] border border-white/10 flex items-center justify-center p-2.5 shadow-inner group-hover:scale-105 transition-transform duration-300">
               <img src={mig.from.icon} alt={mig.from.name} className="w-full h-full object-contain" />
             </div>
+            <span className="text-[11px] font-mono text-slate-400 group-hover:text-slate-200 truncate max-w-[70px]">
+              {mig.from.name}
+            </span>
           </div>
 
           {/* Animated Glowing Arrow */}
-          <div className="relative flex items-center justify-center mx-4">
+          <div className="relative flex flex-col items-center justify-center mx-2">
             <motion.div
               animate={{ 
-                opacity: [0.5, 1, 0.5],
+                opacity: [0.6, 1, 0.6],
                 filter: [
-                  'drop-shadow(0 0 2px rgba(255,255,255,0.1))', 
-                  'drop-shadow(0 0 12px rgba(6,182,212,0.8))', 
-                  'drop-shadow(0 0 2px rgba(255,255,255,0.1))'
+                  'drop-shadow(0 0 2px rgba(0,242,254,0.3))', 
+                  'drop-shadow(0 0 10px rgba(0,242,254,0.8))', 
+                  'drop-shadow(0 0 2px rgba(0,242,254,0.3))'
                 ]
               }}
-              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-              className="text-white relative z-10"
+              transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
+              className="text-cyan-400 relative z-10"
             >
               {mig.isBidirectional ? (
-                <ArrowRightLeft size={32} strokeWidth={2.5} className="group-hover:text-neo-accent transition-colors" />
+                <ArrowRightLeft size={24} strokeWidth={2.2} />
               ) : (
-                <ArrowRight size={32} strokeWidth={2.5} className="group-hover:text-neo-accent transition-colors" />
+                <ArrowRight size={24} strokeWidth={2.2} />
               )}
             </motion.div>
+            <span className="text-[9px] font-mono text-cyan-400/80 mt-1">
+              {mig.isBidirectional ? 'Bidirectional' : 'Direct'}
+            </span>
           </div>
 
           {/* To Tech */}
-          <div className="flex flex-col items-center gap-2">
-            <div className="w-14 h-14 rounded-xl bg-[#0f172a] border border-white/10 flex items-center justify-center p-3 shadow-inner group-hover:scale-110 transition-transform duration-300">
+          <div className="flex flex-col items-center gap-1.5">
+            <div className="w-12 h-12 rounded-xl bg-[#06090e] border border-white/10 flex items-center justify-center p-2.5 shadow-inner group-hover:scale-105 transition-transform duration-300">
               <img src={mig.to.icon} alt={mig.to.name} className="w-full h-full object-contain" />
             </div>
+            <span className="text-[11px] font-mono text-slate-200 font-bold truncate max-w-[70px]">
+              {mig.to.name}
+            </span>
           </div>
         </div>
 
-        <div className="flex items-center justify-center gap-2 font-mono font-bold text-sm mt-auto w-full">
-          <span className="text-gray-400 group-hover:text-white transition-colors">{mig.from.name}</span>
-          <span className="text-neo-accent">{mig.isBidirectional ? '⇄' : '➔'}</span>
-          <span className="text-white">{mig.to.name}</span>
+        <div className="w-full pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono">
+          <span className="text-slate-500">{mig.isFrontend ? 'Frontend' : 'Backend'}</span>
+          <span className="text-cyan-400 group-hover:underline">Catalog Ready</span>
         </div>
       </GlassCard>
     </motion.div>
@@ -116,49 +126,64 @@ function MigrationCard({ mig, index }: { mig: MigrationData, index: number }) {
 }
 
 export function SupportedTech() {
+  const [filter, setFilter] = useState<'all' | 'frontend' | 'backend'>('all');
+
+  const filteredMigrations = allMigrations.filter((m) => {
+    if (filter === 'frontend') return m.isFrontend;
+    if (filter === 'backend') return !m.isFrontend;
+    return true;
+  });
+
   return (
-    <section className="py-24 px-4 relative overflow-hidden bg-black/20">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-      
+    <section className="py-24 px-4 relative overflow-hidden bg-[#06090e]">
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-20">
-          <Badge variant="cyan" className="mb-4">Infinite Possibilities</Badge>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Seamless Migrations</h2>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
-            Metamorph supports complex architectural shifts automatically. Just define your target stack and let the swarm handle the rest.
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-mono uppercase tracking-wider mb-4">
+            <Layers size={14} className="text-cyan-400" />
+            Layered Architecture Matrix
+          </div>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+            Full Cross-Framework Compatibility
+          </h2>
+          <p className="text-slate-400 max-w-2xl mx-auto text-base md:text-lg">
+            Every migration path is backed by domain-tested catalog rules, runtime invariants, and dependency scaffolds.
           </p>
+
+          {/* Filter Pills */}
+          <div className="flex items-center justify-center gap-2 mt-8">
+            {[
+              { id: 'all', label: 'All Migrations', count: allMigrations.length },
+              { id: 'frontend', label: 'Frontend (React, Next, Vue, Svelte, Angular)', count: allMigrations.filter(m => m.isFrontend).length },
+              { id: 'backend', label: 'Backend (Express, Fastify, NestJS)', count: allMigrations.filter(m => !m.isFrontend).length },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setFilter(tab.id as 'all' | 'frontend' | 'backend')}
+                className={`px-4 py-2 rounded-xl text-xs md:text-sm font-mono font-medium transition-all cursor-pointer flex items-center gap-2 ${
+                  filter === tab.id
+                    ? 'bg-cyan-500 text-slate-950 font-bold shadow-[0_0_15px_rgba(0,242,254,0.4)]'
+                    : 'bg-[#0d1424] text-slate-400 hover:text-white border border-slate-800'
+                }`}
+              >
+                <span>{tab.label}</span>
+                <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${
+                  filter === tab.id ? 'bg-slate-900 text-cyan-300' : 'bg-slate-800 text-slate-300'
+                }`}>
+                  {tab.count}
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Backend Section */}
-        {backendMigrations.length > 0 && (
-          <div className="mb-16">
-            <div className="flex items-center gap-4 mb-8">
-              <h3 className="text-2xl font-bold text-white">Backend Refactoring</h3>
-              <div className="h-[1px] flex-1 bg-gradient-to-r from-white/10 to-transparent" />
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {backendMigrations.map((mig, idx) => (
-                <MigrationCard key={`backend-${idx}`} mig={mig} index={idx} />
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Frontend Section */}
-        {frontendMigrations.length > 0 && (
-          <div>
-            <div className="flex items-center gap-4 mb-8">
-              <h3 className="text-2xl font-bold text-white">Frontend Modernization</h3>
-              <div className="h-[1px] flex-1 bg-gradient-to-r from-white/10 to-transparent" />
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-              {frontendMigrations.map((mig, idx) => (
-                <MigrationCard key={`frontend-${idx}`} mig={mig} index={idx} />
-              ))}
-            </div>
-          </div>
-        )}
+        {/* Migrations Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          {filteredMigrations.map((mig, idx) => (
+            <MigrationCard key={`${mig.from.id}-${mig.to.id}-${idx}`} mig={mig} index={idx} />
+          ))}
+        </div>
       </div>
     </section>
   );
 }
+
