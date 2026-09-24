@@ -3,9 +3,6 @@
   "private": true,
   "version": "2.1.2",
   "description": "Official web documentation and presentation portal for Metamorph",
-  "workspaces": [
-    "apps/*"
-  ],
   "scripts": {
     "dev": "npm run --prefix apps/client dev",
     "build": "npm run --prefix apps/client build",
