@@ -27,7 +27,7 @@ const TERMINAL_TABS: TerminalTab[] = [
       { text: '   -> MapperAgent: Discovered 28 source files', color: 'text-blue-400' },
       { text: '   -> WorkerAgent (x3): Concurrently transforming AST & imports...', color: 'text-cyan-300' },
       { text: '   -> ReviewerAgent: Validated syntax & public contract exports', color: 'text-emerald-400' },
-      { text: '   -> IntegrationAgent: Running shadow npm run build (Pass!)', color: 'text-amber-300' },
+      { text: '   -> IntegrationAgent: Running shadow verification build (Pass!)', color: 'text-amber-300' },
       { text: '✅ Migration completed in shadow workspace! Run ID: run-9b2e', color: 'text-emerald-400 font-bold' },
     ],
   },

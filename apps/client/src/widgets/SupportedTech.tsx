@@ -177,10 +177,83 @@ export function SupportedTech() {
         </div>
 
         {/* Migrations Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mb-16">
           {filteredMigrations.map((mig, idx) => (
             <MigrationCard key={`${mig.from.id}-${mig.to.id}-${idx}`} mig={mig} index={idx} />
           ))}
+        </div>
+
+        {/* Polymorphic Package Managers & Monorepo Topologies Strip */}
+        <div className="pt-12 border-t border-cyan-500/10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Package Managers Card */}
+            <div className="p-6 rounded-2xl bg-[#080d17]/80 border border-slate-800/80 hover:border-cyan-500/30 transition-all">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-lg bg-cyan-950/60 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+                    <span className="font-mono text-xs font-bold">PM</span>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold text-white font-mono">Polymorphic Package Managers (PPME)</h3>
+                    <p className="text-xs text-slate-400">Lockfile-preserving execution with zero host subprocess leakage</p>
+                  </div>
+                </div>
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-cyan-950/80 border border-cyan-500/30 text-cyan-300">
+                  Universal
+                </span>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2">
+                {[
+                  { name: 'npm', desc: 'package-lock.json', tag: 'Standard' },
+                  { name: 'pnpm', desc: 'pnpm-lock.yaml', tag: 'Symlink-Safe' },
+                  { name: 'yarn', desc: 'yarn.lock', tag: 'v1 & Berry' },
+                  { name: 'bun', desc: 'bun.lockb', tag: 'Fast Native' },
+                ].map((pm) => (
+                  <div key={pm.name} className="p-3 rounded-xl bg-[#050811] border border-slate-800/80 flex flex-col justify-between">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="font-mono text-xs font-bold text-white">{pm.name}</span>
+                      <span className="text-[9px] font-mono text-cyan-400/80">{pm.tag}</span>
+                    </div>
+                    <span className="text-[10px] font-mono text-slate-500 truncate">{pm.desc}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Monorepo Topologies Card */}
+            <div className="p-6 rounded-2xl bg-[#080d17]/80 border border-slate-800/80 hover:border-cyan-500/30 transition-all">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-lg bg-cyan-950/60 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+                    <span className="font-mono text-xs font-bold">MR</span>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold text-white font-mono">Monorepo Workspace Intelligence (PIE)</h3>
+                    <p className="text-xs text-slate-400">Upward boundary traversal and per-package framework detection</p>
+                  </div>
+                </div>
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-cyan-950/80 border border-cyan-500/30 text-cyan-300">
+                  Subpackages
+                </span>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2">
+                {[
+                  { name: 'Turborepo', desc: 'turbo.json', tag: 'Monorepo' },
+                  { name: 'pnpm Workspaces', desc: 'pnpm-workspace.yaml', tag: 'Workspaces' },
+                  { name: 'npm/yarn Workspaces', desc: 'package.json', tag: 'Hoisted' },
+                  { name: 'Lerna', desc: 'lerna.json', tag: 'Multi-Package' },
+                ].map((mr) => (
+                  <div key={mr.name} className="p-3 rounded-xl bg-[#050811] border border-slate-800/80 flex flex-col justify-between">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="font-mono text-xs font-bold text-white truncate max-w-[80px]">{mr.name}</span>
+                      <span className="text-[9px] font-mono text-cyan-400/80">{mr.tag}</span>
+                    </div>
+                    <span className="text-[10px] font-mono text-slate-500 truncate">{mr.desc}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

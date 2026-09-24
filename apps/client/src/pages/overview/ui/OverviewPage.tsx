@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
-import { Sparkles, ArrowRight, ShieldCheck, Cpu, Layers, Terminal } from 'lucide-react';
+import { Sparkles, ArrowRight, ShieldCheck, Cpu, Layers, Terminal, Binary, PackageCheck } from 'lucide-react';
 
 export const OverviewPage = () => {
   return (
@@ -40,7 +40,7 @@ export const OverviewPage = () => {
           The Metamorph Solution
         </h2>
         <p className="text-slate-300 mb-6 leading-relaxed">
-          Metamorph solves architectural shifts through three core pillars:
+          Metamorph solves architectural shifts through six core architectural pillars:
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
@@ -50,7 +50,7 @@ export const OverviewPage = () => {
               Zero-Risk Shadow Workspace
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Your source files are strictly read-only. All transformations and compilations happen in <code className="text-cyan-300 font-mono">.metamorph/shadow</code>.
+              Your source files are strictly read-only. All transformations, dependency installs, and test compilations happen in <code className="text-cyan-300 font-mono">.metamorph/shadow</code>.
             </p>
           </div>
 
@@ -60,7 +60,27 @@ export const OverviewPage = () => {
               7-Agent Mozaik Swarm
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Mapper, Worker, Reviewer, and Integration agents collaborate with automated compiler repair loops.
+              Mapper, Worker, Reviewer, and Integration agents collaborate over an event-driven blackboard with automated compiler repair loops.
+            </p>
+          </div>
+
+          <div className="p-5 rounded-xl bg-[#090f1c] border border-slate-800">
+            <div className="flex items-center gap-2 text-cyan-400 font-mono text-sm font-bold mb-2">
+              <Binary size={18} />
+              Project Intelligence Engine (PIE)
+            </div>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Zero-token deterministic heuristics score manifests, resolve Subsumption DAGs, and discover monorepo workspaces (Turborepo, pnpm, npm, Lerna).
+            </p>
+          </div>
+
+          <div className="p-5 rounded-xl bg-[#090f1c] border border-slate-800">
+            <div className="flex items-center gap-2 text-cyan-400 font-mono text-sm font-bold mb-2">
+              <PackageCheck size={18} />
+              Polymorphic Package Manager (PPME)
+            </div>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Universal support for <code className="text-cyan-300 font-mono">npm</code>, <code className="text-cyan-300 font-mono">pnpm</code>, <code className="text-cyan-300 font-mono">yarn</code>, and <code className="text-cyan-300 font-mono">bun</code> with lockfile integrity and zero host process leakage.
             </p>
           </div>
 
@@ -70,17 +90,17 @@ export const OverviewPage = () => {
               Layered Domain Catalogs
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Rules are composed by layers (Universal, Runtime, Framework Packs, Pair Rules) for deterministic fidelity.
+              Rules are composed hierarchically (Universal, Runtime, Framework Packs, Pair Rules) for maximum transform fidelity.
             </p>
           </div>
 
           <div className="p-5 rounded-xl bg-[#090f1c] border border-slate-800">
             <div className="flex items-center gap-2 text-cyan-400 font-mono text-sm font-bold mb-2">
               <Terminal size={18} />
-              Real-Time UI & CLI
+              Real-Time UI & Git Exporter
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Monitor agents in real-time with <code className="text-cyan-300 font-mono">metamorph ui</code> and export to Git with <code className="text-cyan-300 font-mono">metamorph apply</code>.
+              Monitor agents live with <code className="text-cyan-300 font-mono">metamorph ui</code> and export verified builds to clean Git branches with <code className="text-cyan-300 font-mono">metamorph apply</code>.
             </p>
           </div>
         </div>
