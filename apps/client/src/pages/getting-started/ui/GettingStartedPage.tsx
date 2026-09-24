@@ -24,6 +24,7 @@ export const GettingStartedPage = () => {
         </h2>
         <ul className="list-disc pl-6 space-y-2 text-slate-300 mb-4 text-sm">
           <li><strong>Node.js:</strong> Version 20.0.0 or newer (<code className="text-cyan-300 font-mono">node:sqlite</code> native storage support).</li>
+          <li><strong>Package Manager:</strong> Any standard package manager: <code className="text-cyan-300 font-mono">npm</code>, <code className="text-cyan-300 font-mono">pnpm</code>, <code className="text-cyan-300 font-mono">yarn</code>, or <code className="text-cyan-300 font-mono">bun</code>. Metamorph adapts automatically.</li>
           <li><strong>Git:</strong> Installed and initialized at your project or monorepo root (needed for <code className="text-cyan-300 font-mono">metamorph apply</code>).</li>
           <li><strong>LLM API Key:</strong> Either OpenAI or Anthropic API key to power Worker & Reviewer agents.</li>
         </ul>
@@ -64,10 +65,29 @@ export const GettingStartedPage = () => {
         <CodeBlock code="cd my-legacy-project\nmetamorph run" />
         
         <p className="text-slate-300 my-4 text-sm leading-relaxed">
-          Metamorph scans your project, detects technologies (e.g. Express, React, NestJS), and prompts you with valid migration paths. 
+          The <strong className="text-white">Project Intelligence Engine (PIE)</strong> scans your project, detects technologies (e.g. Express, React, NestJS), and prompts you with valid migration paths. 
           You can also specify source and destination explicitly:
         </p>
         <CodeBlock code="metamorph run --from react --to next" />
+
+        <div className="mt-6 p-4 rounded-xl bg-[#080d17] border border-cyan-500/20 text-xs text-slate-300 space-y-2">
+          <div className="font-mono text-cyan-300 font-bold flex items-center gap-1.5">
+            <span>📦 Monorepo Execution & Workspace Targeting</span>
+          </div>
+          <p className="text-slate-400 leading-relaxed">
+            If executed inside a monorepo (Turborepo, pnpm workspaces, npm/yarn workspaces, or Lerna), Metamorph automatically discovers member packages and allows interactive selection, or direct targeting with <code className="text-cyan-300 font-mono">--workspace &lt;pkg&gt;</code>:
+          </p>
+          <CodeBlock code="metamorph run --workspace apps/client --from react --to next" />
+        </div>
+
+        <div className="mt-4 p-4 rounded-xl bg-[#080d17] border border-cyan-500/20 text-xs text-slate-300 space-y-2">
+          <div className="font-mono text-cyan-300 font-bold flex items-center gap-1.5">
+            <span>⚡ Polymorphic Package Management (PPME)</span>
+          </div>
+          <p className="text-slate-400 leading-relaxed">
+            Metamorph dynamically adapts to <strong className="text-white">npm</strong>, <strong className="text-white">pnpm</strong>, <strong className="text-white">yarn</strong>, and <strong className="text-white">bun</strong>. Dependency installs and shadow verification builds strictly respect your project lockfile, while host manifests are updated without child process leakage.
+          </p>
+        </div>
       </div>
 
       {/* Monitoring the Swarm */}

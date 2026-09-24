@@ -47,15 +47,20 @@ export const CliReferencePage = () => {
                 <td className="p-3">Target framework ID</td>
                 <td className="p-3">--to next</td>
               </tr>
+              <tr>
+                <td className="p-3 text-cyan-300 font-bold">--workspace &lt;pkg&gt;</td>
+                <td className="p-3">Target a specific package in a monorepo</td>
+                <td className="p-3">--workspace apps/web</td>
+              </tr>
             </tbody>
           </table>
         </div>
 
-        <h3 className="text-sm font-semibold text-slate-300 font-mono mb-2">Interactive Mode:</h3>
-        <p className="text-xs text-slate-400 mb-3">
-          If <code className="text-cyan-300 font-mono">--from</code> is omitted, Metamorph runs static heuristic detection on your codebase and displays interactive select prompts with detection confidence percentages.
+        <h3 className="text-sm font-semibold text-slate-300 font-mono mb-2">Monorepos & Interactive Selection:</h3>
+        <p className="text-xs text-slate-400 mb-3 leading-relaxed">
+          When run inside a monorepo (Turborepo, pnpm workspaces, npm/yarn workspaces, or Lerna), Metamorph automatically discovers member packages and prompts you to select one, or you can bypass the prompt with <code className="text-cyan-300 font-mono">--workspace &lt;pkg&gt;</code>.
         </p>
-        <CodeBlock code="metamorph run ./my-app --from express --to nestjs" />
+        <CodeBlock code="# Run on a specific monorepo workspace package\nmetamorph run --workspace apps/client --from react --to next\n\n# Or run interactively with full auto-detection\nmetamorph run" />
       </div>
 
       {/* 2. metamorph ui */}
@@ -106,20 +111,34 @@ export const CliReferencePage = () => {
           <span className="text-cyan-400 font-mono">metamorph detect [path]</span>
         </h2>
         <p className="text-slate-300 mb-4 leading-relaxed">
-          Executes static heuristic analysis over dependencies, configuration files, and imports without invoking any LLM. Prints detected technologies and evidence list.
+          Executes static intelligence analysis over dependencies, configuration markers, and physical directory layouts without starting a migration or invoking any LLM (<strong className="text-cyan-300">zero tokens</strong>).
         </p>
-        <CodeBlock code="metamorph detect ." />
+        <p className="text-slate-400 text-xs mb-3 leading-relaxed">
+          Outputs detected frameworks, confidence scores, runtime variants (e.g. App Router vs Pages Router), bundlers, package managers, monorepo topologies, and Subsumption DAG resolutions.
+        </p>
+        <CodeBlock code="# Run static intelligence on current folder\nmetamorph detect .\n\n# Run on another project or monorepo subfolder\nmetamorph detect ../my-app" />
       </div>
 
-      {/* 6. metamorph list & reset */}
-      <div className="mb-14 scroll-mt-24" id="command-list-reset">
+      {/* 6. metamorph list */}
+      <div className="mb-12 scroll-mt-24" id="command-list">
         <h2 className="text-2xl font-bold text-white mb-4 border-b border-cyan-500/20 pb-2 flex items-center gap-2">
-          <span className="text-cyan-400 font-mono">metamorph list & reset</span>
+          <span className="text-cyan-400 font-mono">metamorph list</span>
         </h2>
         <p className="text-slate-300 mb-4 leading-relaxed">
-          Inspect past migration plans or reset local SQLite state storage:
+          Queries the native SQLite database (<code className="text-cyan-300 font-mono">.metamorph/history.db</code>) and displays a summary table of past and ongoing migration runs, their source and target frameworks, task statistics, and applied Git branches.
         </p>
-        <CodeBlock code="# List past migrations\nmetamorph list\n\n# Reset local state database (.metamorph/history.db)\nmetamorph reset" />
+        <CodeBlock code="metamorph list" />
+      </div>
+
+      {/* 7. metamorph reset */}
+      <div className="mb-14 scroll-mt-24" id="command-reset">
+        <h2 className="text-2xl font-bold text-white mb-4 border-b border-cyan-500/20 pb-2 flex items-center gap-2">
+          <span className="text-cyan-400 font-mono">metamorph reset</span>
+        </h2>
+        <p className="text-slate-300 mb-4 leading-relaxed">
+          Clears all migration history, plan states, and event records from the local SQLite database (<code className="text-cyan-300 font-mono">.metamorph/history.db</code>), resetting the state store to a clean slate.
+        </p>
+        <CodeBlock code="metamorph reset" />
       </div>
 
       {/* Environment Variables */}

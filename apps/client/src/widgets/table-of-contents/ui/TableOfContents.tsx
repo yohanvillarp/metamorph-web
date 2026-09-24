@@ -25,17 +25,22 @@ export const TableOfContents = () => {
     }));
   } else if (path.includes(ROUTES.DOCS.GETTING_STARTED)) {
     items = [
-      { name: 'Installation', id: 'installation' },
-      { name: 'Quick Start', id: 'quick-start' },
-      { name: 'Monitoring the Swarm', id: 'monitoring-the-swarm' },
-      { name: 'Review and Apply', id: 'review-and-apply' },
+      { name: 'Prerequisites', id: 'prerequisites' },
+      { name: '1. Installation', id: 'installation' },
+      { name: '2. Configure API Key', id: 'api-key-configuration' },
+      { name: '3. Run the Swarm', id: 'quick-start' },
+      { name: '4. Monitor Dashboard', id: 'monitoring-the-swarm' },
+      { name: '5. Review & Apply', id: 'review-and-apply' },
     ];
   } else if (path.includes(ROUTES.DOCS.CONCEPTS)) {
     items = [
       { name: '1. Shadow Workspace', id: 'shadow-workspace' },
       { name: '2. Mozaik v4 Event Swarm', id: 'mozaik-swarm' },
       { name: '3. Hexagonal Architecture', id: 'hexagonal-architecture' },
-      { name: '4. Atomic Git Application', id: 'atomic-git-apply' },
+      { name: '4. Project Intelligence Engine', id: 'project-intelligence-engine' },
+      { name: '5. Polymorphic Package Manager', id: 'polymorphic-package-manager' },
+      { name: '6. Atomic Git Application', id: 'atomic-git-apply' },
+      { name: '7. Technical Whitepapers', id: 'technical-whitepapers' },
     ];
   } else if (path.includes(ROUTES.DOCS.SWARM)) {
     items = [
@@ -55,7 +60,8 @@ export const TableOfContents = () => {
       { name: 'metamorph apply', id: 'command-apply' },
       { name: 'metamorph rollback', id: 'command-rollback' },
       { name: 'metamorph detect', id: 'command-detect' },
-      { name: 'list & reset', id: 'command-list-reset' },
+      { name: 'metamorph list', id: 'command-list' },
+      { name: 'metamorph reset', id: 'command-reset' },
       { name: 'Environment Variables', id: 'env-variables' },
     ];
   } else if (path === ROUTES.DOCS.ROOT || path === ROUTES.DOCS.ROOT + '/') {
