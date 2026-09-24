@@ -39,7 +39,7 @@ export const DocsSidebar = ({ mobileOpen, setMobileOpen }: DocsSidebarProps) => 
           </span>
         </div>
         <span className="text-[10px] bg-cyan-950/80 px-2 py-0.5 rounded-full border border-cyan-500/30 font-mono text-cyan-300">
-          v2.1.1
+          v2.1.2
         </span>
       </div>
 
@@ -67,7 +67,7 @@ export const DocsSidebar = ({ mobileOpen, setMobileOpen }: DocsSidebarProps) => 
         </div>
         <nav className="flex flex-col gap-1">
           <Link to={ROUTES.DOCS.CONCEPTS} className={getLinkClasses(ROUTES.DOCS.CONCEPTS)}>
-            Shadow Workspace & Hexagonal
+            Architecture & Whitepapers
           </Link>
         </nav>
       </div>

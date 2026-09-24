@@ -26,7 +26,7 @@ export function Header() {
 
         <span className="hidden lg:inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-0.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300">
           <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-          npm: @nikelyh/metamorph v2.1.1
+          npm: @nikelyh/metamorph v2.1.2
         </span>
       </div>
 
