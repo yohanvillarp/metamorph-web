@@ -1,0 +1,25 @@
+{
+  "name": "metamorph-web",
+  "private": true,
+  "version": "2.1.2",
+  "description": "Official web documentation and presentation portal for Metamorph",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run --prefix apps/client dev",
+    "build": "npm run --prefix apps/client build",
+    "lint": "npm run --prefix apps/client lint",
+    "preview": "npm run --prefix apps/client preview"
+  },
+  "keywords": [
+    "metamorph",
+    "ai-agents",
+    "framework-migration",
+    "react",
+    "nextjs",
+    "documentation"
+  ],
+  "author": "Yohan Villar",
+  "license": "MIT"
+}
