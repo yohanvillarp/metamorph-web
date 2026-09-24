@@ -1,10 +1,16 @@
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
 import { Sparkles, ArrowRight, ShieldCheck, Cpu, Layers, Terminal, Binary, PackageCheck } from 'lucide-react';
+import { SEOHead } from '@/shared/ui/SEOHead';
 
 export const OverviewPage = () => {
   return (
     <div className="max-w-4xl">
+      <SEOHead
+        title="Overview & Philosophy | Metamorph Docs"
+        description="Discover how Metamorph automates full-stack software migrations through zero-risk shadow workspaces, Mozaik v4 event swarms, and the Project Intelligence Engine."
+        keywords="metamorph philosophy, software migration, shadow workspace, mozaik v4, code refactoring, zero risk migration"
+      />
       <div className="mb-10">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/70 border border-cyan-500/40 text-cyan-300 text-xs font-mono uppercase tracking-wider mb-4">
           <Sparkles size={14} className="text-cyan-400" />

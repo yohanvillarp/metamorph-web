@@ -1,9 +1,15 @@
 import { Terminal, Key } from 'lucide-react';
 import { CodeBlock } from '@/shared/ui/CodeBlock';
+import { SEOHead } from '@/shared/ui/SEOHead';
 
 export const CliReferencePage = () => {
   return (
     <div className="max-w-4xl">
+      <SEOHead
+        title="CLI Command Reference | Metamorph Docs"
+        description="Complete command-line documentation for Metamorph: metamorph run, ui, apply, rollback, detect, list, reset, monorepo flags, and environment variables."
+        keywords="metamorph cli, cli reference, metamorph run, metamorph detect, metamorph apply, command line migration"
+      />
       <div className="mb-10">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/70 border border-cyan-500/40 text-cyan-300 text-xs font-mono uppercase tracking-wider mb-4">
           <Terminal size={14} className="text-cyan-400" />

@@ -1,12 +1,18 @@
 import { generateGroupedSections, MigrationCard } from '@/entities/migration';
 import { FrameworkLink } from '@/shared/ui/FrameworkLink';
 import { Layers } from 'lucide-react';
+import { SEOHead } from '@/shared/ui/SEOHead';
 
 export const FrontendMigrationsPage = () => {
   const frontendGroups = generateGroupedSections(true);
 
   return (
     <div className="max-w-4xl">
+      <SEOHead
+        title="Frontend Framework Migrations | Metamorph Matrix"
+        description="Automated, zero-risk migrations across React SPA, Next.js App Router, Vue 3, Svelte 5, and Angular 18+ with full AST and dependency transformations."
+        keywords="react to nextjs, react to vue, nextjs app router migration, svelte 5 runes, angular standalone, frontend framework migration"
+      />
       <div className="mb-12">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/70 border border-cyan-500/40 text-cyan-300 text-xs font-mono uppercase tracking-wider mb-4">
           <Layers size={14} className="text-cyan-400" />

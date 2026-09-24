@@ -1,9 +1,15 @@
 import { CodeBlock } from '@/shared/ui/CodeBlock';
 import { Key, ShieldCheck, PlayCircle } from 'lucide-react';
+import { SEOHead } from '@/shared/ui/SEOHead';
 
 export const GettingStartedPage = () => {
   return (
     <div className="max-w-4xl">
+      <SEOHead
+        title="Installation & Quickstart | Metamorph Docs"
+        description="Step-by-step guide to installing Metamorph CLI, setting up LLM API keys, and executing zero-risk migrations on individual projects and monorepo packages."
+        keywords="metamorph quickstart, install metamorph, cli migration guide, monorepo migration, shadow workspace"
+      />
       <div className="mb-10">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/70 border border-cyan-500/40 text-cyan-300 text-xs font-mono uppercase tracking-wider mb-4">
           <PlayCircle size={14} className="text-cyan-400" />

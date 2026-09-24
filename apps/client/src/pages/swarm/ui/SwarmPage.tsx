@@ -1,8 +1,14 @@
 import { RefreshCw, Zap, CheckCircle2, Clock } from 'lucide-react';
+import { SEOHead } from '@/shared/ui/SEOHead';
 
 export const SwarmPage = () => {
   return (
     <div className="max-w-4xl">
+      <SEOHead
+        title="The 7 Swarm Agents | Metamorph Docs"
+        description="Detailed specification of Metamorph autonomous agents: Mapper, Worker, Reviewer, Coordinator, Integration, Reporter, and PackageManager."
+        keywords="mozaik v4 agents, ai agents, swarm orchestration, mapper agent, worker agent, reviewer agent, integration agent"
+      />
       <div className="mb-10">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/70 border border-cyan-500/40 text-cyan-300 text-xs font-mono uppercase tracking-wider mb-4">
           <Zap size={14} className="text-cyan-400" />

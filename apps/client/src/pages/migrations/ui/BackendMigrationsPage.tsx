@@ -1,12 +1,18 @@
 import { generateGroupedSections, MigrationCard } from '@/entities/migration';
 import { FrameworkLink } from '@/shared/ui/FrameworkLink';
 import { Layers } from 'lucide-react';
+import { SEOHead } from '@/shared/ui/SEOHead';
 
 export const BackendMigrationsPage = () => {
   const backendGroups = generateGroupedSections(false);
 
   return (
     <div className="max-w-4xl">
+      <SEOHead
+        title="Backend Framework Migrations | Metamorph Matrix"
+        description="Automated backend framework migrations across Express, Fastify, and NestJS with dependency scaffolding and lifecycle adaptation."
+        keywords="express to fastify, express to nestjs, fastify to nestjs, backend migration, nodejs framework migration"
+      />
       <div className="mb-12">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/70 border border-cyan-500/40 text-cyan-300 text-xs font-mono uppercase tracking-wider mb-4">
           <Layers size={14} className="text-cyan-400" />

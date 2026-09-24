@@ -3,10 +3,16 @@ import { SwarmPipelineVisualizer } from '@/widgets/SwarmPipelineVisualizer';
 import { CodeTransformationDemo } from '@/widgets/CodeTransformationDemo';
 import { SupportedTech } from '@/widgets/SupportedTech';
 import { CallToAction } from '@/widgets/CallToAction';
+import { SEOHead } from '@/shared/ui/SEOHead';
 
 export function LandingPage() {
   return (
     <main className="min-h-screen bg-[#06090e] text-slate-100 overflow-x-hidden pt-20">
+      <SEOHead
+        title="Metamorph | The AI Multi-Agent Migration CLI"
+        description="Refactor and migrate your entire codebase with zero risk and zero downtime. Powered by Mozaik AI and an elite swarm of autonomous agents."
+        keywords="framework migration, codemod, ai refactoring, mozaik v4, react to nextjs, express to nestjs, polymorphic package manager, shadow workspace"
+      />
       <HeroSection />
       <SwarmPipelineVisualizer />
       <CodeTransformationDemo />
