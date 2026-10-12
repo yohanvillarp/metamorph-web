@@ -130,7 +130,7 @@ export function SwarmPipelineVisualizer() {
   const activeAgent = SWARM_AGENTS.find((a) => a.id === selectedAgent) || SWARM_AGENTS[2];
 
   return (
-    <section className="py-24 px-4 relative bg-[#080c14] border-t border-b border-cyan-500/10 overflow-hidden">
+    <section id="swarm" className="py-24 px-4 relative bg-[#080c14] border-t border-b border-cyan-500/10 overflow-hidden">
       {/* Background cyber grid */}
       <div 
         className="absolute inset-0 opacity-15 pointer-events-none"

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
-import { ChevronDown, ChevronRight, X, BookOpen, Layers, Cpu, Terminal, Shield, Search } from 'lucide-react';
+import { ChevronDown, ChevronRight, X, BookOpen, Layers, Cpu, Terminal, Shield } from 'lucide-react';
 import { cn } from '@/shared/lib/utils';
 
 interface DocsSidebarProps {
@@ -50,24 +50,6 @@ export const DocsSidebar = ({ mobileOpen, setMobileOpen }: DocsSidebarProps) => 
           v2.2.0
         </span>
       </div>
-
-      {/* Quick Search Button */}
-      <button
-        type="button"
-        onClick={() => {
-          if (setMobileOpen) setMobileOpen(false);
-          window.dispatchEvent(new CustomEvent('metamorph:open-search'));
-        }}
-        className="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/40 hover:bg-[#0a1222] text-slate-400 hover:text-slate-200 text-xs font-mono transition-all group shadow-inner cursor-pointer"
-      >
-        <div className="flex items-center gap-2">
-          <Search size={13} className="text-cyan-400 group-hover:scale-110 transition-transform" />
-          <span>Search docs...</span>
-        </div>
-        <kbd className="px-1.5 py-0.5 text-[9px] bg-slate-800 border border-slate-700 text-slate-300 rounded font-mono">
-          Ctrl K
-        </kbd>
-      </button>
 
       {/* 1. Getting Started */}
       <div>

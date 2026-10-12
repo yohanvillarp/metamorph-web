@@ -75,7 +75,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[92vh] flex flex-col items-center justify-center px-4 pt-10 pb-20 overflow-hidden">
+    <section id="hero" className="relative min-h-[92vh] flex flex-col items-center justify-center px-4 pt-10 pb-20 overflow-hidden">
       {/* Background Cybernetic Glows */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-cyan-500/15 blur-[150px] rounded-full pointer-events-none" />
       <div className="absolute top-1/4 left-1/4 w-[450px] h-[450px] bg-blue-600/10 blur-[130px] rounded-full pointer-events-none" />

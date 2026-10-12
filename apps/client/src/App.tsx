@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Header } from './shared/ui/Header';
+import { Header } from './widgets/header';
 import { ScrollToTop } from './shared/ui/ScrollToTop';
 import { ROUTES } from './shared/config/routes';
 import './index.css';

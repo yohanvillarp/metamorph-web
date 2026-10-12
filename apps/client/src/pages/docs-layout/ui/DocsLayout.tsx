@@ -14,6 +14,12 @@ export const DocsLayout = () => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
+  useEffect(() => {
+    const handleOpenSidebar = () => setIsMobileMenuOpen(true);
+    window.addEventListener('metamorph:open-docs-sidebar', handleOpenSidebar);
+    return () => window.removeEventListener('metamorph:open-docs-sidebar', handleOpenSidebar);
+  }, []);
+
   return (
     <div className="min-h-screen bg-neo-bg text-neo-text pt-20 flex flex-col">
       <div className="flex-1 max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 flex items-start">
