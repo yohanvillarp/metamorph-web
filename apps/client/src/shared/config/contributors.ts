@@ -20,11 +20,4 @@ export const CONTRIBUTOR_PROFILES: Record<string, ContributorProfile> = {
     badge: 'Creator',
     bio: 'Creator of Metamorph, Mozaik v4 event blackboard, and Shadow Workspace architecture.',
   },
-  okarin1511: {
-    login: 'okarin1511',
-    name: 'okarin1511',
-    role: 'Core Contributor',
-    badge: 'Maintainer',
-    bio: 'Core development, monorepo refactoring, and framework migration engineering.',
-  },
 };
