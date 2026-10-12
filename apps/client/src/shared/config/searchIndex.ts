@@ -1,0 +1,256 @@
+import { ROUTES } from './routes';
+
+export type SearchCategory = 'Command' | 'Flag' | 'Agent' | 'Architecture' | 'Migration';
+
+export interface SearchItem {
+  id: string;
+  title: string;
+  description: string;
+  category: SearchCategory;
+  href: string;
+  keywords: string[];
+}
+
+export const SEARCH_INDEX: SearchItem[] = [
+  // Commands
+  {
+    id: 'cmd-run',
+    title: 'metamorph run [path]',
+    description: 'Initializes and executes an autonomous migration inside an isolated shadow workspace.',
+    category: 'Command',
+    href: `${ROUTES.DOCS.CLI_REFERENCE}#command-run`,
+    keywords: ['run', 'execute', 'start', 'migrate', 'cli', 'shadow'],
+  },
+  {
+    id: 'cmd-config',
+    title: 'metamorph config [subcommand]',
+    description: 'Manages cascading settings, interactive setup wizard, and local/global configuration files.',
+    category: 'Command',
+    href: `${ROUTES.DOCS.CLI_REFERENCE}#command-config`,
+    keywords: ['config', 'setup', 'wizard', 'model', 'concurrency', 'metamorphrc', 'settings'],
+  },
+  {
+    id: 'cmd-ui',
+    title: 'metamorph ui [-p <port>]',
+    description: 'Starts the local Express API server and opens the Metamorph Web Dashboard in browser.',
+    category: 'Command',
+    href: `${ROUTES.DOCS.CLI_REFERENCE}#command-ui`,
+    keywords: ['ui', 'dashboard', 'web', 'monitor', 'server', 'port', 'telemetry'],
+  },
+  {
+    id: 'cmd-apply',
+    title: 'metamorph apply <runId> [path]',
+    description: 'Exports a verified shadow workspace onto a dedicated Git branch in the user repository.',
+    category: 'Command',
+    href: `${ROUTES.DOCS.CLI_REFERENCE}#command-apply`,
+    keywords: ['apply', 'git', 'export', 'branch', 'commit', 'merge'],
+  },
+  {
+    id: 'cmd-rollback',
+    title: 'metamorph rollback <runId>',
+    description: 'Safely discards an unapplied sandbox and removes database task records.',
+    category: 'Command',
+    href: `${ROUTES.DOCS.CLI_REFERENCE}#command-rollback`,
+    keywords: ['rollback', 'discard', 'clean', 'delete', 'undo', 'abort'],
+  },
+  {
+    id: 'cmd-detect',
+    title: 'metamorph detect [path]',
+    description: 'Executes static intelligence analysis on project frameworks with zero LLM tokens.',
+    category: 'Command',
+    href: `${ROUTES.DOCS.CLI_REFERENCE}#command-detect`,
+    keywords: ['detect', 'pie', 'intelligence', 'scan', 'zero token', 'heuristics'],
+  },
+  {
+    id: 'cmd-list',
+    title: 'metamorph list',
+    description: 'Displays a table of past and active migrations stored in SQLite database.',
+    category: 'Command',
+    href: `${ROUTES.DOCS.CLI_REFERENCE}#command-list`,
+    keywords: ['list', 'history', 'runs', 'sqlite', 'status'],
+  },
+  {
+    id: 'cmd-reset',
+    title: 'metamorph reset',
+    description: 'Clears all migration records and event history from local SQLite database.',
+    category: 'Command',
+    href: `${ROUTES.DOCS.CLI_REFERENCE}#command-reset`,
+    keywords: ['reset', 'clear', 'database', 'purge', 'sqlite'],
+  },
+
+  // Flags & Tuning Options
+  {
+    id: 'flag-disable-agents',
+    title: '--disable-agents <list>',
+    description: 'Disables auxiliary agents (reporter, reviewer, accounting), activating zero-token bypass modes.',
+    category: 'Flag',
+    href: `${ROUTES.DOCS.CLI_REFERENCE}#command-run`,
+    keywords: ['disable-agents', 'bypass', 'cheap', 'fast', 'tokens', 'save cost'],
+  },
+  {
+    id: 'flag-workspace',
+    title: '--workspace <pkg>',
+    description: 'Directly targets a specific monorepo workspace package (Turborepo, pnpm, npm, Lerna).',
+    category: 'Flag',
+    href: `${ROUTES.DOCS.CLI_REFERENCE}#command-run`,
+    keywords: ['workspace', 'monorepo', 'turborepo', 'pnpm', 'lerna', 'package'],
+  },
+  {
+    id: 'flag-model',
+    title: '--model <model>',
+    description: 'Selects the primary LLM model for WorkerAgent code transformations (e.g. gpt-5.4).',
+    category: 'Flag',
+    href: `${ROUTES.DOCS.CLI_REFERENCE}#command-run`,
+    keywords: ['model', 'llm', 'gpt', 'claude', 'inference'],
+  },
+  {
+    id: 'flag-concurrency',
+    title: '--concurrency <number>',
+    description: 'Sets the maximum number of concurrent worker agents (default: 3).',
+    category: 'Flag',
+    href: `${ROUTES.DOCS.CLI_REFERENCE}#command-run`,
+    keywords: ['concurrency', 'parallel', 'workers', 'queue', 'speed'],
+  },
+
+  // Agents
+  {
+    id: 'agent-mapper',
+    title: 'MapperAgent',
+    description: 'Scans the directory tree, resolves import graphs, and emits FILE_DISCOVERED events.',
+    category: 'Agent',
+    href: `${ROUTES.DOCS.SWARM}#mapper-agent`,
+    keywords: ['mapper', 'discovery', 'graph', 'files', 'scan', 'core agent'],
+  },
+  {
+    id: 'agent-packagemanager',
+    title: 'PackageManagerAgent',
+    description: 'Directly edits shadow package.json dependencies and scripts without host subprocess leakage.',
+    category: 'Agent',
+    href: `${ROUTES.DOCS.SWARM}#package-manager-agent`,
+    keywords: ['packagemanager', 'dependencies', 'package.json', 'scripts', 'core agent'],
+  },
+  {
+    id: 'agent-worker',
+    title: 'WorkerAgent',
+    description: 'Transforms code and AST using layered catalog rules and neighbor context.',
+    category: 'Agent',
+    href: `${ROUTES.DOCS.SWARM}#worker-agent`,
+    keywords: ['worker', 'ast', 'transform', 'code', 'refactor', 'core agent'],
+  },
+  {
+    id: 'agent-reviewer',
+    title: 'ReviewerAgent',
+    description: 'Inspects transformed files for syntax errors and export consistency (Supports bypass mode).',
+    category: 'Agent',
+    href: `${ROUTES.DOCS.SWARM}#reviewer-agent`,
+    keywords: ['reviewer', 'quality gate', 'validation', 'syntax', 'auxiliary agent'],
+  },
+  {
+    id: 'agent-coordinator',
+    title: 'CoordinatorAgent',
+    description: 'Deterministic zero-LLM state machine orchestrating phase transitions and watchdogs.',
+    category: 'Agent',
+    href: `${ROUTES.DOCS.SWARM}#coordinator-agent`,
+    keywords: ['coordinator', 'state machine', 'watchdog', 'phase', 'core agent'],
+  },
+  {
+    id: 'agent-integration',
+    title: 'IntegrationAgent',
+    description: 'Executes real compilation in shadow workspace and drives compiler diagnostic repair rounds.',
+    category: 'Agent',
+    href: `${ROUTES.DOCS.SWARM}#integration-agent`,
+    keywords: ['integration', 'build', 'compiler', 'repair', 'diagnostics', 'core agent'],
+  },
+  {
+    id: 'agent-reporter',
+    title: 'ReporterAgent',
+    description: 'Generates detailed MIGRATION.md changelog and audit trail (Has 0-token fallback mode).',
+    category: 'Agent',
+    href: `${ROUTES.DOCS.SWARM}#reporter-agent`,
+    keywords: ['reporter', 'changelog', 'migration.md', 'audit', 'auxiliary agent'],
+  },
+  {
+    id: 'agent-accounting',
+    title: 'AccountingAgent',
+    description: 'Tracks LLM token consumption in real time and calculates dollar costs in SQLite.',
+    category: 'Agent',
+    href: `${ROUTES.DOCS.SWARM}#accounting-agent`,
+    keywords: ['accounting', 'tokens', 'cost', 'dollars', 'telemetry', 'auxiliary agent'],
+  },
+
+  // Architecture Concepts
+  {
+    id: 'arch-shadow',
+    title: 'The Shadow Workspace (Zero-Risk)',
+    description: 'All file mutations, package installs, and builds happen strictly inside .metamorph/shadow.',
+    category: 'Architecture',
+    href: `${ROUTES.DOCS.CONCEPTS}#shadow-workspace`,
+    keywords: ['shadow', 'workspace', 'sandbox', 'zero risk', 'isolation', 'assertSandbox'],
+  },
+  {
+    id: 'arch-swarm',
+    title: 'Mozaik v4 Event Swarm',
+    description: 'Event-driven blackboard model with typed semantic events and ephemeral participant lifecycle.',
+    category: 'Architecture',
+    href: `${ROUTES.DOCS.CONCEPTS}#mozaik-swarm`,
+    keywords: ['mozaik', 'swarm', 'event bus', 'blackboard', 'ephemeral', 'leave'],
+  },
+  {
+    id: 'arch-pie',
+    title: 'Project Intelligence Engine (PIE)',
+    description: 'Multi-stage heuristic confidence scoring and Subsumption DAG resolution.',
+    category: 'Architecture',
+    href: `${ROUTES.DOCS.CONCEPTS}#project-intelligence-engine`,
+    keywords: ['pie', 'heuristics', 'subsumption', 'dag', 'detection'],
+  },
+  {
+    id: 'arch-ppme',
+    title: 'Polymorphic Package Manager (PPME)',
+    description: 'Universal support for npm, pnpm, yarn, and bun with lockfile preservation.',
+    category: 'Architecture',
+    href: `${ROUTES.DOCS.CONCEPTS}#polymorphic-package-manager`,
+    keywords: ['ppme', 'pnpm', 'yarn', 'bun', 'npm', 'lockfile'],
+  },
+  {
+    id: 'arch-backend-parity',
+    title: 'Backend Validation Parity',
+    description: 'Shadow verification plugins for Express, Fastify, and NestJS with entrypoint resolution.',
+    category: 'Architecture',
+    href: `${ROUTES.DOCS.CONCEPTS}#backend-validation`,
+    keywords: ['backend', 'express', 'fastify', 'nestjs', 'validation', 'parity'],
+  },
+  {
+    id: 'arch-cascading-config',
+    title: 'Cascading Configuration Engine',
+    description: 'Precedence resolution across CLI flags, env variables, .metamorphrc.json, and defaults.',
+    category: 'Architecture',
+    href: `${ROUTES.DOCS.CONCEPTS}#cascading-config`,
+    keywords: ['cascading', 'config', 'hierarchy', 'env', 'metamorphrc'],
+  },
+
+  // Migrations
+  {
+    id: 'mig-react-next',
+    title: 'React SPA to Next.js App Router',
+    description: 'Migrate React Router SPAs to Next.js 14+ App Router with server/client boundaries.',
+    category: 'Migration',
+    href: ROUTES.DOCS.MIGRATIONS.FRONTEND,
+    keywords: ['react', 'next', 'nextjs', 'app router', 'ssr'],
+  },
+  {
+    id: 'mig-express-fastify',
+    title: 'Express to Fastify',
+    description: 'High-performance API migration adapting middleware, schemas, and request lifecycles.',
+    category: 'Migration',
+    href: ROUTES.DOCS.MIGRATIONS.BACKEND,
+    keywords: ['express', 'fastify', 'node', 'api', 'backend'],
+  },
+  {
+    id: 'mig-express-nestjs',
+    title: 'Express to NestJS',
+    description: 'Enterprise architecture migration resolving IoC dependency injection and controllers.',
+    category: 'Migration',
+    href: ROUTES.DOCS.MIGRATIONS.BACKEND,
+    keywords: ['express', 'nestjs', 'ioc', 'dependency injection', 'controllers', 'backend'],
+  },
+];

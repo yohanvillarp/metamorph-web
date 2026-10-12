@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
-import { ChevronDown, ChevronRight, X, BookOpen, Layers, Cpu, Terminal, Shield } from 'lucide-react';
+import { ChevronDown, ChevronRight, X, BookOpen, Layers, Cpu, Terminal, Shield, Search } from 'lucide-react';
 import { cn } from '@/shared/lib/utils';
 
 interface DocsSidebarProps {
@@ -32,16 +32,42 @@ export const DocsSidebar = ({ mobileOpen, setMobileOpen }: DocsSidebarProps) => 
     <div className="space-y-6">
       {/* Header Info */}
       <div className="flex items-center justify-between px-3 pb-3 border-b border-white/5">
-        <div className="flex items-center gap-2">
-          <img src="/logo_metamorph.png" alt="Logo" className="w-5 h-5 object-contain" />
-          <span className="text-xs font-mono font-bold tracking-wider uppercase text-cyan-400">
+        <Link 
+          to={ROUTES.DOCS.ROOT}
+          className="flex items-center gap-2 group cursor-pointer"
+          title="Metamorph Docs Overview"
+        >
+          <img 
+            src="/logo_metamorph.png" 
+            alt="Logo" 
+            className="w-5 h-5 object-contain group-hover:scale-110 transition-transform drop-shadow-[0_0_6px_rgba(0,242,254,0.4)]" 
+          />
+          <span className="text-xs font-mono font-bold tracking-wider uppercase text-cyan-400 group-hover:text-cyan-300 transition-colors">
             Metamorph Docs
           </span>
-        </div>
+        </Link>
         <span className="text-[10px] bg-cyan-950/80 px-2 py-0.5 rounded-full border border-cyan-500/30 font-mono text-cyan-300">
           v2.2.0
         </span>
       </div>
+
+      {/* Quick Search Button */}
+      <button
+        type="button"
+        onClick={() => {
+          if (setMobileOpen) setMobileOpen(false);
+          window.dispatchEvent(new CustomEvent('metamorph:open-search'));
+        }}
+        className="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/40 hover:bg-[#0a1222] text-slate-400 hover:text-slate-200 text-xs font-mono transition-all group shadow-inner cursor-pointer"
+      >
+        <div className="flex items-center gap-2">
+          <Search size={13} className="text-cyan-400 group-hover:scale-110 transition-transform" />
+          <span>Search docs...</span>
+        </div>
+        <kbd className="px-1.5 py-0.5 text-[9px] bg-slate-800 border border-slate-700 text-slate-300 rounded font-mono">
+          Ctrl K
+        </kbd>
+      </button>
 
       {/* 1. Getting Started */}
       <div>

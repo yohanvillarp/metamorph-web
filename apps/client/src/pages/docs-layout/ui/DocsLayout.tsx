@@ -1,6 +1,7 @@
 import { DocsSidebar } from '@/widgets/docs-sidebar';
 import { TableOfContents } from '@/widgets/table-of-contents';
 import { MobileNav } from '@/widgets/mobile-nav';
+import { DocsPagination } from '@/shared/ui/DocsPagination';
 import { useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
@@ -23,6 +24,7 @@ export const DocsLayout = () => {
         <main id="docs-content" className="flex-1 min-w-0 py-8 lg:px-12 md:px-8">
           <MobileNav onOpenSidebar={() => setIsMobileMenuOpen(true)} />
           <Outlet />
+          <DocsPagination />
         </main>
 
         {/* Right Table of Contents */}

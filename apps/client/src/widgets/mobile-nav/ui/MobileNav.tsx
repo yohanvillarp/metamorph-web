@@ -13,20 +13,28 @@ export const MobileNav = ({ onOpenSidebar }: MobileNavProps) => {
   const location = useLocation();
 
   // Determine Breadcrumbs
-  let parent = '';
-  let current = '';
+  let parent = 'Docs';
+  let current = 'Overview';
 
-  if (location.pathname.includes(ROUTES.DOCS.MIGRATIONS.ROOT)) {
+  const path = location.pathname.replace(/\/$/, '') || '/';
+
+  if (path.includes(ROUTES.DOCS.MIGRATIONS.ROOT)) {
     parent = 'Migrations';
-    if (location.pathname.includes(ROUTES.DOCS.MIGRATIONS.BACKEND)) {
+    if (path.includes(ROUTES.DOCS.MIGRATIONS.BACKEND)) {
       current = 'Backend Frameworks';
-    } else if (location.pathname.includes(ROUTES.DOCS.MIGRATIONS.FRONTEND)) {
+    } else if (path.includes(ROUTES.DOCS.MIGRATIONS.FRONTEND)) {
       current = 'Frontend Frameworks';
     }
-  } else if (location.pathname.includes(ROUTES.DOCS.GETTING_STARTED)) {
+  } else if (path.includes(ROUTES.DOCS.GETTING_STARTED)) {
     current = 'Getting Started';
+  } else if (path.includes(ROUTES.DOCS.CONCEPTS)) {
+    current = 'Core Architecture';
+  } else if (path.includes(ROUTES.DOCS.SWARM)) {
+    current = 'The 8 Swarm Agents';
+  } else if (path.includes(ROUTES.DOCS.CLI_REFERENCE)) {
+    current = 'CLI Command Reference';
   } else {
-    current = 'Overview';
+    current = 'Overview & Philosophy';
   }
 
   const handleCopyMarkdown = () => {

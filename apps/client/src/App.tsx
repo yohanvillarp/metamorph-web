@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Header } from './shared/ui/Header';
+import { ScrollToTop } from './shared/ui/ScrollToTop';
 import { ROUTES } from './shared/config/routes';
 import './index.css';
 
@@ -14,6 +15,7 @@ const SwarmPage = lazy(() => import('./pages/swarm').then((m) => ({ default: m.S
 const CliReferencePage = lazy(() => import('./pages/cli-reference').then((m) => ({ default: m.CliReferencePage })));
 const BackendMigrationsPage = lazy(() => import('./pages/migrations').then((m) => ({ default: m.BackendMigrationsPage })));
 const FrontendMigrationsPage = lazy(() => import('./pages/migrations').then((m) => ({ default: m.FrontendMigrationsPage })));
+const NotFoundPage = lazy(() => import('./pages/not-found').then((m) => ({ default: m.NotFoundPage })));
 
 function RouteLoadingFallback() {
   return (
@@ -32,6 +34,7 @@ function RouteLoadingFallback() {
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Header />
       <Suspense fallback={<RouteLoadingFallback />}>
         <Routes>
@@ -46,6 +49,9 @@ function App() {
             <Route path="migrations/backend" element={<BackendMigrationsPage />} />
             <Route path="migrations/frontend" element={<FrontendMigrationsPage />} />
           </Route>
+
+          {/* Catch-all 404 Route */}
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
     </Router>
