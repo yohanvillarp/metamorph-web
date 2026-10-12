@@ -1,7 +1,7 @@
 {
   "name": "metamorph-web",
   "private": true,
-  "version": "2.1.2",
+  "version": "2.2.0",
   "description": "Official web documentation and presentation portal for Metamorph",
   "scripts": {
     "dev": "npm run --prefix apps/client dev",

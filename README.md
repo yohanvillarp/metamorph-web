@@ -11,7 +11,7 @@
 
 <p align="center">
   <a href="https://metamorph.nikelyh.tech"><img src="https://img.shields.io/badge/Live_Site-metamorph.nikelyh.tech-00f2fe?style=flat-square&logo=vercel&logoColor=black" alt="Live Site" /></a>
-  <a href="https://www.npmjs.com/package/@nikelyh/metamorph"><img src="https://img.shields.io/badge/CLI-@nikelyh/metamorph_v2.1.2-blue?style=flat-square&logo=npm" alt="npm package" /></a>
+  <a href="https://www.npmjs.com/package/@nikelyh/metamorph"><img src="https://img.shields.io/badge/CLI-@nikelyh/metamorph_v2.2.0-blue?style=flat-square&logo=npm" alt="npm package" /></a>
   <a href="https://github.com/yohanvillarp/metamorph"><img src="https://img.shields.io/badge/Engine_Repo-yohanvillarp%2Fmetamorph-181717?style=flat-square&logo=github" alt="Engine Repo" /></a>
   <img src="https://img.shields.io/badge/React-19.2-20232A?style=flat-square&logo=react&logoColor=61DAFB" alt="React 19" />
   <img src="https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white" alt="Tailwind CSS v4" />
@@ -26,10 +26,10 @@
 **`metamorph-web`** is the official web documentation and presentation portal for **[Metamorph](https://github.com/yohanvillarp/metamorph)** (`@nikelyh/metamorph`).
 
 It provides developers, engineering leads, and software architects with:
-- **Interactive Terminal & Swarm Showcase**: Live simulation of the 7 autonomous agents cooperating inside an isolated Shadow Workspace.
+- **Interactive Terminal & Swarm Showcase**: Live simulation of the 8 autonomous agents cooperating inside an isolated Shadow Workspace.
 - **Full Migration Matrix**: Comprehensive catalog of supported frontend (React, Next.js, Vue, Svelte, Angular) and backend (Express, Fastify, NestJS) shifts.
 - **Architectural Reference**: Detailed guides on the Project Intelligence Engine (PIE), Polymorphic Package Manager Engine (PPME), and Mozaik v4 event swarms.
-- **Interactive CLI Docs**: Practical reference for commands (`run`, `ui`, `apply`, `rollback`, `detect`, `list`, `reset`).
+- **Interactive CLI Docs**: Practical reference for commands (`run`, `config`, `ui`, `apply`, `rollback`, `detect`, `list`, `reset`).
 - **Whitepapers Portal**: Direct access to the 6 system architecture whitepapers.
 
 > **Note**: This repository hosts the frontend presentation layer. For the core CLI engine, agent handlers, and AST transformation rules, visit the main engine repository: [yohanvillarp/metamorph](https://github.com/yohanvillarp/metamorph).
