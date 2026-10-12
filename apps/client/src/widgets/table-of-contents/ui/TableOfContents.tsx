@@ -56,6 +56,7 @@ export const TableOfContents = () => {
   } else if (path.includes(ROUTES.DOCS.CLI_REFERENCE)) {
     items = [
       { name: 'metamorph run', id: 'command-run' },
+      { name: 'metamorph config', id: 'command-config' },
       { name: 'metamorph ui', id: 'command-ui' },
       { name: 'metamorph apply', id: 'command-apply' },
       { name: 'metamorph rollback', id: 'command-rollback' },

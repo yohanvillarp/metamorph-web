@@ -69,7 +69,119 @@ export const CliReferencePage = () => {
         <CodeBlock code="# Run on a specific monorepo workspace package\nmetamorph run --workspace apps/client --from react --to next\n\n# Or run interactively with full auto-detection\nmetamorph run" />
       </div>
 
-      {/* 2. metamorph ui */}
+      {/* 2. metamorph config */}
+      <div className="mb-12 scroll-mt-24" id="command-config">
+        <h2 className="text-2xl font-bold text-white mb-4 border-b border-cyan-500/20 pb-2 flex items-center gap-2">
+          <span className="text-cyan-400 font-mono">metamorph config [subcommand]</span>
+        </h2>
+        <p className="text-slate-300 mb-4 leading-relaxed">
+          Manages local and global settings through a cascading configuration system. Metamorph resolves settings following the strict precedence hierarchy:
+          <code className="text-cyan-300 font-mono text-xs ml-1">CLI flags &gt; Environment variables &gt; Local .metamorphrc.json &gt; Global ~/.metamorphrc.json &gt; Defaults</code>.
+        </p>
+
+        <h3 className="text-sm font-semibold text-cyan-400 uppercase tracking-wider font-mono mb-2">Subcommands & Wizard</h3>
+        <div className="overflow-x-auto mb-4">
+          <table className="w-full text-left text-xs font-mono border border-slate-800 rounded-xl overflow-hidden">
+            <thead className="bg-[#0f172a] text-cyan-300">
+              <tr>
+                <th className="p-3 border-b border-slate-800">Command</th>
+                <th className="p-3 border-b border-slate-800">Description</th>
+                <th className="p-3 border-b border-slate-800">Scope</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-800/60 bg-[#090e1a] text-slate-300">
+              <tr>
+                <td className="p-3 text-cyan-300 font-bold">metamorph config</td>
+                <td className="p-3">Launches the interactive setup wizard to configure models, concurrency, and limits</td>
+                <td className="p-3">Interactive Prompt</td>
+              </tr>
+              <tr>
+                <td className="p-3 text-cyan-300 font-bold">metamorph config list</td>
+                <td className="p-3">Prints all resolved keys with active origin tags ((env), (local), (global), (default))</td>
+                <td className="p-3">Resolved View</td>
+              </tr>
+              <tr>
+                <td className="p-3 text-cyan-300 font-bold">metamorph config get &lt;key&gt;</td>
+                <td className="p-3">Outputs the resolved value for a specific setting key</td>
+                <td className="p-3">Resolved</td>
+              </tr>
+              <tr>
+                <td className="p-3 text-cyan-300 font-bold">metamorph config set &lt;key&gt; [val] [--global]</td>
+                <td className="p-3">Mutates key in local .metamorphrc.json or globally with --global in ~/.metamorphrc.json</td>
+                <td className="p-3">File Write</td>
+              </tr>
+              <tr>
+                <td className="p-3 text-cyan-300 font-bold">metamorph config path [--global]</td>
+                <td className="p-3">Prints the absolute filesystem path to the active configuration file</td>
+                <td className="p-3">Path Resolution</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 className="text-sm font-semibold text-cyan-400 uppercase tracking-wider font-mono mb-2">Supported Configuration Keys</h3>
+        <div className="overflow-x-auto mb-4">
+          <table className="w-full text-left text-xs font-mono border border-slate-800 rounded-xl overflow-hidden">
+            <thead className="bg-[#0f172a] text-cyan-300">
+              <tr>
+                <th className="p-3 border-b border-slate-800">Key</th>
+                <th className="p-3 border-b border-slate-800">Type</th>
+                <th className="p-3 border-b border-slate-800">Default</th>
+                <th className="p-3 border-b border-slate-800">Description</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-800/60 bg-[#090e1a] text-slate-300">
+              <tr>
+                <td className="p-3 text-cyan-300 font-bold">model</td>
+                <td className="p-3 text-slate-400">string</td>
+                <td className="p-3 text-emerald-400 font-semibold">claude-sonnet-4-6</td>
+                <td className="p-3">Primary LLM model powering WorkerAgent code migrations</td>
+              </tr>
+              <tr>
+                <td className="p-3 text-cyan-300 font-bold">reviewerModel</td>
+                <td className="p-3 text-slate-400">string</td>
+                <td className="p-3 text-slate-400">(inherits model)</td>
+                <td className="p-3">Dedicated LLM model specifically for ReviewerAgent passes</td>
+              </tr>
+              <tr>
+                <td className="p-3 text-cyan-300 font-bold">concurrency</td>
+                <td className="p-3 text-slate-400">number</td>
+                <td className="p-3 text-emerald-400 font-semibold">3</td>
+                <td className="p-3">Parallel WorkerAgent queue concurrency limit</td>
+              </tr>
+              <tr>
+                <td className="p-3 text-cyan-300 font-bold">inferenceTimeoutMs</td>
+                <td className="p-3 text-slate-400">number</td>
+                <td className="p-3 text-emerald-400 font-semibold">180000</td>
+                <td className="p-3">Max LLM inference execution timeout per file (in milliseconds)</td>
+              </tr>
+              <tr>
+                <td className="p-3 text-cyan-300 font-bold">maxRetries</td>
+                <td className="p-3 text-slate-400">number</td>
+                <td className="p-3 text-emerald-400 font-semibold">2</td>
+                <td className="p-3">Maximum code transformation repair attempts per rejected file</td>
+              </tr>
+              <tr>
+                <td className="p-3 text-cyan-300 font-bold">maxIntegrationRounds</td>
+                <td className="p-3 text-slate-400">number</td>
+                <td className="p-3 text-emerald-400 font-semibold">4</td>
+                <td className="p-3">Maximum shadow compilation repair cycles in IntegrationAgent</td>
+              </tr>
+              <tr>
+                <td className="p-3 text-cyan-300 font-bold">disabledAgents</td>
+                <td className="p-3 text-slate-400">string[]</td>
+                <td className="p-3 text-slate-400">[]</td>
+                <td className="p-3">Auxiliary agents to disable (reporter, reviewer, accounting)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 className="text-sm font-semibold text-slate-300 font-mono mb-2">Example .metamorphrc.json:</h3>
+        <CodeBlock code={'{\n  "model": "gpt-5.4",\n  "reviewerModel": "claude-sonnet-4-6",\n  "concurrency": 4,\n  "maxRetries": 2,\n  "maxIntegrationRounds": 3,\n  "disabledAgents": ["reviewer"]\n}'} />
+      </div>
+
+      {/* 3. metamorph ui */}
       <div className="mb-12 scroll-mt-24" id="command-ui">
         <h2 className="text-2xl font-bold text-white mb-4 border-b border-cyan-500/20 pb-2 flex items-center gap-2">
           <span className="text-cyan-400 font-mono">metamorph ui [-p &lt;port&gt;]</span>
@@ -86,7 +198,7 @@ export const CliReferencePage = () => {
         </div>
       </div>
 
-      {/* 3. metamorph apply */}
+      {/* 4. metamorph apply */}
       <div className="mb-12 scroll-mt-24" id="command-apply">
         <h2 className="text-2xl font-bold text-white mb-4 border-b border-cyan-500/20 pb-2 flex items-center gap-2">
           <span className="text-cyan-400 font-mono">metamorph apply &lt;runId&gt; &lt;targetPath&gt;</span>
@@ -100,7 +212,7 @@ export const CliReferencePage = () => {
         <CodeBlock code="metamorph apply run-9b2e ." />
       </div>
 
-      {/* 4. metamorph rollback */}
+      {/* 5. metamorph rollback */}
       <div className="mb-12 scroll-mt-24" id="command-rollback">
         <h2 className="text-2xl font-bold text-white mb-4 border-b border-cyan-500/20 pb-2 flex items-center gap-2">
           <span className="text-cyan-400 font-mono">metamorph rollback &lt;runId&gt;</span>
@@ -111,7 +223,7 @@ export const CliReferencePage = () => {
         <CodeBlock code="metamorph rollback run-9b2e" />
       </div>
 
-      {/* 5. metamorph detect */}
+      {/* 6. metamorph detect */}
       <div className="mb-12 scroll-mt-24" id="command-detect">
         <h2 className="text-2xl font-bold text-white mb-4 border-b border-cyan-500/20 pb-2 flex items-center gap-2">
           <span className="text-cyan-400 font-mono">metamorph detect [path]</span>
@@ -125,7 +237,7 @@ export const CliReferencePage = () => {
         <CodeBlock code="# Run static intelligence on current folder\nmetamorph detect .\n\n# Run on another project or monorepo subfolder\nmetamorph detect ../my-app" />
       </div>
 
-      {/* 6. metamorph list */}
+      {/* 7. metamorph list */}
       <div className="mb-12 scroll-mt-24" id="command-list">
         <h2 className="text-2xl font-bold text-white mb-4 border-b border-cyan-500/20 pb-2 flex items-center gap-2">
           <span className="text-cyan-400 font-mono">metamorph list</span>
@@ -136,7 +248,7 @@ export const CliReferencePage = () => {
         <CodeBlock code="metamorph list" />
       </div>
 
-      {/* 7. metamorph reset */}
+      {/* 8. metamorph reset */}
       <div className="mb-14 scroll-mt-24" id="command-reset">
         <h2 className="text-2xl font-bold text-white mb-4 border-b border-cyan-500/20 pb-2 flex items-center gap-2">
           <span className="text-cyan-400 font-mono">metamorph reset</span>
