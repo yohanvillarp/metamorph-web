@@ -15,7 +15,7 @@ export interface ContributorProfile {
 export const CONTRIBUTOR_PROFILES: Record<string, ContributorProfile> = {
   yohanvillarp: {
     login: 'yohanvillarp',
-    name: 'Yohan Villar',
+    name: 'Yohan Nikel Villar Presentación',
     role: 'Lead Architect & Creator',
     badge: 'Creator',
     bio: 'Creator of Metamorph, Mozaik v4 event blackboard, and Shadow Workspace architecture.',

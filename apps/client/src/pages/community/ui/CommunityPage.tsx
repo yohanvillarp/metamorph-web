@@ -33,7 +33,9 @@ export const CommunityPage = () => {
             'How to contribute new framework targets, tests, and documentation to @nikelyh/metamorph.',
           author: {
             '@type': 'Person',
-            name: 'Yohan Villar',
+            name: 'Yohan Nikel Villar Presentación',
+            alternateName: ['Yohan Villar', 'Yohan Nikel Villar', 'nikelyh', 'yohanvillarp'],
+            url: 'https://github.com/yohanvillarp',
           },
           publisher: {
             '@type': 'Organization',
