@@ -39,7 +39,7 @@ export const CliReferencePage = () => {
               <tr>
                 <th className="p-3 border-b border-slate-800">Flag</th>
                 <th className="p-3 border-b border-slate-800">Description</th>
-                <th className="p-3 border-b border-slate-800">Example</th>
+                <th className="p-3 border-b border-slate-800">Default / Example</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800/60 bg-[#090e1a] text-slate-300">
@@ -58,15 +58,50 @@ export const CliReferencePage = () => {
                 <td className="p-3">Target a specific package in a monorepo</td>
                 <td className="p-3">--workspace apps/web</td>
               </tr>
+              <tr>
+                <td className="p-3 text-cyan-300 font-bold">--disable-agents &lt;list&gt;</td>
+                <td className="p-3">Comma-separated auxiliary agents to disable (reporter, reviewer, accounting)</td>
+                <td className="p-3">--disable-agents reviewer,reporter</td>
+              </tr>
+              <tr>
+                <td className="p-3 text-cyan-300 font-bold">--model &lt;model&gt;</td>
+                <td className="p-3">LLM model to use for worker agents</td>
+                <td className="p-3">--model gpt-5.4</td>
+              </tr>
+              <tr>
+                <td className="p-3 text-cyan-300 font-bold">--reviewer-model &lt;model&gt;</td>
+                <td className="p-3">LLM model specifically for reviewer agent</td>
+                <td className="p-3">--reviewer-model claude-sonnet-4-6</td>
+              </tr>
+              <tr>
+                <td className="p-3 text-cyan-300 font-bold">--concurrency &lt;number&gt;</td>
+                <td className="p-3">Number of concurrent agent workers</td>
+                <td className="p-3">Default: 3 (e.g. --concurrency 5)</td>
+              </tr>
+              <tr>
+                <td className="p-3 text-cyan-300 font-bold">--timeout &lt;seconds&gt;</td>
+                <td className="p-3">Inference timeout in seconds</td>
+                <td className="p-3">Default: 180 (e.g. --timeout 240)</td>
+              </tr>
+              <tr>
+                <td className="p-3 text-cyan-300 font-bold">--retries &lt;number&gt;</td>
+                <td className="p-3">Maximum repair retries per file</td>
+                <td className="p-3">Default: 2 (e.g. --retries 3)</td>
+              </tr>
+              <tr>
+                <td className="p-3 text-cyan-300 font-bold">--integration-rounds &lt;number&gt;</td>
+                <td className="p-3">Maximum shadow build integration rounds</td>
+                <td className="p-3">Default: 4 (e.g. --integration-rounds 2)</td>
+              </tr>
             </tbody>
           </table>
         </div>
 
-        <h3 className="text-sm font-semibold text-slate-300 font-mono mb-2">Monorepos & Interactive Selection:</h3>
+        <h3 className="text-sm font-semibold text-slate-300 font-mono mb-2">Execution Examples & Cost Optimization:</h3>
         <p className="text-xs text-slate-400 mb-3 leading-relaxed">
-          When run inside a monorepo (Turborepo, pnpm workspaces, npm/yarn workspaces, or Lerna), Metamorph automatically discovers member packages and prompts you to select one, or you can bypass the prompt with <code className="text-cyan-300 font-mono">--workspace &lt;pkg&gt;</code>.
+          You can tune execution for maximum speed or minimal token spend using adaptive swarm bypass flags:
         </p>
-        <CodeBlock code="# Run on a specific monorepo workspace package\nmetamorph run --workspace apps/client --from react --to next\n\n# Or run interactively with full auto-detection\nmetamorph run" />
+        <CodeBlock code="# Run on a specific monorepo workspace package\nmetamorph run --workspace apps/client --from react --to next\n\n# Low-cost fast run (disables reviewer & reporter, triggering 0-token fallbacks)\nmetamorph run --from express --to fastify --disable-agents reviewer,reporter\n\n# Custom model selection with high concurrency\nmetamorph run --model gpt-5.4 --concurrency 5" />
       </div>
 
       {/* 2. metamorph config */}
@@ -293,6 +328,76 @@ export const CliReferencePage = () => {
             </div>
             <p className="text-slate-400 font-sans text-xs">
               Enables development mode logging and allows running directly from source TypeScript without distribution build notices.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl bg-[#080d17] border border-slate-800">
+            <div className="flex items-center justify-between mb-1">
+              <span className="font-bold text-cyan-300">METAMORPH_MODEL</span>
+              <span className="text-slate-500">Optional (string)</span>
+            </div>
+            <p className="text-slate-400 font-sans text-xs">
+              Overrides the primary worker LLM model across all CLI executions without editing configuration files.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl bg-[#080d17] border border-slate-800">
+            <div className="flex items-center justify-between mb-1">
+              <span className="font-bold text-cyan-300">METAMORPH_REVIEWER_MODEL</span>
+              <span className="text-slate-500">Optional (string)</span>
+            </div>
+            <p className="text-slate-400 font-sans text-xs">
+              Overrides the dedicated model used specifically by ReviewerAgent for quality gate validation.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl bg-[#080d17] border border-slate-800">
+            <div className="flex items-center justify-between mb-1">
+              <span className="font-bold text-cyan-300">METAMORPH_CONCURRENCY</span>
+              <span className="text-slate-500">Optional (integer)</span>
+            </div>
+            <p className="text-slate-400 font-sans text-xs">
+              Configures the WorkerAgent concurrency queue limit (default: 3).
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl bg-[#080d17] border border-slate-800">
+            <div className="flex items-center justify-between mb-1">
+              <span className="font-bold text-cyan-300">METAMORPH_INFERENCE_TIMEOUT_MS</span>
+              <span className="text-slate-500">Optional (integer)</span>
+            </div>
+            <p className="text-slate-400 font-sans text-xs">
+              Configures max inference execution duration per file before triggering a timeout error (default: 180000 ms).
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl bg-[#080d17] border border-slate-800">
+            <div className="flex items-center justify-between mb-1">
+              <span className="font-bold text-cyan-300">METAMORPH_MAX_RETRIES</span>
+              <span className="text-slate-500">Optional (integer)</span>
+            </div>
+            <p className="text-slate-400 font-sans text-xs">
+              Maximum retry budget for WorkerAgent when ReviewerAgent rejects a transformed file (default: 2).
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl bg-[#080d17] border border-slate-800">
+            <div className="flex items-center justify-between mb-1">
+              <span className="font-bold text-cyan-300">METAMORPH_INTEGRATION_ROUNDS</span>
+              <span className="text-slate-500">Optional (integer)</span>
+            </div>
+            <p className="text-slate-400 font-sans text-xs">
+              Maximum shadow compilation repair cycles executed by IntegrationAgent (default: 4).
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl bg-[#080d17] border border-slate-800">
+            <div className="flex items-center justify-between mb-1">
+              <span className="font-bold text-cyan-300">METAMORPH_DISABLED_AGENTS</span>
+              <span className="text-slate-500">Optional (comma-separated list)</span>
+            </div>
+            <p className="text-slate-400 font-sans text-xs">
+              List of auxiliary agents to disable (reporter, reviewer, accounting), activating zero-token bypass modes.
             </p>
           </div>
         </div>
