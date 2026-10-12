@@ -82,6 +82,12 @@ export function LandingHeader() {
         >
           Ecosystem
         </button>
+        <button
+          onClick={() => scrollToSection('community')}
+          className="px-3 py-1 rounded-full text-xs font-mono text-slate-300 hover:text-cyan-300 hover:bg-white/5 transition-all cursor-pointer"
+        >
+          Community
+        </button>
         <Link 
           to={ROUTES.DOCS.ROOT} 
           className="px-3 py-1 rounded-full text-xs font-mono text-slate-300 hover:text-cyan-300 hover:bg-white/5 transition-all"
