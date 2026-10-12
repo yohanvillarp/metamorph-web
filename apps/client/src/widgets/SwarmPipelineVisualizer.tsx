@@ -111,6 +111,18 @@ const SWARM_AGENTS: AgentDetail[] = [
     desc: 'Generates a comprehensive MIGRATION.md report in the shadow workspace, summarizing transformed files, AST diffs, and verification logs for metamorph apply.',
     highlightColor: 'from-purple-500/20 to-pink-500/20 border-purple-500/40 text-purple-300',
   },
+  {
+    id: 'accounting',
+    name: 'AccountingAgent',
+    role: 'Real-Time Cost Telemetry',
+    badge: 'Zero-Token Overhead',
+    icon: Activity,
+    eventTrigger: 'TOKENS_REPORTED',
+    eventOutput: 'TOKENS_CONSUMED',
+    concurrency: 'Reactive listener',
+    desc: 'Captures token consumption per model and estimates exact USD expenditure in real time, persisting usage directly into SQLite history.db.',
+    highlightColor: 'from-emerald-500/20 to-teal-500/20 border-emerald-400/50 text-emerald-200',
+  },
 ];
 
 export function SwarmPipelineVisualizer() {
@@ -135,7 +147,7 @@ export function SwarmPipelineVisualizer() {
             Mozaik v4 Event-Driven Swarm
           </div>
           <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
-            Autonomous 7-Agent Swarm <br />
+            Autonomous 8-Agent Swarm <br />
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-300 to-sky-400">
               With Self-Repair Integration Loops
             </span>
@@ -147,7 +159,7 @@ export function SwarmPipelineVisualizer() {
         </div>
 
         {/* Interactive Swarm Flow Nodes */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 mb-10">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 mb-10">
           {SWARM_AGENTS.map((agent, index) => {
             const isSelected = agent.id === selectedAgent;
             const Icon = agent.icon;

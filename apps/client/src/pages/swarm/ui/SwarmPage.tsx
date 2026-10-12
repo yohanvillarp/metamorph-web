@@ -1,13 +1,13 @@
-import { RefreshCw, Zap, CheckCircle2, Clock } from 'lucide-react';
+import { RefreshCw, Zap, CheckCircle2, Clock, Sliders } from 'lucide-react';
 import { SEOHead } from '@/shared/ui/SEOHead';
 
 export const SwarmPage = () => {
   return (
     <div className="max-w-4xl">
       <SEOHead
-        title="The 7 Swarm Agents | Metamorph Docs"
-        description="Detailed specification of Metamorph autonomous agents: Mapper, Worker, Reviewer, Coordinator, Integration, Reporter, and PackageManager."
-        keywords="mozaik v4 agents, ai agents, swarm orchestration, mapper agent, worker agent, reviewer agent, integration agent"
+        title="The 8 Swarm Agents | Metamorph Docs"
+        description="Detailed specification of Metamorph autonomous agents: Mapper, PackageManager, Worker, Reviewer, Coordinator, Integration, Reporter, and Accounting."
+        keywords="mozaik v4 agents, ai agents, swarm orchestration, mapper agent, worker agent, reviewer agent, integration agent, accounting agent, adaptive swarm"
       />
       <div className="mb-10">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/70 border border-cyan-500/40 text-cyan-300 text-xs font-mono uppercase tracking-wider mb-4">
@@ -15,11 +15,11 @@ export const SwarmPage = () => {
           Agent Swarm Reference
         </div>
         <h1 className="text-4xl font-extrabold text-white mb-4 tracking-tight">
-          The 7 Mozaik Swarm Agents
+          The 8 Mozaik Swarm Agents
         </h1>
         <p className="text-lg text-slate-300 leading-relaxed">
-          Metamorph delegates the migration workload to seven specialized agents orchestrated concurrently over the Mozaik v4 event bus.
-          Each agent operates with isolated responsibilities and strict concurrency boundaries.
+          Metamorph delegates the migration workload to eight specialized agents orchestrated concurrently over the Mozaik v4 event bus.
+          The architecture features an adaptive agent registry that supports zero-token bypass modes, automated fallbacks, and real-time financial telemetry.
         </p>
       </div>
 
@@ -158,6 +158,100 @@ export const SwarmPage = () => {
             Compiles a complete audit log in <code className="bg-slate-800 text-cyan-300 px-1 py-0.5 rounded font-mono text-xs">.metamorph/shadow/&lt;runId&gt;/MIGRATION.md</code>. 
             Lists all transformed files, applied rules, integration round metrics, and the ready-to-run Git apply command.
           </p>
+        </div>
+
+        {/* 8. Accounting */}
+        <div className="p-6 rounded-2xl bg-[#090f1c] border border-cyan-500/20 scroll-mt-24" id="accounting-agent">
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="text-xl font-bold text-white font-mono flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-400" />
+              8. AccountingAgent
+            </h2>
+            <span className="text-xs font-mono bg-emerald-950 text-emerald-300 border border-emerald-500/30 px-2.5 py-0.5 rounded-full">
+              Real-Time Cost Telemetry
+            </span>
+          </div>
+          <p className="text-sm text-slate-300 mb-3 leading-relaxed">
+            Captures every LLM inference executed by WorkerAgent and IntegrationAgent, calculating exact prompt and completion token counts and financial dollar costs ($ USD). Persists telemetry in <code className="bg-slate-800 text-cyan-300 px-1 py-0.5 rounded font-mono text-xs">CostAccountingStore</code> inside the native SQLite store (<code className="bg-slate-800 text-slate-200 px-1 py-0.5 rounded font-mono text-xs">.metamorph/history.db</code>) and emits <code className="bg-slate-800 text-emerald-300 px-1 py-0.5 rounded font-mono text-xs">TOKENS_CONSUMED</code> for real-time Dashboard streaming.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono text-slate-400 bg-[#06090e] p-3.5 rounded-xl border border-white/5">
+            <div><strong className="text-slate-200">Listens to:</strong> TOKENS_REPORTED</div>
+            <div><strong className="text-cyan-400">Emits:</strong> TOKENS_CONSUMED</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Adaptive Swarm & Registry Architecture */}
+      <div className="mb-14 scroll-mt-24" id="adaptive-swarm">
+        <h2 className="text-2xl font-bold text-white mb-4 border-b border-cyan-500/20 pb-2 flex items-center gap-3">
+          <Sliders className="text-cyan-400" />
+          Adaptive Swarm & AgentRegistry
+        </h2>
+        <p className="text-slate-300 mb-4 text-sm leading-relaxed">
+          Metamorph classifies agents into <strong className="text-white">Core</strong> and <strong className="text-white">Auxiliary</strong> tiers. Auxiliary agents can be selectively bypassed or configured via <code className="bg-slate-800 text-cyan-300 px-1 py-0.5 rounded font-mono text-xs">--disable-agents</code> or the <code className="bg-slate-800 text-cyan-300 px-1 py-0.5 rounded font-mono text-xs">disabledAgents</code> setting in <code className="bg-slate-800 text-slate-200 px-1 py-0.5 rounded font-mono text-xs">.metamorphrc.json</code>.
+        </p>
+
+        <div className="overflow-x-auto mb-6">
+          <table className="w-full text-left text-xs font-mono border border-slate-800 rounded-xl overflow-hidden">
+            <thead className="bg-[#0f172a] text-cyan-400 uppercase">
+              <tr>
+                <th className="p-3 border-b border-slate-800">Agent</th>
+                <th className="p-3 border-b border-slate-800">Category</th>
+                <th className="p-3 border-b border-slate-800">Token Cost</th>
+                <th className="p-3 border-b border-slate-800">Bypass / Fallback Behavior</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-800/60 bg-[#090e1a] text-slate-300">
+              <tr>
+                <td className="p-3 font-bold text-white">MapperAgent</td>
+                <td className="p-3 text-cyan-300">Core</td>
+                <td className="p-3 text-emerald-400">0 Tokens</td>
+                <td className="p-3 text-slate-400">Mandatory (Discovers files & builds queue)</td>
+              </tr>
+              <tr>
+                <td className="p-3 font-bold text-white">PackageManagerAgent</td>
+                <td className="p-3 text-cyan-300">Core</td>
+                <td className="p-3 text-emerald-400">0 Tokens</td>
+                <td className="p-3 text-slate-400">Mandatory (Direct JSON manifest editing)</td>
+              </tr>
+              <tr>
+                <td className="p-3 font-bold text-white">WorkerAgent</td>
+                <td className="p-3 text-cyan-300">Core</td>
+                <td className="p-3 text-amber-300">LLM Tokens</td>
+                <td className="p-3 text-slate-400">Mandatory (AST code transformation engine)</td>
+              </tr>
+              <tr>
+                <td className="p-3 font-bold text-white">ReviewerAgent</td>
+                <td className="p-3 text-purple-300">Auxiliary</td>
+                <td className="p-3 text-amber-300">LLM Tokens</td>
+                <td className="p-3 text-slate-400">ReviewerBypassAgent: Auto-approves files with 0 tokens</td>
+              </tr>
+              <tr>
+                <td className="p-3 font-bold text-white">CoordinatorAgent</td>
+                <td className="p-3 text-cyan-300">Core</td>
+                <td className="p-3 text-emerald-400">0 Tokens</td>
+                <td className="p-3 text-slate-400">Mandatory (Zero-LLM state machine & watchdogs)</td>
+              </tr>
+              <tr>
+                <td className="p-3 font-bold text-white">IntegrationAgent</td>
+                <td className="p-3 text-cyan-300">Core</td>
+                <td className="p-3 text-amber-300">LLM Tokens</td>
+                <td className="p-3 text-slate-400">Mandatory (Compiles shadow builds & repairs errors)</td>
+              </tr>
+              <tr>
+                <td className="p-3 font-bold text-white">ReporterAgent</td>
+                <td className="p-3 text-purple-300">Auxiliary</td>
+                <td className="p-3 text-amber-300">LLM Tokens</td>
+                <td className="p-3 text-slate-400">FallbackReporterAgent: Generates deterministic 0-token MIGRATION.md</td>
+              </tr>
+              <tr>
+                <td className="p-3 font-bold text-white">AccountingAgent</td>
+                <td className="p-3 text-purple-300">Auxiliary</td>
+                <td className="p-3 text-emerald-400">0 Tokens</td>
+                <td className="p-3 text-slate-400">Silent bypass (Skips telemetry persistence)</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 

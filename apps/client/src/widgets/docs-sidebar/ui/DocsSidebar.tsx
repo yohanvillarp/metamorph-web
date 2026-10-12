@@ -80,7 +80,7 @@ export const DocsSidebar = ({ mobileOpen, setMobileOpen }: DocsSidebarProps) => 
         </div>
         <nav className="flex flex-col gap-1">
           <Link to={ROUTES.DOCS.SWARM} className={getLinkClasses(ROUTES.DOCS.SWARM)}>
-            The 7 Agents Reference
+            The 8 Swarm Agents
           </Link>
         </nav>
       </div>

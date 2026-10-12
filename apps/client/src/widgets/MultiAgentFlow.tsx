@@ -17,9 +17,9 @@ export function MultiAgentFlow() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <Badge variant="purple" className="mb-4">Shadow Workspace</Badge>
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">Multi-Agent Concurrency</h2>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">Multi-Agent Swarm Concurrency</h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            Five specialized AI agents collaborate securely in a virtual workspace, ensuring your main project stays untouched until perfect.
+            Eight specialized AI agents collaborate securely in an isolated virtual workspace, ensuring your main project stays untouched until perfect.
           </p>
         </div>
 

@@ -51,6 +51,8 @@ export const TableOfContents = () => {
       { name: 'CoordinatorAgent', id: 'coordinator-agent' },
       { name: 'IntegrationAgent', id: 'integration-agent' },
       { name: 'ReporterAgent', id: 'reporter-agent' },
+      { name: 'AccountingAgent', id: 'accounting-agent' },
+      { name: 'Adaptive Swarm & Registry', id: 'adaptive-swarm' },
       { name: 'Concurrency Watchdogs', id: 'concurrency-watchdogs' },
     ];
   } else if (path.includes(ROUTES.DOCS.CLI_REFERENCE)) {
