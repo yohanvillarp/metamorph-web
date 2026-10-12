@@ -1,0 +1,30 @@
+export interface ContributorProfile {
+  login: string;
+  name?: string;
+  role: string;
+  badge: string;
+  bio?: string;
+  avatarUrl?: string;
+}
+
+/**
+ * Custom role & profile metadata for Metamorph core contributors.
+ * Keys match GitHub login handles (case-insensitive).
+ * Live GitHub telemetry (commits, avatars, html_url) merges seamlessly with this metadata.
+ */
+export const CONTRIBUTOR_PROFILES: Record<string, ContributorProfile> = {
+  yohanvillarp: {
+    login: 'yohanvillarp',
+    name: 'Yohan Villar',
+    role: 'Lead Architect & Creator',
+    badge: 'Creator',
+    bio: 'Creator of Metamorph, Mozaik v4 event blackboard, and Shadow Workspace architecture.',
+  },
+  okarin1511: {
+    login: 'okarin1511',
+    name: 'okarin1511',
+    role: 'Core Contributor',
+    badge: 'Maintainer',
+    bio: 'Core development, monorepo refactoring, and framework migration engineering.',
+  },
+};

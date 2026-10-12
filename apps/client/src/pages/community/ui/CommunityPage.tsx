@@ -11,6 +11,7 @@ import {
 import { SEOHead } from '@/shared/ui/SEOHead';
 import { CodeBlock } from '@/shared/ui/CodeBlock';
 import { useMetamorphContributors } from '@/shared/lib/useMetamorphContributors';
+import { CONTRIBUTOR_PROFILES } from '@/shared/config/contributors';
 import { ROUTES } from '@/shared/config/routes';
 
 export const CommunityPage = () => {
@@ -75,7 +76,12 @@ export const CommunityPage = () => {
 
         <div className="grid sm:grid-cols-2 gap-4 mb-6">
           {humanContributors.map((contributor) => {
+            const profile = CONTRIBUTOR_PROFILES[contributor.login.toLowerCase()];
             const isCreator = contributor.login.toLowerCase() === 'yohanvillarp';
+            const roleName = profile?.role || (isCreator ? 'Lead Architect' : 'Contributor');
+            const badgeName = profile?.badge || (isCreator ? 'Creator' : 'Contributor');
+            const displayName = profile?.name || `@${contributor.login}`;
+
             return (
               <a
                 key={contributor.login}
@@ -96,18 +102,19 @@ export const CommunityPage = () => {
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-1.5 flex-wrap">
                     <span className="font-bold text-white text-sm truncate group-hover:text-cyan-300 transition-colors">
-                      @{contributor.login}
+                      {displayName}
                     </span>
                     {isCreator ? (
                       <span className="text-[10px] font-mono px-2 py-0.2 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-500/40">
-                        Lead Architect
+                        {badgeName}
                       </span>
                     ) : (
                       <span className="text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-slate-800 text-slate-300 border border-slate-700/60">
-                        Contributor
+                        {badgeName}
                       </span>
                     )}
                   </div>
+                  <p className="text-xs text-slate-400 font-mono truncate">{roleName}</p>
                   <p className="text-xs font-mono text-cyan-400/80 mt-0.5 flex items-center gap-1">
                     <CheckCircle2 size={11} className="text-cyan-400" />
                     <span>{contributor.contributions} contributions</span>
