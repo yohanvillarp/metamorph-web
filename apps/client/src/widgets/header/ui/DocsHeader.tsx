@@ -1,6 +1,6 @@
-import { Link, useLocation } from 'react-router-dom';
-import { Search, Menu } from 'lucide-react';
 import { ROUTES } from '@/shared/config/routes';
+import { Menu, Search } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 interface DocsHeaderProps {
   onOpenSearch: () => void;
@@ -105,12 +105,16 @@ export function DocsHeader({ onOpenSearch }: DocsHeaderProps) {
           v2.2.0
         </span>
 
-        <Link
-          to="/"
-          className="text-xs font-mono text-slate-400 hover:text-cyan-300 transition-colors hidden sm:inline px-2 py-1"
+        <a 
+          href="https://www.npmjs.com/package/@nikelyh/metamorph" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="p-2 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-red-500/50 hover:bg-slate-800/80 transition-all hover:shadow-[0_0_15px_rgba(213,0,0,0.2)]" 
+          title="npm: @nikelyh/metamorph"
+          aria-label="npm package"
         >
-          Home
-        </Link>
+          <img src="/icons8-ngp.svg" alt="npm" className="w-4 h-4 object-contain" />
+        </a>
 
         <a 
           href="https://github.com/yohanvillarp/metamorph" 

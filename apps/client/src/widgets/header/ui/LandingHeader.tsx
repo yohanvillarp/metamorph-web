@@ -1,7 +1,7 @@
-import { useNavigate, useLocation, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Search, ArrowRight } from 'lucide-react';
 import { ROUTES } from '@/shared/config/routes';
+import { motion } from 'framer-motion';
+import { ArrowRight, Search } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 interface LandingHeaderProps {
   onOpenSearch: () => void;
@@ -118,9 +118,11 @@ export function LandingHeader({ onOpenSearch }: LandingHeaderProps) {
           href="https://www.npmjs.com/package/@nikelyh/metamorph" 
           target="_blank" 
           rel="noopener noreferrer" 
-          className="hidden md:flex items-center text-xs font-mono text-slate-400 hover:text-white transition-colors px-2 py-1"
+          className="hidden md:flex items-center gap-1.5 p-2 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-red-500/50 hover:bg-slate-800/80 transition-all text-xs font-mono text-slate-300 hover:text-white group"
+          title="npm: @nikelyh/metamorph"
+          aria-label="npm package"
         >
-          npm
+          <img src="/icons8-ngp.svg" alt="npm" className="w-4 h-4 object-contain group-hover:scale-110 transition-transform" />
         </a>
 
         <a 

@@ -69,6 +69,12 @@ export function CallToAction() {
                 View on GitHub
               </Button>
             </a>
+            <a href="https://www.npmjs.com/package/@nikelyh/metamorph" target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" className="text-base px-8 py-4 flex items-center justify-center gap-2">
+                <img src="/icons8-ngp.svg" alt="npm" className="w-5 h-5 object-contain" />
+                npm Package
+              </Button>
+            </a>
           </div>
         </motion.div>
       </div>

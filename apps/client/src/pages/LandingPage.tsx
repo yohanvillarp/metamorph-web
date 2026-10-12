@@ -27,8 +27,9 @@ export function LandingPage() {
           </div>
           <p>© 2026 Metamorph. Built for high-reliability framework transformations. Powered by Mozaik v4.</p>
           <div className="flex items-center gap-4 text-xs font-mono">
-            <a href="https://www.npmjs.com/package/@nikelyh/metamorph" target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition-colors">
-              npm: @nikelyh/metamorph
+            <a href="https://www.npmjs.com/package/@nikelyh/metamorph" target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition-colors flex items-center gap-1.5">
+              <img src="/icons8-ngp.svg" alt="npm" className="w-3.5 h-3.5 object-contain" />
+              <span>npm: @nikelyh/metamorph</span>
             </a>
             <span>•</span>
             <a href="https://github.com/yohanvillarp/metamorph" target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition-colors">

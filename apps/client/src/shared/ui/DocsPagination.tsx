@@ -80,7 +80,17 @@ export function DocsPagination() {
           <span className="text-slate-400">Mozaik v4 Runtime</span>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
+          <a
+            href="https://www.npmjs.com/package/@nikelyh/metamorph"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"
+          >
+            <img src="/icons8-ngp.svg" alt="npm" className="w-3.5 h-3.5 object-contain" />
+            <span>npm package</span>
+          </a>
+          <span>•</span>
           <a
             href="https://github.com/yohanvillarp/metamorph/issues"
             target="_blank"
@@ -98,7 +108,7 @@ export function DocsPagination() {
             className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"
           >
             <img src="/github.svg" alt="GitHub" className="w-3.5 h-3.5 invert opacity-80" />
-            <span>GitHub Repository</span>
+            <span>GitHub</span>
           </a>
         </div>
       </div>
