@@ -18,6 +18,13 @@ export const CONTRIBUTOR_PROFILES: Record<string, ContributorProfile> = {
     name: 'Yohan Nikel Villar Presentación',
     role: 'Lead Architect & Creator',
     badge: 'Creator',
-    bio: 'Creator of Metamorph, Mozaik v4 event blackboard, and Shadow Workspace architecture.',
+    bio: 'Creator and lead architect of Metamorph.',
+  },
+  okarin1511: {
+    login: 'okarin1511',
+    name: 'Aseem Khandekar',
+    role: 'Contributor',
+    badge: 'Contributor',
+    bio: 'Open-source contributor to the Metamorph ecosystem.',
   },
 };

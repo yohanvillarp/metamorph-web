@@ -90,7 +90,7 @@ export const CommunityPage = () => {
                 href={contributor.html_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`p-4 rounded-xl border backdrop-blur-md transition-all flex items-center gap-3.5 group ${
+                className={`p-4 rounded-xl border backdrop-blur-md transition-all flex items-start gap-3.5 group ${
                   isCreator
                     ? 'bg-[#0a1224]/90 border-cyan-500/40 shadow-[0_0_20px_rgba(0,242,254,0.1)]'
                     : 'bg-[#080d18]/90 border-slate-800/80 hover:border-cyan-500/30'
@@ -116,8 +116,15 @@ export const CommunityPage = () => {
                       </span>
                     )}
                   </div>
-                  <p className="text-xs text-slate-400 font-mono truncate">{roleName}</p>
-                  <p className="text-xs font-mono text-cyan-400/80 mt-0.5 flex items-center gap-1">
+                  <p className="text-xs text-slate-400 font-mono truncate">
+                    {profile?.name ? `@${contributor.login} • ${roleName}` : roleName}
+                  </p>
+                  {profile?.bio && (
+                    <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">
+                      {profile.bio}
+                    </p>
+                  )}
+                  <p className="text-xs font-mono text-cyan-400/80 mt-2 flex items-center gap-1">
                     <CheckCircle2 size={11} className="text-cyan-400" />
                     <span>{contributor.contributions} contributions</span>
                   </p>
