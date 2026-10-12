@@ -105,6 +105,13 @@ export function DocsHeader({ onOpenSearch }: DocsHeaderProps) {
           v2.2.0
         </span>
 
+        <Link
+          to="/"
+          className="text-xs font-mono text-slate-400 hover:text-cyan-300 transition-colors hidden sm:inline px-2 py-1"
+        >
+          Home
+        </Link>
+
         <a 
           href="https://www.npmjs.com/package/@nikelyh/metamorph" 
           target="_blank" 
