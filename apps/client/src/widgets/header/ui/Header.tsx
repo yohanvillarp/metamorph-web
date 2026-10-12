@@ -33,7 +33,7 @@ export function Header() {
       {isDocs ? (
         <DocsHeader onOpenSearch={() => setIsSearchOpen(true)} />
       ) : (
-        <LandingHeader onOpenSearch={() => setIsSearchOpen(true)} />
+        <LandingHeader />
       )}
       <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </>

@@ -1,29 +1,11 @@
-import { ROUTES } from '@/shared/config/routes';
 import { Menu, Search } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 interface DocsHeaderProps {
   onOpenSearch: () => void;
 }
 
 export function DocsHeader({ onOpenSearch }: DocsHeaderProps) {
-  const location = useLocation();
-
-  const isTabActive = (path: string) => {
-    if (path === ROUTES.DOCS.ROOT) {
-      return location.pathname === ROUTES.DOCS.ROOT;
-    }
-    return location.pathname.startsWith(path);
-  };
-
-  const getTabClasses = (path: string) => `
-    px-2.5 py-1 rounded-lg text-xs font-mono transition-all cursor-pointer ${
-      isTabActive(path)
-        ? 'bg-cyan-950/80 text-cyan-300 font-semibold border border-cyan-500/40 shadow-[0_0_12px_rgba(0,242,254,0.15)]'
-        : 'text-slate-400 hover:text-slate-200 hover:bg-white/5'
-    }
-  `;
-
   return (
     <header className="fixed top-0 w-full z-40 backdrop-blur-xl bg-[#06090e]/95 border-b border-cyan-500/15 py-3 px-4 sm:px-6 md:px-8 flex justify-between items-center h-20 transition-all">
       {/* Left: Mobile Drawer Trigger + Brand Logo & Badge */}
@@ -78,40 +60,8 @@ export function DocsHeader({ onOpenSearch }: DocsHeaderProps) {
         </button>
       </div>
 
-      {/* Right: Quick Tabs, Version & External Links */}
-      <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
-        {/* Navigation Section Pills */}
-        <nav className="hidden lg:flex items-center gap-1">
-          <Link to={ROUTES.DOCS.ROOT} className={getTabClasses(ROUTES.DOCS.ROOT)}>
-            Overview
-          </Link>
-          <Link to={ROUTES.DOCS.GETTING_STARTED} className={getTabClasses(ROUTES.DOCS.GETTING_STARTED)}>
-            Guides
-          </Link>
-          <Link to={ROUTES.DOCS.CONCEPTS} className={getTabClasses(ROUTES.DOCS.CONCEPTS)}>
-            Architecture
-          </Link>
-          <Link to={ROUTES.DOCS.SWARM} className={getTabClasses(ROUTES.DOCS.SWARM)}>
-            Swarm
-          </Link>
-          <Link to={ROUTES.DOCS.CLI_REFERENCE} className={getTabClasses(ROUTES.DOCS.CLI_REFERENCE)}>
-            CLI
-          </Link>
-        </nav>
-
-        <div className="h-4 w-[1px] bg-slate-800 hidden lg:block" />
-
-        <span className="hidden xl:inline-block text-[10px] font-mono text-slate-500 bg-slate-900/60 px-2 py-0.5 rounded border border-slate-800">
-          v2.2.0
-        </span>
-
-        <Link
-          to="/"
-          className="text-xs font-mono text-slate-400 hover:text-cyan-300 transition-colors hidden sm:inline px-2 py-1"
-        >
-          Home
-        </Link>
-
+      {/* Right: External Package & Code Links */}
+      <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
         <a 
           href="https://www.npmjs.com/package/@nikelyh/metamorph" 
           target="_blank" 
