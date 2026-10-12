@@ -28,9 +28,10 @@ export const TableOfContents = () => {
       { name: 'Prerequisites', id: 'prerequisites' },
       { name: '1. Installation', id: 'installation' },
       { name: '2. Configure API Key', id: 'api-key-configuration' },
-      { name: '3. Run the Swarm', id: 'quick-start' },
-      { name: '4. Monitor Dashboard', id: 'monitoring-the-swarm' },
-      { name: '5. Review & Apply', id: 'review-and-apply' },
+      { name: '3. Project Settings', id: 'config-setup' },
+      { name: '4. Run the Swarm', id: 'quick-start' },
+      { name: '5. Monitor Dashboard', id: 'monitoring-the-swarm' },
+      { name: '6. Review & Apply', id: 'review-and-apply' },
     ];
   } else if (path.includes(ROUTES.DOCS.CONCEPTS)) {
     items = [
@@ -40,7 +41,10 @@ export const TableOfContents = () => {
       { name: '4. Project Intelligence Engine', id: 'project-intelligence-engine' },
       { name: '5. Polymorphic Package Manager', id: 'polymorphic-package-manager' },
       { name: '6. Atomic Git Application', id: 'atomic-git-apply' },
-      { name: '7. Technical Whitepapers', id: 'technical-whitepapers' },
+      { name: '7. Real-Time Token Costs', id: 'token-accounting' },
+      { name: '8. Backend Validation Parity', id: 'backend-validation' },
+      { name: '9. Cascading Config', id: 'cascading-config' },
+      { name: '10. Technical Whitepapers', id: 'technical-whitepapers' },
     ];
   } else if (path.includes(ROUTES.DOCS.SWARM)) {
     items = [

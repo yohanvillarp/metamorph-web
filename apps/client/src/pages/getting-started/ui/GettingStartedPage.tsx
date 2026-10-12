@@ -60,10 +60,21 @@ export const GettingStartedPage = () => {
         <CodeBlock code={'# In your project .env file\nOPENAI_API_KEY=sk-...\n\n# Or directly in terminal (macOS/Linux):\nexport OPENAI_API_KEY="sk-..."\n\n# Or directly in PowerShell (Windows):\n$env:OPENAI_API_KEY="sk-..."'} />
       </div>
 
+      {/* Configuration Wizard */}
+      <div className="mb-12 scroll-mt-24" id="config-setup">
+        <h2 className="text-2xl font-bold text-white mb-4 border-b border-cyan-500/20 pb-2 flex items-center gap-2">
+          <span>3. Configure Project Settings (Optional)</span>
+        </h2>
+        <p className="text-slate-300 mb-4 text-sm leading-relaxed">
+          Customize your default models, worker concurrency, and retry limits interactively or save them to <code className="text-cyan-300 font-mono">.metamorphrc.json</code>:
+        </p>
+        <CodeBlock code="# Run the interactive configuration setup wizard\nmetamorph config" />
+      </div>
+
       {/* Quick Start */}
       <div className="mb-12 scroll-mt-24" id="quick-start">
         <h2 className="text-2xl font-bold text-white mb-4 border-b border-cyan-500/20 pb-2 flex items-center gap-2">
-          <span>3. Run the Swarm</span>
+          <span>4. Run the Swarm</span>
         </h2>
         <p className="text-slate-300 mb-4 text-sm leading-relaxed">
           Navigate to the target project directory and launch Metamorph:
@@ -99,7 +110,7 @@ export const GettingStartedPage = () => {
       {/* Monitoring the Swarm */}
       <div className="mb-12 scroll-mt-24" id="monitoring-the-swarm">
         <h2 className="text-2xl font-bold text-white mb-4 border-b border-cyan-500/20 pb-2 flex items-center gap-2">
-          <span>4. Monitor Live with Web Dashboard</span>
+          <span>5. Monitor Live with Web Dashboard</span>
         </h2>
         <p className="text-slate-300 mb-4 text-sm leading-relaxed">
           While the swarm executes inside the isolated <code className="text-cyan-300 font-mono">.metamorph/shadow</code> sandbox, open a new terminal window in the same folder to launch the visual monitor:
@@ -114,7 +125,7 @@ export const GettingStartedPage = () => {
       <div className="mb-12 scroll-mt-24" id="review-and-apply">
         <h2 className="text-2xl font-bold text-white mb-4 border-b border-cyan-500/20 pb-2 flex items-center gap-2">
           <ShieldCheck className="text-emerald-400" size={20} />
-          <span>5. Review & Apply to Git</span>
+          <span>6. Review & Apply to Git</span>
         </h2>
         <p className="text-slate-300 mb-4 text-sm leading-relaxed">
           When the build compiles cleanly in the shadow workspace, the CLI outputs your run identifier (<code className="text-cyan-300 font-mono">runId</code>). 

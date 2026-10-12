@@ -271,11 +271,61 @@ export const ConceptsPage = () => {
         <CodeBlock code="metamorph rollback <runId>" />
       </div>
 
-      {/* 7. System Architecture Whitepapers */}
+      {/* 7. Real-Time Token Accounting & Cost Estimation */}
+      <div className="mb-14 scroll-mt-24" id="token-accounting">
+        <h2 className="text-2xl font-bold text-white mb-4 border-b border-cyan-500/20 pb-2 flex items-center gap-3">
+          <Binary className="text-cyan-400" />
+          7. Real-Time Token Accounting & Cost Estimation
+        </h2>
+        <p className="text-slate-300 mb-4 leading-relaxed">
+          Unmonitored LLM code refactoring can result in runaway API spending. Metamorph includes built-in token accounting orchestrated via the autonomous <strong className="text-white">AccountingAgent</strong> and backed by <code className="bg-slate-800 text-cyan-300 px-1 py-0.5 rounded font-mono text-xs">CostAccountingStore</code>.
+        </p>
+        <ul className="list-disc pl-6 space-y-2 text-slate-300 mb-6 text-sm">
+          <li><strong>Granular Model Tracking:</strong> Whenever WorkerAgent or IntegrationAgent invokes an inference model, exact prompt and completion token counts are captured alongside the model identifier.</li>
+          <li><strong>Zero Inference Overhead:</strong> The AccountingAgent is a pure reactive listener. It performs deterministic math and writes to SQLite without consuming any LLM tokens itself.</li>
+          <li><strong>Real-Time SSE Streaming:</strong> Cost metrics and token consumption are broadcast over Server-Sent Events to the Dashboard UI, providing transparent, real-time expenditure monitoring.</li>
+        </ul>
+      </div>
+
+      {/* 8. Backend Target Structural Validation Parity */}
+      <div className="mb-14 scroll-mt-24" id="backend-validation">
+        <h2 className="text-2xl font-bold text-white mb-4 border-b border-cyan-500/20 pb-2 flex items-center gap-3">
+          <PackageCheck className="text-cyan-400" />
+          8. Backend Target Structural Validation Parity
+        </h2>
+        <p className="text-slate-300 mb-4 leading-relaxed">
+          Backend server migrations require rigorous architectural assertions matching modern frontend framework rigor. Metamorph integrates dedicated validation plugins (<code className="text-cyan-300 font-mono text-xs">target-express</code>, <code className="text-cyan-300 font-mono text-xs">target-fastify</code>, <code className="text-cyan-300 font-mono text-xs">target-nestjs</code>):
+        </p>
+        <ul className="list-disc pl-6 space-y-2 text-slate-300 mb-6 text-sm">
+          <li><strong>Adaptive Entrypoint Resolution:</strong> Dynamically locates bootstrap files (<code className="text-slate-400 font-mono">src/app.ts</code>, <code className="text-slate-400 font-mono">server.ts</code>, <code className="text-slate-400 font-mono">src/main.ts</code>) and configures dev/start scripts automatically.</li>
+          <li><strong>Structural AST Assertions:</strong> IntegrationAgent executes deep AST verification to validate dependency injection decorators, route registration, and middleware adaptors.</li>
+          <li><strong>Target Repair Heuristics:</strong> When compilation fails inside the shadow workspace, target-specific heuristics generate surgical repair hints for the worker swarm.</li>
+        </ul>
+      </div>
+
+      {/* 9. Cascading Configuration Engine */}
+      <div className="mb-14 scroll-mt-24" id="cascading-config">
+        <h2 className="text-2xl font-bold text-white mb-4 border-b border-cyan-500/20 pb-2 flex items-center gap-3">
+          <Boxes className="text-cyan-400" />
+          9. Cascading Configuration Engine
+        </h2>
+        <p className="text-slate-300 mb-4 leading-relaxed">
+          Metamorph provides enterprise-grade configuration precedence designed for distributed engineering teams:
+        </p>
+        <div className="p-4 rounded-xl bg-[#080d17] border border-cyan-500/30 font-mono text-xs text-slate-300 space-y-1 mb-4">
+          <div><span className="text-cyan-400 font-bold">1. CLI Flags</span> (e.g. --model, --concurrency, --disable-agents) [Highest priority]</div>
+          <div><span className="text-cyan-400 font-bold">2. Environment Variables</span> (METAMORPH_MODEL, METAMORPH_CONCURRENCY)</div>
+          <div><span className="text-cyan-400 font-bold">3. Local Project Config</span> (.metamorphrc.json in repository root)</div>
+          <div><span className="text-cyan-400 font-bold">4. Global User Profile</span> (~/.metamorphrc.json in user home)</div>
+          <div><span className="text-cyan-400 font-bold">5. System Defaults</span> (Engine-bundled defaults) [Lowest priority]</div>
+        </div>
+      </div>
+
+      {/* 10. System Architecture Whitepapers */}
       <div className="mb-12 scroll-mt-24" id="technical-whitepapers">
         <h2 className="text-2xl font-bold text-white mb-4 border-b border-cyan-500/20 pb-2 flex items-center gap-3">
           <FileText className="text-cyan-400" />
-          7. System Architecture Whitepapers
+          10. System Architecture Whitepapers
         </h2>
         <p className="text-slate-300 mb-6 leading-relaxed">
           For architects, security auditors, and core contributors, the Metamorph engineering team maintains 6 comprehensive technical whitepapers in the official repository:

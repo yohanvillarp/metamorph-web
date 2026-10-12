@@ -63,10 +63,10 @@ export const OverviewPage = () => {
           <div className="p-5 rounded-xl bg-[#090f1c] border border-slate-800">
             <div className="flex items-center gap-2 text-cyan-400 font-mono text-sm font-bold mb-2">
               <Cpu size={18} />
-              7-Agent Mozaik Swarm
+              8-Agent Adaptive Swarm
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Mapper, Worker, Reviewer, and Integration agents collaborate over an event-driven blackboard with automated compiler repair loops.
+              Eight specialized agents with dynamic bypass modes, automated compiler repair loops, and real-time dollar cost accounting.
             </p>
           </div>
 
@@ -135,7 +135,7 @@ export const OverviewPage = () => {
 
           <Link to={ROUTES.DOCS.SWARM} className="p-4 rounded-xl bg-[#090e1a] border border-slate-800 hover:border-cyan-500/40 transition-all flex items-center justify-between group">
             <div>
-              <div className="text-sm font-bold text-white group-hover:text-cyan-300 transition-colors">The 7 Swarm Agents</div>
+              <div className="text-sm font-bold text-white group-hover:text-cyan-300 transition-colors">The 8 Swarm Agents</div>
               <div className="text-xs text-slate-500">Worker, reviewer & integration loops</div>
             </div>
             <ArrowRight size={16} className="text-slate-500 group-hover:text-cyan-400 transition-colors" />
