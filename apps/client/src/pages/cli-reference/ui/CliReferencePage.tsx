@@ -315,106 +315,94 @@ metamorph detect ../my-app`}
           <Key className="text-cyan-400" />
           Environment Variables
         </h2>
-        <div className="space-y-4 text-xs font-mono">
-          <div className="p-4 rounded-xl bg-[#080d17] border border-slate-800">
-            <div className="flex items-center justify-between mb-1">
-              <span className="font-bold text-cyan-300">OPENAI_API_KEY</span>
-              <span className="text-amber-400">Required (or Anthropic)</span>
+        <div className="grid gap-3.5 sm:grid-cols-2">
+          {[
+            {
+              name: 'OPENAI_API_KEY',
+              status: 'Required (or Anthropic)',
+              isRequired: true,
+              desc: 'API key for OpenAI models powering the WorkerAgent and ReviewerAgent in Mozaik.',
+            },
+            {
+              name: 'ANTHROPIC_API_KEY',
+              status: 'Required (or OpenAI)',
+              isRequired: true,
+              desc: 'API key for Anthropic Claude models as an alternative inference provider.',
+            },
+            {
+              name: 'METAMORPH_DEV',
+              status: 'Optional (1 / 0)',
+              isRequired: false,
+              desc: 'Enables development mode logging and allows running directly from source TypeScript without distribution build notices.',
+            },
+            {
+              name: 'METAMORPH_MODEL',
+              status: 'Optional (string)',
+              isRequired: false,
+              desc: 'Overrides the primary worker LLM model across all CLI executions without editing configuration files.',
+            },
+            {
+              name: 'METAMORPH_REVIEWER_MODEL',
+              status: 'Optional (string)',
+              isRequired: false,
+              desc: 'Overrides the dedicated model used specifically by ReviewerAgent for quality gate validation.',
+            },
+            {
+              name: 'METAMORPH_CONCURRENCY',
+              status: 'Optional (integer)',
+              isRequired: false,
+              desc: 'Configures the WorkerAgent concurrency queue limit (default: 3).',
+            },
+            {
+              name: 'METAMORPH_INFERENCE_TIMEOUT_MS',
+              status: 'Optional (integer)',
+              isRequired: false,
+              desc: 'Configures max inference execution duration per file before triggering a timeout error (default: 180000 ms).',
+            },
+            {
+              name: 'METAMORPH_MAX_RETRIES',
+              status: 'Optional (integer)',
+              isRequired: false,
+              desc: 'Maximum retry budget for WorkerAgent when ReviewerAgent rejects a transformed file (default: 2).',
+            },
+            {
+              name: 'METAMORPH_INTEGRATION_ROUNDS',
+              status: 'Optional (integer)',
+              isRequired: false,
+              desc: 'Maximum shadow compilation repair cycles executed by IntegrationAgent (default: 4).',
+            },
+            {
+              name: 'METAMORPH_DISABLED_AGENTS',
+              status: 'Optional (comma list)',
+              isRequired: false,
+              desc: 'List of auxiliary agents to disable (reporter, reviewer, accounting), activating zero-token bypass modes.',
+            },
+          ].map((env) => (
+            <div
+              key={env.name}
+              className="p-4 rounded-xl bg-[#080d17]/95 border border-slate-800/80 hover:border-cyan-500/30 transition-all flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-2.5 flex-wrap">
+                  <code className="font-mono font-bold text-cyan-300 text-xs px-2.5 py-1 rounded bg-[#040812] border border-cyan-500/25 select-all">
+                    {env.name}
+                  </code>
+                  <span
+                    className={`text-[11px] font-mono px-2.5 py-0.5 rounded-full border ${
+                      env.isRequired
+                        ? 'bg-amber-500/10 text-amber-300 border-amber-500/30'
+                        : 'bg-slate-800/70 text-slate-400 border-slate-700/60'
+                    }`}
+                  >
+                    {env.status}
+                  </span>
+                </div>
+                <p className="text-slate-400 font-sans text-xs leading-relaxed">
+                  {env.desc}
+                </p>
+              </div>
             </div>
-            <p className="text-slate-400 font-sans text-xs">
-              API key for OpenAI models powering the WorkerAgent and ReviewerAgent in Mozaik.
-            </p>
-          </div>
-
-          <div className="p-4 rounded-xl bg-[#080d17] border border-slate-800">
-            <div className="flex items-center justify-between mb-1">
-              <span className="font-bold text-cyan-300">ANTHROPIC_API_KEY</span>
-              <span className="text-amber-400">Required (or OpenAI)</span>
-            </div>
-            <p className="text-slate-400 font-sans text-xs">
-              API key for Anthropic Claude models as an alternative inference provider.
-            </p>
-          </div>
-
-          <div className="p-4 rounded-xl bg-[#080d17] border border-slate-800">
-            <div className="flex items-center justify-between mb-1">
-              <span className="font-bold text-cyan-300">METAMORPH_DEV</span>
-              <span className="text-slate-500">Optional (1 / 0)</span>
-            </div>
-            <p className="text-slate-400 font-sans text-xs">
-              Enables development mode logging and allows running directly from source TypeScript without distribution build notices.
-            </p>
-          </div>
-
-          <div className="p-4 rounded-xl bg-[#080d17] border border-slate-800">
-            <div className="flex items-center justify-between mb-1">
-              <span className="font-bold text-cyan-300">METAMORPH_MODEL</span>
-              <span className="text-slate-500">Optional (string)</span>
-            </div>
-            <p className="text-slate-400 font-sans text-xs">
-              Overrides the primary worker LLM model across all CLI executions without editing configuration files.
-            </p>
-          </div>
-
-          <div className="p-4 rounded-xl bg-[#080d17] border border-slate-800">
-            <div className="flex items-center justify-between mb-1">
-              <span className="font-bold text-cyan-300">METAMORPH_REVIEWER_MODEL</span>
-              <span className="text-slate-500">Optional (string)</span>
-            </div>
-            <p className="text-slate-400 font-sans text-xs">
-              Overrides the dedicated model used specifically by ReviewerAgent for quality gate validation.
-            </p>
-          </div>
-
-          <div className="p-4 rounded-xl bg-[#080d17] border border-slate-800">
-            <div className="flex items-center justify-between mb-1">
-              <span className="font-bold text-cyan-300">METAMORPH_CONCURRENCY</span>
-              <span className="text-slate-500">Optional (integer)</span>
-            </div>
-            <p className="text-slate-400 font-sans text-xs">
-              Configures the WorkerAgent concurrency queue limit (default: 3).
-            </p>
-          </div>
-
-          <div className="p-4 rounded-xl bg-[#080d17] border border-slate-800">
-            <div className="flex items-center justify-between mb-1">
-              <span className="font-bold text-cyan-300">METAMORPH_INFERENCE_TIMEOUT_MS</span>
-              <span className="text-slate-500">Optional (integer)</span>
-            </div>
-            <p className="text-slate-400 font-sans text-xs">
-              Configures max inference execution duration per file before triggering a timeout error (default: 180000 ms).
-            </p>
-          </div>
-
-          <div className="p-4 rounded-xl bg-[#080d17] border border-slate-800">
-            <div className="flex items-center justify-between mb-1">
-              <span className="font-bold text-cyan-300">METAMORPH_MAX_RETRIES</span>
-              <span className="text-slate-500">Optional (integer)</span>
-            </div>
-            <p className="text-slate-400 font-sans text-xs">
-              Maximum retry budget for WorkerAgent when ReviewerAgent rejects a transformed file (default: 2).
-            </p>
-          </div>
-
-          <div className="p-4 rounded-xl bg-[#080d17] border border-slate-800">
-            <div className="flex items-center justify-between mb-1">
-              <span className="font-bold text-cyan-300">METAMORPH_INTEGRATION_ROUNDS</span>
-              <span className="text-slate-500">Optional (integer)</span>
-            </div>
-            <p className="text-slate-400 font-sans text-xs">
-              Maximum shadow compilation repair cycles executed by IntegrationAgent (default: 4).
-            </p>
-          </div>
-
-          <div className="p-4 rounded-xl bg-[#080d17] border border-slate-800">
-            <div className="flex items-center justify-between mb-1">
-              <span className="font-bold text-cyan-300">METAMORPH_DISABLED_AGENTS</span>
-              <span className="text-slate-500">Optional (comma-separated list)</span>
-            </div>
-            <p className="text-slate-400 font-sans text-xs">
-              List of auxiliary agents to disable (reporter, reviewer, accounting), activating zero-token bypass modes.
-            </p>
-          </div>
+          ))}
         </div>
       </div>
     </div>
