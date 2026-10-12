@@ -101,7 +101,16 @@ export const CliReferencePage = () => {
         <p className="text-xs text-slate-400 mb-3 leading-relaxed">
           You can tune execution for maximum speed or minimal token spend using adaptive swarm bypass flags:
         </p>
-        <CodeBlock code="# Run on a specific monorepo workspace package\nmetamorph run --workspace apps/client --from react --to next\n\n# Low-cost fast run (disables reviewer & reporter, triggering 0-token fallbacks)\nmetamorph run --from express --to fastify --disable-agents reviewer,reporter\n\n# Custom model selection with high concurrency\nmetamorph run --model gpt-5.4 --concurrency 5" />
+        <CodeBlock 
+          code={`# Run on a specific monorepo workspace package
+metamorph run --workspace apps/client --from react --to next
+
+# Low-cost fast run (disables reviewer & reporter, triggering 0-token fallbacks)
+metamorph run --from express --to fastify --disable-agents reviewer,reporter
+
+# Custom model selection with high concurrency
+metamorph run --model gpt-5.4 --concurrency 5`} 
+        />
       </div>
 
       {/* 2. metamorph config */}
@@ -269,7 +278,13 @@ export const CliReferencePage = () => {
         <p className="text-slate-400 text-xs mb-3 leading-relaxed">
           Outputs detected frameworks, confidence scores, runtime variants (e.g. App Router vs Pages Router), bundlers, package managers, monorepo topologies, and Subsumption DAG resolutions.
         </p>
-        <CodeBlock code="# Run static intelligence on current folder\nmetamorph detect .\n\n# Run on another project or monorepo subfolder\nmetamorph detect ../my-app" />
+        <CodeBlock 
+          code={`# Run static intelligence on current folder
+metamorph detect .
+
+# Run on another project or monorepo subfolder
+metamorph detect ../my-app`} 
+        />
       </div>
 
       {/* 7. metamorph list */}

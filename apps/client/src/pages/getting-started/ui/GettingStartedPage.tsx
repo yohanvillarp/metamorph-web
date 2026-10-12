@@ -1,5 +1,5 @@
 import { CodeBlock } from '@/shared/ui/CodeBlock';
-import { Key, ShieldCheck, PlayCircle, ExternalLink } from 'lucide-react';
+import { Key, ShieldCheck, PlayCircle, ExternalLink, Package } from 'lucide-react';
 import { SEOHead } from '@/shared/ui/SEOHead';
 
 export const GettingStartedPage = () => {
@@ -40,7 +40,7 @@ export const GettingStartedPage = () => {
       <div className="mb-12 scroll-mt-24" id="installation">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-cyan-500/20 pb-2 mb-4">
           <h2 className="text-2xl font-bold text-white flex items-center gap-2.5">
-            <img src="/icons8-ngp.svg" alt="npm" className="w-6 h-6 object-contain" />
+            <Package className="text-cyan-400" size={22} />
             <span>1. Installation</span>
           </h2>
           <a
@@ -49,6 +49,7 @@ export const GettingStartedPage = () => {
             rel="noopener noreferrer"
             className="text-xs font-mono text-cyan-400 hover:text-cyan-300 flex items-center gap-1.5 px-3 py-1 rounded-lg bg-cyan-950/60 border border-cyan-500/30 hover:border-cyan-500/60 transition-colors w-fit"
           >
+            <img src="/icons8-ngp.svg" alt="npm" className="w-3.5 h-3.5 object-contain" />
             <span>v2.2.0 on npm</span>
             <ExternalLink size={12} />
           </a>
@@ -56,7 +57,13 @@ export const GettingStartedPage = () => {
         <p className="text-slate-300 mb-4 text-sm leading-relaxed">
           Install the Metamorph CLI globally via NPM, or execute it on-demand with npx:
         </p>
-        <CodeBlock code="# Global installation\nnpm install -g @nikelyh/metamorph\n\n# Or run directly without installing\nnpx @nikelyh/metamorph run" />
+        <CodeBlock 
+          code={`# Global installation
+npm install -g @nikelyh/metamorph
+
+# Or run directly without installing
+npx @nikelyh/metamorph run`} 
+        />
       </div>
 
       {/* API Key Configuration */}
@@ -69,7 +76,16 @@ export const GettingStartedPage = () => {
           Metamorph blocks execution upfront if no API key is detected, preventing your swarm from halting mid-flight. 
           Create a <code className="text-cyan-300 font-mono">.env</code> file in your project directory or export it in your shell:
         </p>
-        <CodeBlock code={'# In your project .env file\nOPENAI_API_KEY=sk-...\n\n# Or directly in terminal (macOS/Linux):\nexport OPENAI_API_KEY="sk-..."\n\n# Or directly in PowerShell (Windows):\n$env:OPENAI_API_KEY="sk-..."'} />
+        <CodeBlock 
+          code={`# In your project .env file
+OPENAI_API_KEY=sk-...
+
+# Or directly in terminal (macOS/Linux):
+export OPENAI_API_KEY="sk-..."
+
+# Or directly in PowerShell (Windows):
+$env:OPENAI_API_KEY="sk-..."`} 
+        />
       </div>
 
       {/* Configuration Wizard */}

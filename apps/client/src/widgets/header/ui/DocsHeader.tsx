@@ -39,7 +39,7 @@ export function DocsHeader({ onOpenSearch }: DocsHeaderProps) {
       </div>
 
       {/* Center: Prominent Command Palette Search */}
-      <div className="flex-1 max-w-sm sm:max-w-md lg:max-w-lg mx-3 sm:mx-6">
+      <div className="flex-1 max-w-sm sm:max-w-md lg:max-w-lg mx-3 sm:mx-6 sm:absolute sm:left-1/2 sm:-translate-x-1/2">
         <button
           onClick={onOpenSearch}
           className="w-full flex items-center justify-between px-3.5 py-2 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/60 hover:bg-[#0a1222] text-slate-400 hover:text-slate-200 text-xs font-mono transition-all group shadow-inner focus-visible:ring-2 focus-visible:ring-cyan-400 cursor-pointer"

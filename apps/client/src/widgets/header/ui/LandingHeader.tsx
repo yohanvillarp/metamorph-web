@@ -60,35 +60,31 @@ export function LandingHeader() {
           </div>
         </Link>
 
-        <span className="hidden xl:inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-0.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300">
-          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-          v2.2.0
-        </span>
       </div>
 
-      {/* Center Landing Navigation (Anchors) */}
-      <nav className="hidden md:flex items-center gap-1 text-sm font-medium text-slate-300">
+      {/* Center Landing Navigation (Anchors) - Mathematically Centered Floating Dock */}
+      <nav className="hidden md:flex items-center gap-1 md:absolute md:left-1/2 md:-translate-x-1/2 bg-[#090f1d]/90 border border-cyan-500/20 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-[0_0_25px_rgba(0,242,254,0.08)]">
         <button
           onClick={() => scrollToSection('swarm')}
-          className="px-3 py-1.5 rounded-lg hover:text-cyan-300 hover:bg-white/5 transition-colors cursor-pointer"
+          className="px-3 py-1 rounded-full text-xs font-mono text-slate-300 hover:text-cyan-300 hover:bg-white/5 transition-all cursor-pointer"
         >
           The Swarm
         </button>
         <button
           onClick={() => scrollToSection('demo')}
-          className="px-3 py-1.5 rounded-lg hover:text-cyan-300 hover:bg-white/5 transition-colors cursor-pointer"
+          className="px-3 py-1 rounded-full text-xs font-mono text-slate-300 hover:text-cyan-300 hover:bg-white/5 transition-all cursor-pointer"
         >
           Code Demo
         </button>
         <button
           onClick={() => scrollToSection('matrix')}
-          className="px-3 py-1.5 rounded-lg hover:text-cyan-300 hover:bg-white/5 transition-colors cursor-pointer"
+          className="px-3 py-1 rounded-full text-xs font-mono text-slate-300 hover:text-cyan-300 hover:bg-white/5 transition-all cursor-pointer"
         >
           Ecosystem
         </button>
         <Link 
           to={ROUTES.DOCS.ROOT} 
-          className="px-3 py-1.5 rounded-lg hover:text-cyan-300 hover:bg-white/5 transition-colors"
+          className="px-3 py-1 rounded-full text-xs font-mono text-slate-300 hover:text-cyan-300 hover:bg-white/5 transition-all"
         >
           Documentation
         </Link>
