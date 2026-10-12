@@ -2,6 +2,7 @@ import { HeroSection } from '@/widgets/HeroSection';
 import { SwarmPipelineVisualizer } from '@/widgets/SwarmPipelineVisualizer';
 import { CodeTransformationDemo } from '@/widgets/CodeTransformationDemo';
 import { SupportedTech } from '@/widgets/SupportedTech';
+import { CommunitySection } from '@/widgets/CommunitySection';
 import { CallToAction } from '@/widgets/CallToAction';
 import { SEOHead } from '@/shared/ui/SEOHead';
 
@@ -17,6 +18,7 @@ export function LandingPage() {
       <SwarmPipelineVisualizer />
       <CodeTransformationDemo />
       <SupportedTech />
+      <CommunitySection />
       <CallToAction />
       
       <footer className="py-10 text-center text-slate-500 text-xs md:text-sm border-t border-cyan-500/10 bg-[#04060a]">

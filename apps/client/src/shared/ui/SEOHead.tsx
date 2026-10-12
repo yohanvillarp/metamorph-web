@@ -7,9 +7,12 @@ interface SEOHeadProps {
   keywords?: string;
   canonicalPath?: string;
   type?: 'website' | 'article';
+  image?: string;
+  structuredData?: Record<string, unknown>;
 }
 
 const BASE_URL = 'https://metamorph.nikelyh.tech';
+const DEFAULT_IMAGE = `${BASE_URL}/logo_metamorph.png`;
 const DEFAULT_DESCRIPTION =
   'Refactor and migrate your entire codebase with zero risk and zero downtime. Powered by Mozaik AI and an elite swarm of autonomous agents.';
 
@@ -19,6 +22,8 @@ export function SEOHead({
   keywords,
   canonicalPath,
   type = 'website',
+  image = DEFAULT_IMAGE,
+  structuredData,
 }: SEOHeadProps) {
   const location = useLocation();
   const currentPath = canonicalPath || location.pathname;
@@ -69,11 +74,26 @@ export function SEOHead({
     setMetaTag('meta[property="og:description"]', 'content', description);
     setMetaTag('meta[property="og:url"]', 'content', canonicalUrl);
     setMetaTag('meta[property="og:type"]', 'content', type);
+    setMetaTag('meta[property="og:image"]', 'content', image);
 
     // 5. Twitter Card Tags
+    setMetaTag('meta[property="twitter:card"]', 'content', 'summary_large_image');
     setMetaTag('meta[property="twitter:title"]', 'content', fullTitle);
     setMetaTag('meta[property="twitter:description"]', 'content', description);
-  }, [fullTitle, description, keywords, canonicalUrl, type]);
+    setMetaTag('meta[property="twitter:image"]', 'content', image);
+
+    // 6. Structured Data (JSON-LD)
+    if (structuredData) {
+      let script = document.getElementById('seo-dynamic-jsonld') as HTMLScriptElement | null;
+      if (!script) {
+        script = document.createElement('script');
+        script.id = 'seo-dynamic-jsonld';
+        script.type = 'application/ld+json';
+        document.head.appendChild(script);
+      }
+      script.textContent = JSON.stringify(structuredData);
+    }
+  }, [fullTitle, description, keywords, canonicalUrl, type, image, structuredData]);
 
   return null;
 }
