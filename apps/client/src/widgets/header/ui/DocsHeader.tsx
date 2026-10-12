@@ -7,28 +7,29 @@ interface DocsHeaderProps {
 
 export function DocsHeader({ onOpenSearch }: DocsHeaderProps) {
   return (
-    <header className="fixed top-0 w-full z-40 backdrop-blur-xl bg-[#06090e]/95 border-b border-cyan-500/15 py-3 px-4 sm:px-6 md:px-8 flex justify-between items-center h-20 transition-all">
+    <header className="fixed top-0 w-full z-40 backdrop-blur-xl bg-[#06090e]/95 border-b border-cyan-500/15 px-3 sm:px-6 md:px-8 flex justify-between items-center h-16 sm:h-20 transition-all">
       {/* Left: Mobile Drawer Trigger + Brand Logo & Badge */}
-      <div className="flex items-center gap-3 sm:gap-4 flex-shrink-0">
+      <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
         <button
           onClick={() => window.dispatchEvent(new CustomEvent('metamorph:open-docs-sidebar'))}
           className="md:hidden p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-cyan-500/50 transition-all cursor-pointer"
           aria-label="Open documentation sidebar"
+          title="Open Menu"
         >
           <Menu size={18} className="text-cyan-400" />
         </button>
 
         <Link 
           to="/" 
-          className="group flex items-center gap-2.5 text-white cursor-pointer"
+          className="group flex items-center gap-2 text-white cursor-pointer"
           title="Metamorph Home"
         >
           <img 
             src="/logo_metamorph.png" 
             alt="Metamorph" 
-            className="w-8 h-8 object-contain drop-shadow-[0_0_10px_rgba(0,242,254,0.4)] group-hover:scale-105 transition-transform" 
+            className="w-7 h-7 sm:w-8 sm:h-8 object-contain drop-shadow-[0_0_10px_rgba(0,242,254,0.4)] group-hover:scale-105 transition-transform" 
           />
-          <span className="font-extrabold text-lg tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-200 hidden sm:inline">
+          <span className="font-extrabold text-base sm:text-lg tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-200 hidden md:inline">
             Metamorph
           </span>
         </Link>
@@ -38,18 +39,19 @@ export function DocsHeader({ onOpenSearch }: DocsHeaderProps) {
         </span>
       </div>
 
-      {/* Center: Prominent Command Palette Search */}
-      <div className="flex-1 max-w-sm sm:max-w-md lg:max-w-lg mx-3 sm:mx-6 sm:absolute sm:left-1/2 sm:-translate-x-1/2">
+      {/* Center: Search Trigger (Responsive & Adaptive) */}
+      <div className="flex-1 max-w-[200px] sm:max-w-md lg:max-w-lg mx-2 sm:mx-6 sm:absolute sm:left-1/2 sm:-translate-x-1/2">
         <button
           onClick={onOpenSearch}
-          className="w-full flex items-center justify-between px-3.5 py-2 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/60 hover:bg-[#0a1222] text-slate-400 hover:text-slate-200 text-xs font-mono transition-all group shadow-inner focus-visible:ring-2 focus-visible:ring-cyan-400 cursor-pointer"
+          className="w-full flex items-center justify-between px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/60 hover:bg-[#0a1222] text-slate-400 hover:text-slate-200 text-xs font-mono transition-all group shadow-inner focus-visible:ring-2 focus-visible:ring-cyan-400 cursor-pointer"
           title="Search docs (Ctrl+K)"
         >
           <div className="flex items-center gap-2 min-w-0">
             <Search size={14} className="text-cyan-400 group-hover:scale-110 transition-transform flex-shrink-0" />
-            <span className="truncate">Search docs, commands, agents...</span>
+            <span className="truncate sm:hidden text-[11px]">Search...</span>
+            <span className="truncate hidden sm:inline">Search docs, commands, agents...</span>
           </div>
-          <div className="flex items-center gap-1 flex-shrink-0">
+          <div className="hidden sm:flex items-center gap-1 flex-shrink-0">
             <kbd className="px-1.5 py-0.5 text-[10px] bg-slate-800 border border-slate-700 text-slate-300 rounded font-mono">
               Ctrl
             </kbd>
@@ -66,7 +68,7 @@ export function DocsHeader({ onOpenSearch }: DocsHeaderProps) {
           href="https://www.npmjs.com/package/@nikelyh/metamorph" 
           target="_blank" 
           rel="noopener noreferrer" 
-          className="p-2 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-red-500/50 hover:bg-slate-800/80 transition-all hover:shadow-[0_0_15px_rgba(213,0,0,0.2)]" 
+          className="hidden sm:flex p-2 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-red-500/50 hover:bg-slate-800/80 transition-all hover:shadow-[0_0_15px_rgba(213,0,0,0.2)]" 
           title="npm: @nikelyh/metamorph"
           aria-label="npm package"
         >
@@ -77,8 +79,9 @@ export function DocsHeader({ onOpenSearch }: DocsHeaderProps) {
           href="https://github.com/yohanvillarp/metamorph" 
           target="_blank" 
           rel="noopener noreferrer" 
-          className="p-2 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/50 hover:bg-slate-800/80 transition-all hover:shadow-[0_0_15px_rgba(0,242,254,0.2)]" 
+          className="p-1.5 sm:p-2 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/50 hover:bg-slate-800/80 transition-all hover:shadow-[0_0_15px_rgba(0,242,254,0.2)] flex items-center justify-center" 
           aria-label="GitHub Repository"
+          title="GitHub Repository"
         >
           <img src="/github.svg" alt="GitHub" className="w-4 h-4 invert opacity-80 hover:opacity-100 transition-opacity" />
         </a>

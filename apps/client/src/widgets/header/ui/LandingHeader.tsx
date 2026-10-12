@@ -1,4 +1,5 @@
 import { ROUTES } from '@/shared/config/routes';
+import { preloadDocsRoutes } from '@/shared/lib/routePreloader';
 import { motion } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
@@ -89,7 +90,9 @@ export function LandingHeader() {
           Community
         </button>
         <Link 
-          to={ROUTES.DOCS.ROOT} 
+          to={ROUTES.DOCS.ROOT}
+          onMouseEnter={preloadDocsRoutes}
+          onTouchStart={preloadDocsRoutes}
           className="px-3 py-1 rounded-full text-xs font-mono text-slate-300 hover:text-cyan-300 hover:bg-white/5 transition-all"
         >
           Documentation

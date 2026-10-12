@@ -1,7 +1,10 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Header } from './widgets/header';
 import { ScrollToTop } from './shared/ui/ScrollToTop';
+import { NavigationProgressBar } from './shared/ui/NavigationProgressBar';
+import { CyberLoader } from './shared/ui/CyberLoader';
+import { scheduleIdleDocsPreload } from './shared/lib/routePreloader';
 import { ROUTES } from './shared/config/routes';
 import './index.css';
 
@@ -18,26 +21,17 @@ const FrontendMigrationsPage = lazy(() => import('./pages/migrations').then((m) 
 const CommunityPage = lazy(() => import('./pages/community').then((m) => ({ default: m.CommunityPage })));
 const NotFoundPage = lazy(() => import('./pages/not-found').then((m) => ({ default: m.NotFoundPage })));
 
-function RouteLoadingFallback() {
-  return (
-    <div className="min-h-[70vh] flex flex-col items-center justify-center gap-3">
-      <div className="relative">
-        <div className="w-10 h-10 rounded-full border-2 border-cyan-500/20 border-t-cyan-400 animate-spin" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
-        </div>
-      </div>
-      <span className="text-xs font-mono text-cyan-400/80 tracking-wider uppercase">Loading Metamorph...</span>
-    </div>
-  );
-}
-
 function App() {
+  useEffect(() => {
+    scheduleIdleDocsPreload();
+  }, []);
+
   return (
     <Router>
       <ScrollToTop />
+      <NavigationProgressBar />
       <Header />
-      <Suspense fallback={<RouteLoadingFallback />}>
+      <Suspense fallback={<CyberLoader fullScreen message="INITIALIZING METAMORPH..." />}>
         <Routes>
           <Route path={ROUTES.HOME} element={<LandingPage />} />
           

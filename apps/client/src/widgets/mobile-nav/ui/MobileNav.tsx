@@ -1,14 +1,10 @@
 import { useState } from 'react';
-import { Menu, ChevronRight, Copy, Check } from 'lucide-react';
+import { ChevronRight, Copy, Check } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
 import TurndownService from 'turndown';
 
-interface MobileNavProps {
-  onOpenSidebar: () => void;
-}
-
-export const MobileNav = ({ onOpenSidebar }: MobileNavProps) => {
+export const MobileNav = () => {
   const [copied, setCopied] = useState(false);
   const location = useLocation();
 
@@ -69,14 +65,8 @@ export const MobileNav = ({ onOpenSidebar }: MobileNavProps) => {
 
   return (
     <div className="flex items-center justify-between mb-8">
-      {/* Left Side: Menu Toggle & Breadcrumbs */}
+      {/* Left Side: Breadcrumbs */}
       <div className="flex items-center gap-2">
-        <button 
-          onClick={onOpenSidebar}
-          className="md:hidden text-neo-text-muted hover:text-white transition-colors p-1 -ml-1 flex-shrink-0"
-        >
-          <Menu size={20} />
-        </button>
 
         <div className="flex items-center gap-2 text-sm overflow-hidden whitespace-nowrap">
           {parent ? (
