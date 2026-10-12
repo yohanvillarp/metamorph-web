@@ -49,13 +49,13 @@ export function CommunitySection() {
             Metamorph Core Ecosystem
           </div>
           <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4 font-sans">
-            Powered by engineers &amp;{' '}
+            Powered by{' '}
             <span className="bg-gradient-to-r from-cyan-400 via-teal-300 to-cyan-200 bg-clip-text text-transparent">
               the open-source community
             </span>
           </h2>
           <p className="text-slate-400 text-base md:text-lg leading-relaxed">
-            Metamorph (<code className="text-cyan-300 font-mono">@nikelyh/metamorph</code>) is built by developers worldwide. Meet the contributors behind the autonomous framework migration swarm.
+            Metamorph (<code className="text-cyan-300 font-mono">@nikelyh/metamorph</code>) is an open-source initiative built and maintained in the open. Meet the contributors behind the autonomous framework migration swarm.
           </p>
 
           {/* Live Sync Status */}
