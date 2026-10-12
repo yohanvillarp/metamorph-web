@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
-import { ChevronDown, ChevronRight, X, BookOpen, Layers, Cpu, Terminal, Shield } from 'lucide-react';
+import { ChevronDown, ChevronRight, X, BookOpen, Layers, Cpu, Terminal, Shield, Users } from 'lucide-react';
 import { cn } from '@/shared/lib/utils';
 
 interface DocsSidebarProps {
@@ -129,6 +129,19 @@ export const DocsSidebar = ({ mobileOpen, setMobileOpen }: DocsSidebarProps) => 
         <nav className="flex flex-col gap-1">
           <Link to={ROUTES.DOCS.CLI_REFERENCE} className={getLinkClasses(ROUTES.DOCS.CLI_REFERENCE)}>
             CLI Commands & Env
+          </Link>
+        </nav>
+      </div>
+
+      {/* 6. Community & Ecosystem */}
+      <div>
+        <div className="px-3 mb-2 text-[11px] font-mono uppercase tracking-wider text-slate-500 font-bold flex items-center gap-1.5">
+          <Users size={12} className="text-cyan-400" />
+          <span>Ecosystem</span>
+        </div>
+        <nav className="flex flex-col gap-1">
+          <Link to={ROUTES.DOCS.COMMUNITY} className={getLinkClasses(ROUTES.DOCS.COMMUNITY)}>
+            Community &amp; Contributing
           </Link>
         </nav>
       </div>

@@ -10,7 +10,8 @@ export const ROUTES = {
       ROOT: '/docs/migrations',
       BACKEND: '/docs/migrations/backend',
       FRONTEND: '/docs/migrations/frontend',
-    }
+    },
+    COMMUNITY: '/docs/community',
   },
 } as const;
 

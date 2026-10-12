@@ -15,6 +15,7 @@ const SwarmPage = lazy(() => import('./pages/swarm').then((m) => ({ default: m.S
 const CliReferencePage = lazy(() => import('./pages/cli-reference').then((m) => ({ default: m.CliReferencePage })));
 const BackendMigrationsPage = lazy(() => import('./pages/migrations').then((m) => ({ default: m.BackendMigrationsPage })));
 const FrontendMigrationsPage = lazy(() => import('./pages/migrations').then((m) => ({ default: m.FrontendMigrationsPage })));
+const CommunityPage = lazy(() => import('./pages/community').then((m) => ({ default: m.CommunityPage })));
 const NotFoundPage = lazy(() => import('./pages/not-found').then((m) => ({ default: m.NotFoundPage })));
 
 function RouteLoadingFallback() {
@@ -48,6 +49,7 @@ function App() {
             <Route path="cli-reference" element={<CliReferencePage />} />
             <Route path="migrations/backend" element={<BackendMigrationsPage />} />
             <Route path="migrations/frontend" element={<FrontendMigrationsPage />} />
+            <Route path="community" element={<CommunityPage />} />
           </Route>
 
           {/* Catch-all 404 Route */}

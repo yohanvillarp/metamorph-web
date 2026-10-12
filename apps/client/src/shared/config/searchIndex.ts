@@ -1,6 +1,6 @@
 import { ROUTES } from './routes';
 
-export type SearchCategory = 'Command' | 'Flag' | 'Agent' | 'Architecture' | 'Migration';
+export type SearchCategory = 'Command' | 'Flag' | 'Agent' | 'Architecture' | 'Migration' | 'Community';
 
 export interface SearchItem {
   id: string;
@@ -252,5 +252,22 @@ export const SEARCH_INDEX: SearchItem[] = [
     category: 'Migration',
     href: ROUTES.DOCS.MIGRATIONS.BACKEND,
     keywords: ['express', 'nestjs', 'ioc', 'dependency injection', 'controllers', 'backend'],
+  },
+  // Community & Ecosystem
+  {
+    id: 'community-guide',
+    title: 'Community & Contributing Guide',
+    description: 'How to contribute to @nikelyh/metamorph, monorepo setup, and the live Contributors Hall of Fame.',
+    category: 'Community',
+    href: ROUTES.DOCS.COMMUNITY,
+    keywords: ['community', 'contribute', 'contributors', 'github', 'open source', 'hall of fame', 'pull request', 'pr'],
+  },
+  {
+    id: 'community-add-target',
+    title: 'Contributing New Migration Catalogs',
+    description: 'Step-by-step workflow for implementing and validating new framework migration pairs.',
+    category: 'Community',
+    href: `${ROUTES.DOCS.COMMUNITY}#adding-migration-target`,
+    keywords: ['target', 'catalog', 'pair', 'framework', 'rule', 'add target', 'contribute target'],
   },
 ];

@@ -1,25 +1,17 @@
 import { motion } from 'framer-motion';
-import { Users, GitPullRequest, Heart, ExternalLink, Code2, Sparkles, ShieldCheck } from 'lucide-react';
-
-interface Contributor {
-  name: string;
-  role: string;
-  handle: string;
-  avatarUrl: string;
-  githubUrl: string;
-  badge: string;
-}
-
-const FEATURED_CONTRIBUTORS: Contributor[] = [
-  {
-    name: 'Yohan Villar',
-    role: 'Lead Architect & Creator',
-    handle: '@yohanvillarp',
-    avatarUrl: 'https://github.com/yohanvillarp.png',
-    githubUrl: 'https://github.com/yohanvillarp',
-    badge: 'Creator',
-  },
-];
+import {
+  Users,
+  GitPullRequest,
+  Heart,
+  ExternalLink,
+  Code2,
+  Sparkles,
+  ShieldCheck,
+  Bot,
+  Flame,
+  CheckCircle2,
+} from 'lucide-react';
+import { useMetamorphContributors } from '@/shared/lib/useMetamorphContributors';
 
 const CONTRIBUTION_AREAS = [
   {
@@ -40,6 +32,9 @@ const CONTRIBUTION_AREAS = [
 ];
 
 export function CommunitySection() {
+  const { humanContributors, botContributors, totalContributions, isLoading, isLive } =
+    useMetamorphContributors();
+
   return (
     <section className="py-24 relative overflow-hidden bg-[#06090e] border-t border-cyan-500/10">
       {/* Ambient background glow */}
@@ -50,120 +45,192 @@ export function CommunitySection() {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/70 border border-cyan-500/30 text-cyan-300 text-xs font-mono uppercase tracking-wider mb-4">
             <Users size={14} className="text-cyan-400" />
-            Open Source & Community
+            Metamorph Core Ecosystem
           </div>
           <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4 font-sans">
-            Built by engineers &amp;{' '}
+            Powered by engineers &amp;{' '}
             <span className="bg-gradient-to-r from-cyan-400 via-teal-300 to-cyan-200 bg-clip-text text-transparent">
-              autonomous agents
+              the open-source community
             </span>
           </h2>
           <p className="text-slate-400 text-base md:text-lg leading-relaxed">
-            Metamorph is a transparent, community-driven initiative. Join the developers and system architects shaping the next generation of automated software migration.
+            Metamorph (<code className="text-cyan-300 font-mono">@nikelyh/metamorph</code>) is built by developers worldwide. Meet the contributors behind the autonomous framework migration swarm.
           </p>
-        </div>
 
-        {/* Featured Contributors Grid */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
-          {/* Main Creator Card */}
-          {FEATURED_CONTRIBUTORS.map((contributor) => (
-            <motion.div
-              key={contributor.handle}
-              whileHover={{ y: -4 }}
-              className="md:col-span-1 p-6 rounded-2xl bg-[#080d18]/90 border border-cyan-500/20 backdrop-blur-md relative overflow-hidden shadow-[0_0_30px_rgba(0,242,254,0.06)]"
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <img
-                  src={contributor.avatarUrl}
-                  alt={contributor.name}
-                  className="w-14 h-14 rounded-full border-2 border-cyan-400/40 p-0.5 object-cover"
-                />
-                <div>
-                  <div className="flex items-center gap-2">
-                    <h3 className="font-bold text-white text-base">{contributor.name}</h3>
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-500/30">
-                      {contributor.badge}
-                    </span>
-                  </div>
-                  <p className="text-xs text-slate-400 font-mono">{contributor.handle}</p>
-                  <p className="text-xs text-cyan-400/90 mt-0.5">{contributor.role}</p>
-                </div>
-              </div>
-              <p className="text-xs text-slate-400 leading-relaxed mb-4">
-                Systems architect driving the Mozaik v4 blackboard orchestrator, Project Intelligence Engine (PIE), and polymorphic package manager engine.
-              </p>
+          {/* Live Sync Status */}
+          <div className="mt-4 flex items-center justify-center gap-2 text-xs font-mono text-slate-400">
+            <span className="relative flex h-2 w-2">
+              <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${isLive ? 'bg-emerald-400' : 'bg-cyan-400'}`} />
+              <span className={`relative inline-flex rounded-full h-2 w-2 ${isLive ? 'bg-emerald-500' : 'bg-cyan-500'}`} />
+            </span>
+            <span>
+              Live repository telemetry from{' '}
               <a
-                href={contributor.githubUrl}
+                href="https://github.com/yohanvillarp/metamorph"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-mono text-cyan-300 hover:text-cyan-200 transition-colors"
+                className="text-cyan-400 hover:underline font-semibold"
               >
-                <span>View GitHub Profile</span>
+                yohanvillarp/metamorph
+              </a>
+            </span>
+            <span className="text-slate-600">•</span>
+            <span className="text-slate-400">{totalContributions}+ total commits</span>
+          </div>
+        </div>
+
+        {/* Dynamic Contributors Grid */}
+        <div className="mb-12">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-xs font-mono uppercase tracking-wider text-slate-400 font-bold flex items-center gap-2">
+              <Flame size={14} className="text-amber-400" />
+              <span>Core Contributors &amp; Maintainers</span>
+            </h3>
+            <span className="text-xs font-mono text-cyan-400 bg-cyan-950/60 px-2.5 py-0.5 rounded-full border border-cyan-500/20">
+              {humanContributors.length} Developers
+            </span>
+          </div>
+
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {humanContributors.map((contributor) => {
+              const isCreator = contributor.login.toLowerCase() === 'yohanvillarp';
+              return (
+                <motion.a
+                  key={contributor.login}
+                  href={contributor.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ y: -3 }}
+                  className={`p-4 rounded-xl border backdrop-blur-md transition-all flex items-center gap-3.5 group relative overflow-hidden ${
+                    isCreator
+                      ? 'bg-[#0a1224]/90 border-cyan-500/40 shadow-[0_0_20px_rgba(0,242,254,0.1)]'
+                      : 'bg-[#080d18]/90 border-slate-800/80 hover:border-cyan-500/30 hover:bg-[#0b1324]/80'
+                  }`}
+                >
+                  <img
+                    src={contributor.avatar_url}
+                    alt={contributor.login}
+                    className="w-12 h-12 rounded-full border border-cyan-400/40 p-0.5 object-cover flex-shrink-0 group-hover:scale-105 transition-transform"
+                    loading="lazy"
+                  />
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      <span className="font-bold text-white text-sm truncate group-hover:text-cyan-300 transition-colors">
+                        @{contributor.login}
+                      </span>
+                      {isCreator ? (
+                        <span className="text-[10px] font-mono px-2 py-0.2 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-500/40">
+                          Lead Architect
+                        </span>
+                      ) : (
+                        <span className="text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-slate-800 text-slate-300 border border-slate-700/60">
+                          Contributor
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-xs font-mono text-cyan-400/80 mt-0.5 flex items-center gap-1">
+                      <CheckCircle2 size={11} className="text-cyan-400" />
+                      <span>{contributor.contributions} commits</span>
+                    </p>
+                  </div>
+                  <ExternalLink
+                    size={14}
+                    className="text-slate-600 group-hover:text-cyan-300 transition-colors flex-shrink-0 ml-1"
+                  />
+                </motion.a>
+              );
+            })}
+
+            {isLoading && humanContributors.length === 0 && (
+              <div className="col-span-full py-8 text-center text-xs font-mono text-slate-500">
+                Loading telemetry from GitHub API...
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Automated Swarm & Bot Contributors */}
+        {botContributors.length > 0 && (
+          <div className="mb-12 p-4 rounded-xl bg-[#060a14] border border-slate-800/60 flex items-center justify-between flex-wrap gap-3">
+            <div className="flex items-center gap-2">
+              <Bot size={16} className="text-cyan-400" />
+              <span className="text-xs font-mono text-slate-300">
+                Automated Dependencies &amp; Bot Partners:
+              </span>
+            </div>
+            <div className="flex items-center gap-2 flex-wrap">
+              {botContributors.map((bot) => (
+                <a
+                  key={bot.login}
+                  href={bot.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-cyan-300 transition-colors"
+                >
+                  <img src={bot.avatar_url} alt={bot.login} className="w-3.5 h-3.5 rounded-full" />
+                  <span>{bot.login}</span>
+                  <span className="text-slate-500">({bot.contributions})</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* How to Contribute & Areas */}
+        <div className="p-6 md:p-8 rounded-2xl bg-[#080d18]/90 border border-slate-800/80 backdrop-blur-md">
+          <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+            <div className="flex items-center gap-2 text-white font-bold text-base">
+              <GitPullRequest size={18} className="text-cyan-400" />
+              <span>How You Can Contribute to Metamorph</span>
+            </div>
+            <span className="text-xs font-mono text-cyan-400 bg-cyan-950/60 px-2.5 py-0.5 rounded-full border border-cyan-500/20">
+              MIT Licensed • Open Source
+            </span>
+          </div>
+          <p className="text-xs md:text-sm text-slate-400 leading-relaxed mb-6">
+            Metamorph is designed with modular hexagonal architecture. Every migration pair is a pure rule catalog in <code className="text-cyan-300 font-mono">packages/@nikelyh/domain</code>, making it simple to contribute new frameworks.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-4 mb-6">
+            {CONTRIBUTION_AREAS.map((area) => {
+              const Icon = area.icon;
+              return (
+                <div
+                  key={area.title}
+                  className="p-4 rounded-xl bg-[#050811] border border-slate-800/80 text-left"
+                >
+                  <Icon size={16} className="text-cyan-400 mb-2" />
+                  <h4 className="text-xs font-bold text-white mb-1">{area.title}</h4>
+                  <p className="text-xs text-slate-400 leading-relaxed">{area.desc}</p>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="pt-4 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-4 text-xs font-mono">
+            <div className="flex items-center gap-2 text-slate-400">
+              <Heart size={14} className="text-rose-400" />
+              <span>Every PR, issue, and discussion helps make migrations fearless</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <a
+                href="https://github.com/yohanvillarp/metamorph/graphs/contributors"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-cyan-300 transition-colors flex items-center gap-1 text-slate-400"
+              >
+                <span>GitHub Insights</span>
                 <ExternalLink size={12} />
               </a>
-            </motion.div>
-          ))}
-
-          {/* Open Collaboration Card */}
-          <div className="md:col-span-2 p-6 rounded-2xl bg-[#080d18]/90 border border-slate-800/80 backdrop-blur-md flex flex-col justify-between">
-            <div>
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-2 text-slate-200 font-semibold text-sm">
-                  <GitPullRequest size={16} className="text-cyan-400" />
-                  <span>Join the Open-Source Swarm</span>
-                </div>
-                <span className="text-[11px] font-mono text-cyan-400 bg-cyan-950/60 px-2.5 py-0.5 rounded-full border border-cyan-500/20">
-                  MIT Licensed
-                </span>
-              </div>
-              <p className="text-xs text-slate-400 leading-relaxed mb-5">
-                Whether you want to add support for a new framework target, optimize AST transformations with ts-morph, or improve documentation, every contribution accelerates automated modernization for everyone.
-              </p>
-
-              {/* Contribution Areas Pills */}
-              <div className="grid sm:grid-cols-3 gap-3 mb-4">
-                {CONTRIBUTION_AREAS.map((area) => {
-                  const Icon = area.icon;
-                  return (
-                    <div
-                      key={area.title}
-                      className="p-3 rounded-xl bg-[#050811] border border-slate-800/80 text-left"
-                    >
-                      <Icon size={14} className="text-cyan-400 mb-1.5" />
-                      <h4 className="text-xs font-bold text-white mb-1">{area.title}</h4>
-                      <p className="text-[11px] text-slate-400 leading-tight">{area.desc}</p>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Actions */}
-            <div className="pt-4 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
-              <div className="flex items-center gap-2 text-slate-400">
-                <Heart size={14} className="text-rose-400" />
-                <span>Contributions of all sizes are welcome</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <a
-                  href="https://github.com/yohanvillarp/metamorph/graphs/contributors"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-cyan-300 transition-colors flex items-center gap-1"
-                >
-                  <span>All Contributors</span>
-                  <ExternalLink size={12} />
-                </a>
-                <a
-                  href="https://github.com/yohanvillarp/metamorph/issues"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-3 py-1.5 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 font-medium transition-all flex items-center gap-1.5"
-                >
-                  <span>Contribute on GitHub</span>
-                  <ExternalLink size={12} />
-                </a>
-              </div>
+              <a
+                href="https://github.com/yohanvillarp/metamorph/issues"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 font-medium transition-all flex items-center gap-1.5"
+              >
+                <span>Browse Issues on GitHub</span>
+                <ExternalLink size={12} />
+              </a>
             </div>
           </div>
         </div>

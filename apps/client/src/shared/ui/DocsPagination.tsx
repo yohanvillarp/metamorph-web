@@ -15,6 +15,7 @@ const DOC_PAGES: DocPage[] = [
   { title: 'CLI Command Reference', href: ROUTES.DOCS.CLI_REFERENCE },
   { title: 'Backend Framework Matrix', href: ROUTES.DOCS.MIGRATIONS.BACKEND },
   { title: 'Frontend Framework Matrix', href: ROUTES.DOCS.MIGRATIONS.FRONTEND },
+  { title: 'Community & Contributing', href: ROUTES.DOCS.COMMUNITY },
 ];
 
 export function DocsPagination() {

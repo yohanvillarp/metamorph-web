@@ -1,4 +1,17 @@
 User-agent: *
 Allow: /
 
+# Allow AI Search & Indexing Agents
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
 Sitemap: https://metamorph.nikelyh.tech/sitemap.xml

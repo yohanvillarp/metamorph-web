@@ -77,6 +77,13 @@ export const TableOfContents = () => {
       { name: 'The Metamorph Solution', id: 'the-metamorph-solution' },
       { name: 'Next Steps', id: 'next-steps' },
     ];
+  } else if (path.includes(ROUTES.DOCS.COMMUNITY)) {
+    items = [
+      { name: 'Contributors Hall of Fame', id: 'hall-of-fame' },
+      { name: 'Development Setup', id: 'development-setup' },
+      { name: 'Adding Migration Pairs', id: 'adding-migration-target' },
+      { name: 'Pull Request Standards', id: 'pull-requests' },
+    ];
   }
 
   if (items.length === 0) return null;
