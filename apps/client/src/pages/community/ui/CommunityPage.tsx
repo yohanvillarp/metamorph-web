@@ -6,11 +6,12 @@ import {
   Terminal,
   Layers,
   Sparkles,
+  MessageSquare,
 } from 'lucide-react';
 import { SEOHead } from '@/shared/ui/SEOHead';
 import { CodeBlock } from '@/shared/ui/CodeBlock';
 import { useMetamorphContributors, ContributorCard } from '@/entities/contributor';
-import { ROUTES } from '@/shared/config/routes';
+import { ROUTES, PROJECT_LINKS } from '@/shared/config';
 
 export const CommunityPage = () => {
   const { humanContributors, botContributors, totalContributions, isLive } =
@@ -61,6 +62,65 @@ export const CommunityPage = () => {
             <span className={`relative inline-flex rounded-full h-2 w-2 ${isLive ? 'bg-emerald-500' : 'bg-cyan-500'}`} />
           </span>
           <span>Core telemetry synchronized from yohanvillarp/metamorph ({totalContributions}+ commits)</span>
+        </div>
+      </div>
+
+      {/* Official Discord Server Callout */}
+      <div className="mb-12 scroll-mt-24 p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-[#0c142b] via-[#080d19] to-[#050811] border border-[#5865F2]/40 shadow-[0_0_30px_rgba(88,101,242,0.15)] relative overflow-hidden group" id="discord-community">
+        <div className="absolute top-0 right-0 w-72 h-72 bg-[#5865F2]/10 blur-[80px] rounded-full pointer-events-none -mr-16 -mt-16" />
+        
+        <div className="relative z-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#5865F2]/20 border border-[#5865F2]/40 text-[#a5b4fc] text-xs font-mono uppercase tracking-wider mb-4">
+            <MessageSquare size={14} className="text-[#818cf8]" />
+            Official Community Server
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3 tracking-tight">
+            Connect in Real Time with Core Engineers
+          </h2>
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+            Whether you are running your first autonomous migration, building custom AST rules for a private framework, or troubleshooting a shadow sandbox, the Metamorph Discord community is the fastest place to get support.
+          </p>
+
+          <div className="grid sm:grid-cols-2 gap-3 mb-6">
+            <div className="p-3.5 rounded-xl bg-[#060a15] border border-slate-800">
+              <h3 className="font-mono text-xs font-bold text-cyan-300 mb-1">#migration-help</h3>
+              <p className="text-xs text-slate-400">Share command outputs, debug shadow builds, and get tips for complex codebases.</p>
+            </div>
+            <div className="p-3.5 rounded-xl bg-[#060a15] border border-slate-800">
+              <h3 className="font-mono text-xs font-bold text-teal-300 mb-1">#agent-dev</h3>
+              <p className="text-xs text-slate-400">Discuss Mozaik v4 blackboard events, AST heuristics, and prompt tuning.</p>
+            </div>
+            <div className="p-3.5 rounded-xl bg-[#060a15] border border-slate-800">
+              <h3 className="font-mono text-xs font-bold text-indigo-300 mb-1">#showcase</h3>
+              <p className="text-xs text-slate-400">Show off successful migrations, PR branches, and community target catalogs.</p>
+            </div>
+            <div className="p-3.5 rounded-xl bg-[#060a15] border border-slate-800">
+              <h3 className="font-mono text-xs font-bold text-amber-300 mb-1">#announcements</h3>
+              <p className="text-xs text-slate-400">Stay up to date with new package releases, CLI features, and engine upgrades.</p>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-4">
+            <a
+              href={PROJECT_LINKS.discord}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 rounded-xl bg-[#5865F2] hover:bg-[#4752c4] text-white font-semibold text-xs sm:text-sm font-mono transition-all shadow-[0_0_20px_rgba(88,101,242,0.4)] flex items-center gap-2.5"
+            >
+              <img src="/discord.svg" alt="Discord" className="w-4 h-4 object-contain invert brightness-200" />
+              <span>Join Metamorph Discord</span>
+              <ExternalLink size={14} />
+            </a>
+            <a
+              href={PROJECT_LINKS.discussions}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white text-xs sm:text-sm font-mono transition-all flex items-center gap-2"
+            >
+              <span>GitHub Discussions</span>
+              <ExternalLink size={14} />
+            </a>
+          </div>
         </div>
       </div>
 
@@ -200,7 +260,7 @@ npm run build`}
 
         <div className="flex flex-wrap items-center gap-4">
           <a
-            href="https://github.com/yohanvillarp/metamorph/issues"
+            href={PROJECT_LINKS.issues}
             target="_blank"
             rel="noopener noreferrer"
             className="px-5 py-2.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 font-medium text-xs font-mono transition-all flex items-center gap-2"

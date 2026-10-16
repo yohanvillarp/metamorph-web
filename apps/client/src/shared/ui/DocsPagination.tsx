@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
-import { ROUTES } from '@/shared/config/routes';
+import { ROUTES, PROJECT_LINKS } from '@/shared/config';
 
 interface DocPage {
   title: string;
@@ -83,7 +83,18 @@ export function DocsPagination() {
 
         <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
           <a
-            href="https://www.npmjs.com/package/@nikelyh/metamorph"
+            href={PROJECT_LINKS.discord}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#5865F2] transition-colors flex items-center gap-1.5"
+            title="Join Metamorph Discord Community"
+          >
+            <img src="/discord.svg" alt="Discord" className="w-3.5 h-3.5 object-contain" />
+            <span>Discord</span>
+          </a>
+          <span>•</span>
+          <a
+            href={PROJECT_LINKS.npm}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"
@@ -93,7 +104,7 @@ export function DocsPagination() {
           </a>
           <span>•</span>
           <a
-            href="https://github.com/yohanvillarp/metamorph/issues"
+            href={PROJECT_LINKS.issues}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-cyan-400 transition-colors flex items-center gap-1"
@@ -103,7 +114,7 @@ export function DocsPagination() {
           </a>
           <span>•</span>
           <a
-            href="https://github.com/yohanvillarp/metamorph"
+            href={PROJECT_LINKS.github}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"

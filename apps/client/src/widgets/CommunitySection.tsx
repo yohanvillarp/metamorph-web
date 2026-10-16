@@ -8,8 +8,10 @@ import {
   ShieldCheck,
   Bot,
   Flame,
+  MessageSquare,
 } from 'lucide-react';
 import { useMetamorphContributors, ContributorCard } from '@/entities/contributor';
+import { PROJECT_LINKS } from '@/shared/config';
 
 const CONTRIBUTION_AREAS = [
   {
@@ -133,6 +135,45 @@ export function CommunitySection() {
           </div>
         )}
 
+        {/* Discord Community Callout Card */}
+        <div className="mb-12 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-[#0c1326] via-[#080d19] to-[#06090e] border border-[#5865F2]/40 shadow-[0_0_35px_rgba(88,101,242,0.12)] relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-[#5865F2]/10 blur-[90px] rounded-full pointer-events-none -mr-20 -mt-20 group-hover:bg-[#5865F2]/20 transition-all duration-700" />
+          
+          <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="max-w-2xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#5865F2]/20 border border-[#5865F2]/40 text-[#a5b4fc] text-xs font-mono uppercase tracking-wider mb-3">
+                <MessageSquare size={14} className="text-[#818cf8]" />
+                Official Community Server
+              </div>
+              <h3 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight mb-2">
+                Join the Metamorph Swarm on Discord
+              </h3>
+              <p className="text-slate-300 text-sm md:text-base leading-relaxed mb-4">
+                Connect directly with core maintainers and framework engineers. Get real-time help with migrations, propose new AST catalogs, and share migration benchmarks.
+              </p>
+              <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400">
+                <span className="px-2.5 py-1 rounded-md bg-[#050811] border border-slate-800 text-cyan-300">#migration-help</span>
+                <span className="px-2.5 py-1 rounded-md bg-[#050811] border border-slate-800 text-teal-300">#agent-dev</span>
+                <span className="px-2.5 py-1 rounded-md bg-[#050811] border border-slate-800 text-indigo-300">#showcase</span>
+                <span className="px-2.5 py-1 rounded-md bg-[#050811] border border-slate-800 text-slate-400">#feedback</span>
+              </div>
+            </div>
+
+            <div className="flex-shrink-0 w-full md:w-auto">
+              <a
+                href={PROJECT_LINKS.discord}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full md:w-auto px-6 py-3.5 rounded-xl bg-[#5865F2] hover:bg-[#4752c4] text-white font-semibold text-sm transition-all shadow-[0_0_20px_rgba(88,101,242,0.4)] hover:shadow-[0_0_30px_rgba(88,101,242,0.6)] flex items-center justify-center gap-2.5 group/btn"
+              >
+                <img src="/discord.svg" alt="Discord" className="w-5 h-5 object-contain invert brightness-200 transition-transform group-hover/btn:scale-110" />
+                <span>Join Discord Community</span>
+                <ExternalLink size={16} />
+              </a>
+            </div>
+          </div>
+        </div>
+
         {/* How to Contribute & Areas */}
         <div className="p-6 md:p-8 rounded-2xl bg-[#080d18]/90 border border-slate-800/80 backdrop-blur-md">
           <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
@@ -171,7 +212,7 @@ export function CommunitySection() {
             </div>
             <div className="flex items-center gap-3">
               <a
-                href="https://github.com/yohanvillarp/metamorph/graphs/contributors"
+                href={`${PROJECT_LINKS.github}/graphs/contributors`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-cyan-300 transition-colors flex items-center gap-1 text-slate-400"
@@ -180,7 +221,7 @@ export function CommunitySection() {
                 <ExternalLink size={12} />
               </a>
               <a
-                href="https://github.com/yohanvillarp/metamorph/issues"
+                href={PROJECT_LINKS.issues}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 font-medium transition-all flex items-center gap-1.5"

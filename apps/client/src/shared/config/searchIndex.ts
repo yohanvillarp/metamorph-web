@@ -253,7 +253,14 @@ export const SEARCH_INDEX: SearchItem[] = [
     href: ROUTES.DOCS.MIGRATIONS.BACKEND,
     keywords: ['express', 'nestjs', 'ioc', 'dependency injection', 'controllers', 'backend'],
   },
-  // Community & Ecosystem
+  {
+    id: 'community-discord',
+    title: 'Discord Community Server',
+    description: 'Join real-time discussion, get migration troubleshooting support, and connect with Metamorph core maintainers.',
+    category: 'Community',
+    href: `${ROUTES.DOCS.COMMUNITY}#discord-community`,
+    keywords: ['discord', 'chat', 'support', 'help', 'community', 'troubleshooting', 'realtime', 'questions', 'server'],
+  },
   {
     id: 'community-guide',
     title: 'Community & Contributing Guide',

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ROUTES } from '@/shared/config/routes';
-import { ChevronDown, ChevronRight, X, BookOpen, Layers, Cpu, Terminal, Shield, Users } from 'lucide-react';
+import { ROUTES, PROJECT_LINKS } from '@/shared/config';
+import { ChevronDown, ChevronRight, X, BookOpen, Layers, Cpu, Terminal, Shield, Users, MessageSquare, ExternalLink } from 'lucide-react';
 import { cn } from '@/shared/lib/utils';
 
 interface DocsSidebarProps {
@@ -143,6 +143,19 @@ export const DocsSidebar = ({ mobileOpen, setMobileOpen }: DocsSidebarProps) => 
           <Link to={ROUTES.DOCS.COMMUNITY} className={getLinkClasses(ROUTES.DOCS.COMMUNITY)}>
             Community &amp; Contributing
           </Link>
+          <a
+            href={PROJECT_LINKS.discord}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3 py-2 rounded-xl text-xs md:text-sm font-medium transition-all flex items-center justify-between text-slate-400 hover:text-cyan-300 hover:bg-white/5 group"
+            title="Join Metamorph Discord Server"
+          >
+            <span className="flex items-center gap-2.5">
+              <MessageSquare size={14} className="text-[#5865F2] group-hover:text-cyan-400 transition-colors" />
+              <span>Discord Community</span>
+            </span>
+            <ExternalLink size={12} className="text-slate-500 group-hover:text-cyan-400 transition-colors" />
+          </a>
         </nav>
       </div>
     </div>

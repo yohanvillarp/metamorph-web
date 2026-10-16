@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Terminal, ArrowRight, Copy, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/shared/ui/Button';
-import { ROUTES } from '@/shared/config/routes';
+import { ROUTES, PROJECT_LINKS } from '@/shared/config';
 
 export function CallToAction() {
   const [copied, setCopied] = useState(false);
@@ -57,19 +57,25 @@ export function CallToAction() {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4">
             <Link to={ROUTES.DOCS.GETTING_STARTED}>
               <Button variant="primary" className="text-base px-8 py-4 flex items-center justify-center gap-2">
                 Start Migrating Now <ArrowRight size={18} />
               </Button>
             </Link>
-            <a href="https://github.com/yohanvillarp/metamorph" target="_blank" rel="noopener noreferrer">
+            <a href={PROJECT_LINKS.discord} target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" className="text-base px-8 py-4 flex items-center justify-center gap-2 hover:border-[#5865F2]/60 hover:text-white transition-all shadow-[0_0_15px_rgba(88,101,242,0.15)] group">
+                <img src="/discord.svg" alt="Discord" className="w-5 h-5 object-contain transition-transform group-hover:scale-110" />
+                Join Discord
+              </Button>
+            </a>
+            <a href={PROJECT_LINKS.github} target="_blank" rel="noopener noreferrer">
               <Button variant="outline" className="text-base px-8 py-4 flex items-center justify-center gap-2">
                 <img src="/github.svg" alt="GitHub" className="w-5 h-5 invert opacity-80" />
                 View on GitHub
               </Button>
             </a>
-            <a href="https://www.npmjs.com/package/@nikelyh/metamorph" target="_blank" rel="noopener noreferrer">
+            <a href={PROJECT_LINKS.npm} target="_blank" rel="noopener noreferrer">
               <Button variant="outline" className="text-base px-8 py-4 flex items-center justify-center gap-2">
                 <img src="/icons8-ngp.svg" alt="npm" className="w-5 h-5 object-contain" />
                 npm Package
