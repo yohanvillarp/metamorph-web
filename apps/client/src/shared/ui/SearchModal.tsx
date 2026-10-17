@@ -240,7 +240,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
               <span>close</span>
             </span>
           </div>
-          <span className="text-cyan-400/80">Metamorph v2.2.0 Docs</span>
+          <span className="text-cyan-400/80">Metamorph v2.3.0 Docs</span>
         </div>
       </div>
     </div>

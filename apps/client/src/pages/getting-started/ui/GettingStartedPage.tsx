@@ -50,7 +50,7 @@ export const GettingStartedPage = () => {
             className="text-xs font-mono text-cyan-400 hover:text-cyan-300 flex items-center gap-1.5 px-3 py-1 rounded-lg bg-cyan-950/60 border border-cyan-500/30 hover:border-cyan-500/60 transition-colors w-fit"
           >
             <img src="/icons8-ngp.svg" alt="npm" className="w-3.5 h-3.5 object-contain" />
-            <span>v2.2.0 on npm</span>
+            <span>v2.3.0 on npm</span>
             <ExternalLink size={12} />
           </a>
         </div>

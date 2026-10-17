@@ -76,7 +76,7 @@ export function DocsPagination() {
       {/* Community Links & GitHub Help */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-slate-500 pt-4 border-t border-slate-800/40">
         <div className="flex items-center gap-2">
-          <span>Metamorph CLI v2.2.0</span>
+          <span>Metamorph CLI v2.3.0</span>
           <span>•</span>
           <span className="text-slate-400">Mozaik v4 Runtime</span>
         </div>

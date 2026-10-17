@@ -1,13 +1,14 @@
 {
   "name": "metamorph-web",
   "private": true,
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Official web documentation and presentation portal for Metamorph",
   "scripts": {
     "dev": "npm run --prefix apps/client dev",
     "build": "npm run --prefix apps/client build",
     "lint": "npm run --prefix apps/client lint",
-    "preview": "npm run --prefix apps/client preview"
+    "preview": "npm run --prefix apps/client preview",
+    "version:sync": "node scripts/sync-version.mjs"
   },
   "keywords": [
     "metamorph",

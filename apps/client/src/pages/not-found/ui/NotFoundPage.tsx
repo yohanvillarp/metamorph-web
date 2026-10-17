@@ -95,7 +95,7 @@ export function NotFoundPage() {
 
           <p className="text-slate-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed mb-8">
             The route you requested does not map to any active catalog entry or documentation slice in the current{' '}
-            <span className="text-cyan-300 font-mono font-semibold">Metamorph v2.2.0</span> swarm environment.
+            <span className="text-cyan-300 font-mono font-semibold">Metamorph v2.3.0</span> swarm environment.
           </p>
         </motion.div>
 

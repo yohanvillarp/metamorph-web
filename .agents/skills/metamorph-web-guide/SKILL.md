@@ -90,7 +90,7 @@ Whenever the core engine (`packages/@nikelyh/*`) in `metamorph` changes:
    `CLI Flags > process.env > local .metamorphrc.json > global ~/.metamorphrc.json > defaults`.
 
 3. **Verify Version Alignment**:
-   Update version badges in `apps/client/src/widgets/header/ui/DocsHeader.tsx` and relevant install scripts (currently `v2.2.0`).
+   Update version badges in `apps/client/src/widgets/header/ui/DocsHeader.tsx` and relevant install scripts (currently `v2.3.0`).
 
 ---
 

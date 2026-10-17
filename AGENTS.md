@@ -6,7 +6,7 @@ This document establishes the architectural invariants, engineering standards, F
 
 ## 1. Project Overview
 
-**Metamorph Web** is the official web documentation portal, marketing showcase, and interactive telemetry interface for **Metamorph** (`@nikelyh/metamorph` v2.2.0), the autonomous framework migration swarm.
+**Metamorph Web** is the official web documentation portal, marketing showcase, and interactive telemetry interface for **Metamorph** (`@nikelyh/metamorph` v2.3.0), the autonomous framework migration swarm.
 
 * **Repository**: `yohanvillarp/metamorph-web`
 * **Architecture**: Strict Feature-Sliced Design (FSD) (App, Pages, Widgets, Shared).
@@ -21,6 +21,7 @@ This document establishes the architectural invariants, engineering standards, F
 * All visual iconography must strictly utilize **`lucide-react` vector icons** or official project SVGs:
   - GitHub: `/github.svg`
   - NPM: `/icons8-ngp.svg`
+  - Discord: `/discord.svg`
   - Metamorph Logo: `/logo_metamorph.png`
 
 ### Rule 2: Feature-Sliced Design (FSD) Layering
@@ -30,8 +31,12 @@ This document establishes the architectural invariants, engineering standards, F
 * Every slice should expose public interfaces through clean barrel files (`index.ts`).
 
 ### Rule 3: Metamorph Core Parity & Accuracy
-* Documentation must always reflect the current stable version and architectural paradigms of `@nikelyh/metamorph` (currently **v2.2.0**):
+* Documentation must always reflect the current stable version and architectural paradigms of `@nikelyh/metamorph` (currently **v2.3.0**):
   - **The 8 Swarm Agents**: Mapper, PackageManager, Worker, Reviewer, Coordinator, Integration, Reporter, and **AccountingAgent**.
+  - **Supported Frameworks**: React, Next.js, Vue, Svelte, Angular, Express, Fastify, NestJS, and **Hono** (bidirectional backend migrations).
+  - **Deterministic Mock LLM Provider**: Zero-cost ($0.00) offline runs via `--mock`.
+  - **Pre-Migration Dry Run**: Static inspection of migration plan via `--dry-run`.
+  - **Shadow Workspace Diff Viewer**: Visual file-level diff inspection before applying changes.
   - **Agent Registry**: Core Agents (mandatory) vs. Auxiliary Agents (disableable with zero-token fallback).
   - **Zero-Risk Shadow Workspace**: Confinement inside `.metamorph/shadow/<runId>`.
   - **Project Intelligence Engine (PIE)**: Heuristic scoring and Subsumption DAG.

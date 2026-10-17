@@ -46,9 +46,7 @@ export const DocsSidebar = ({ mobileOpen, setMobileOpen }: DocsSidebarProps) => 
             Metamorph Docs
           </span>
         </Link>
-        <span className="text-[10px] bg-cyan-950/80 px-2 py-0.5 rounded-full border border-cyan-500/30 font-mono text-cyan-300">
-          v2.2.0
-        </span>
+        <span className="text-[10px] bg-cyan-950/80 px-2 py-0.5 rounded-full border border-cyan-500/30 font-mono text-cyan-300">v2.3.0</span>
       </div>
 
       {/* 1. Getting Started */}

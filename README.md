@@ -11,7 +11,8 @@
 
 <p align="center">
   <a href="https://metamorph.nikelyh.tech"><img src="https://img.shields.io/badge/Live_Site-metamorph.nikelyh.tech-00f2fe?style=flat-square&logo=vercel&logoColor=black" alt="Live Site" /></a>
-  <a href="https://www.npmjs.com/package/@nikelyh/metamorph"><img src="https://img.shields.io/badge/CLI-@nikelyh/metamorph_v2.2.0-blue?style=flat-square&logo=npm" alt="npm package" /></a>
+  <a href="https://www.npmjs.com/package/@nikelyh/metamorph"><img src="https://img.shields.io/badge/CLI-@nikelyh/metamorph_v2.3.0-blue?style=flat-square&logo=npm" alt="npm package" /></a>
+  <a href="https://discord.gg/k6CNvBbNHm"><img src="https://img.shields.io/badge/Discord-Join%20Community-5865F2?style=flat-square&logo=discord&logoColor=white" alt="Discord Community" /></a>
   <a href="https://github.com/yohanvillarp/metamorph"><img src="https://img.shields.io/badge/Engine_Repo-yohanvillarp%2Fmetamorph-181717?style=flat-square&logo=github" alt="Engine Repo" /></a>
   <img src="https://img.shields.io/badge/React-19.2-20232A?style=flat-square&logo=react&logoColor=61DAFB" alt="React 19" />
   <img src="https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white" alt="Tailwind CSS v4" />
