@@ -4,8 +4,6 @@ import {
   Terminal, 
   Copy, 
   Check, 
-  Cpu, 
-  RefreshCw, 
   Play, 
   LayoutDashboard, 
   Download 
@@ -139,87 +137,66 @@ export function HeroSection() {
           </div>
         </motion.div>
 
-        {/* Feature & Version Spec Badges */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.15 }}
-          className="flex flex-wrap items-center justify-center gap-2 mb-4 text-[11px] font-mono"
-        >
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#0c0e17] border border-emerald-500/30 text-emerald-300">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            v2.3.0 STABLE
-          </span>
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#0c0e17] border border-white/10 text-slate-300">
-            <Cpu size={12} className="text-cyan-400" />
-            8-AGENT SWARM ORCHESTRATION
-          </span>
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#0c0e17] border border-white/10 text-slate-300">
-            <RefreshCw size={12} className="text-cyan-400" />
-            CLOSED-LOOP SELF-HEALING
-          </span>
-        </motion.div>
-
         {/* Main Headings */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.25 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-4 leading-[1.08] text-white">
-            Migrate Entire Frameworks in Minutes. <br />
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-5 leading-[1.08] text-white max-w-4xl mx-auto">
+            Migrate Entire Frameworks <br />
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-100 to-cyan-400">
-              Autonomous Codebase Evolution at Scale.
+              in Minutes, Not Months.
             </span>
           </h1>
-          <p className="text-sm sm:text-base md:text-lg text-slate-300 mb-6 max-w-3xl mx-auto font-normal leading-relaxed">
-            Eliminate weeks of manual rewrites, broken routing, and dependency hell across <strong className="text-white">React, Next.js, Vue, Svelte, Angular, Express, Fastify, NestJS</strong> and <strong className="text-white">Hono</strong>. 
-            Metamorph deploys an autonomous multi-agent swarm that maps ASTs, refactors architectural patterns, and verifies compilation in real-time.
+          <p className="text-base sm:text-lg md:text-xl text-slate-300 mb-8 max-w-2xl mx-auto font-normal leading-relaxed">
+            Automate complex architectural shifts across <strong className="text-white">React, Next.js, Vue, Svelte, Angular, Express, Fastify, NestJS</strong> and <strong className="text-white">Hono</strong> with an autonomous multi-agent swarm and closed-loop verification.
           </p>
 
-          {/* PRIMARY QUICK-START COMMAND DOCK (Interactive Command Hub) */}
-          <div className="w-full max-w-2xl mx-auto mb-6">
-            {/* Mode Switcher: Migrate | Visual UI | Global Install */}
-            <div className="flex flex-wrap items-center justify-center gap-2 mb-3">
-              <button
-                onClick={() => setCommandMode('migrate')}
-                className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium transition-all cursor-pointer ${
-                  commandMode === 'migrate'
-                    ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm'
-                    : 'text-slate-400 hover:text-slate-200 border border-transparent hover:bg-white/5'
-                }`}
-              >
-                <Play size={12} className={commandMode === 'migrate' ? 'text-cyan-400' : 'text-slate-500'} />
-                Migrate Stack
-              </button>
-              <button
-                onClick={() => setCommandMode('ui')}
-                className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium transition-all cursor-pointer ${
-                  commandMode === 'ui'
-                    ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm'
-                    : 'text-slate-400 hover:text-slate-200 border border-transparent hover:bg-white/5'
-                }`}
-              >
-                <LayoutDashboard size={12} className={commandMode === 'ui' ? 'text-cyan-400' : 'text-slate-500'} />
-                Visual UI Dashboard
-              </button>
-              <button
-                onClick={() => setCommandMode('install')}
-                className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium transition-all cursor-pointer ${
-                  commandMode === 'install'
-                    ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm'
-                    : 'text-slate-400 hover:text-slate-200 border border-transparent hover:bg-white/5'
-                }`}
-              >
-                <Download size={12} className={commandMode === 'install' ? 'text-cyan-400' : 'text-slate-500'} />
-                Global Install
-              </button>
-            </div>
+          {/* PRIMARY QUICK-START COMMAND DOCK (Unified Terminal Card) */}
+          <div className="w-full max-w-2xl mx-auto mb-8">
+            <div className="relative group p-0.5 rounded-2xl bg-gradient-to-b from-white/10 via-white/5 to-cyan-500/10 border border-white/10 shadow-2xl backdrop-blur-xl">
+              {/* Header Bar of the Dock: Modes & Package Managers */}
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-2 px-3 py-2 bg-[#080b13] rounded-t-[14px] border-b border-white/5">
+                {/* Mode Selector */}
+                <div className="flex items-center gap-1 bg-[#04060a] p-1 rounded-lg border border-white/5">
+                  <button
+                    onClick={() => setCommandMode('migrate')}
+                    className={`flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-mono font-medium transition-all cursor-pointer ${
+                      commandMode === 'migrate'
+                        ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 shadow-sm'
+                        : 'text-slate-400 hover:text-slate-200'
+                    }`}
+                  >
+                    <Play size={11} className={commandMode === 'migrate' ? 'text-cyan-400' : 'text-slate-500'} />
+                    Migrate
+                  </button>
+                  <button
+                    onClick={() => setCommandMode('ui')}
+                    className={`flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-mono font-medium transition-all cursor-pointer ${
+                      commandMode === 'ui'
+                        ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 shadow-sm'
+                        : 'text-slate-400 hover:text-slate-200'
+                    }`}
+                  >
+                    <LayoutDashboard size={11} className={commandMode === 'ui' ? 'text-cyan-400' : 'text-slate-500'} />
+                    Dashboard UI
+                  </button>
+                  <button
+                    onClick={() => setCommandMode('install')}
+                    className={`flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-mono font-medium transition-all cursor-pointer ${
+                      commandMode === 'install'
+                        ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 shadow-sm'
+                        : 'text-slate-400 hover:text-slate-200'
+                    }`}
+                  >
+                    <Download size={11} className={commandMode === 'install' ? 'text-cyan-400' : 'text-slate-500'} />
+                    Global Install
+                  </button>
+                </div>
 
-            <div className="relative group p-0.5 rounded-xl bg-gradient-to-r from-cyan-500/20 via-white/5 to-teal-500/20 border border-white/10 hover:border-cyan-500/30 transition-colors shadow-lg">
-              <div className="flex items-center justify-between bg-[#0a0d16] rounded-[10px] px-3 py-2 gap-2">
-                {/* Package Manager Toggle */}
-                <div className="flex items-center gap-1 bg-[#06080f] p-0.5 rounded-lg border border-white/5">
+                {/* Package Manager Toggle (npm default) */}
+                <div className="flex items-center gap-1 bg-[#04060a] p-1 rounded-lg border border-white/5">
                   {(['npm', 'pnpm', 'bun', 'yarn'] as const).map((pm) => (
                     <button
                       key={pm}
@@ -234,17 +211,19 @@ export function HeroSection() {
                     </button>
                   ))}
                 </div>
+              </div>
 
-                {/* Command Line with Prefix */}
-                <div className="flex-1 text-left font-mono text-xs sm:text-sm text-cyan-200 select-all overflow-x-auto whitespace-nowrap px-2">
+              {/* Command Row */}
+              <div className="flex items-center justify-between bg-[#0a0d16] rounded-b-[14px] px-4 py-3 gap-3">
+                <div className="flex-1 text-left font-mono text-xs sm:text-sm text-cyan-200 select-all overflow-x-auto whitespace-nowrap">
                   <span className="text-slate-500 select-none mr-2 font-bold">$</span>
                   {quickCommand}
                 </div>
 
-                {/* Instant 1-Click Copy Button */}
+                {/* 1-Click Copy Button */}
                 <button
                   onClick={handleCopyQuick}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/25 text-cyan-300 hover:text-white transition-all text-xs font-mono font-semibold cursor-pointer shrink-0"
+                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/25 text-cyan-300 hover:text-white transition-all text-xs font-mono font-semibold cursor-pointer shrink-0"
                   title="Copy command to clipboard"
                   aria-label="Copy quick run command"
                 >
@@ -263,7 +242,7 @@ export function HeroSection() {
               </div>
             </div>
             
-            <div className="flex flex-wrap items-center justify-center gap-3 mt-2.5 text-[11px] font-mono text-slate-400">
+            <div className="flex flex-wrap items-center justify-center gap-3 mt-3 text-[11px] font-mono text-slate-400">
               <span className="flex items-center gap-1">
                 <Check size={12} className="text-emerald-400" />
                 npm standard & zero-config
