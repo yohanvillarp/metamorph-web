@@ -68,7 +68,7 @@ export function CallToAction() {
             </a>
             <a href={PROJECT_LINKS.github} target="_blank" rel="noopener noreferrer">
               <Button variant="outline" className="text-base px-8 py-4 flex items-center justify-center gap-2">
-                <img src="/github.svg" alt="GitHub" className="w-5 h-5 invert opacity-80" />
+                <img src="/github.svg" alt="GitHub" className="w-5 h-5 opacity-80" />
                 View on GitHub
               </Button>
             </a>

@@ -119,7 +119,7 @@ export function LandingHeader() {
           aria-label="GitHub Repository"
           title="GitHub Repository"
         >
-          <img src="/github.svg" alt="GitHub" className="w-4 h-4 invert opacity-75 group-hover:opacity-100 transition-opacity" />
+          <img src="/github.svg" alt="GitHub" className="w-4 h-4 opacity-75 group-hover:opacity-100 transition-opacity" />
         </a>
 
         <div className="h-4 w-px bg-white/10 hidden sm:block mx-0.5" />

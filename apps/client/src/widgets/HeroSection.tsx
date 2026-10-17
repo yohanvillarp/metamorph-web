@@ -11,7 +11,7 @@ import {
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/shared/ui/Button';
-import { WindStreamlines } from '@/shared/ui/WindStreamlines';
+import { WindBreeze } from '@/shared/ui/WindBreeze';
 import { ROUTES } from '@/shared/config/routes';
 import { PROJECT_LINKS } from '@/shared/config';
 import { usePackageManager, type PackageManager } from '@/shared/lib/usePackageManager';
@@ -119,8 +119,8 @@ export function HeroSection() {
 
   return (
     <section id="hero" className="relative flex flex-col items-center justify-start px-4 pt-16 sm:pt-20 md:pt-24 pb-20 overflow-hidden">
-      {/* Background Aerodynamic Wind Streamlines (Laminar flow, no bright glow) */}
-      <WindStreamlines />
+      {/* Background Organic Wind Breeze (Subtle fluttering micro-motes, zero text collision) */}
+      <WindBreeze />
 
       {/* Background Subtle Ambient Tone */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-cyan-500/[0.03] blur-[120px] rounded-full pointer-events-none" />
@@ -254,7 +254,7 @@ export function HeroSection() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0c0e17] hover:bg-[#121524] border border-white/10 hover:border-white/20 text-slate-300 hover:text-white transition-all text-sm font-medium shadow-sm cursor-pointer group"
             >
-              <img src="/github.svg" alt="GitHub" className="w-4 h-4 invert opacity-80 group-hover:opacity-100 transition-opacity" />
+              <img src="/github.svg" alt="GitHub" className="w-4 h-4 opacity-80 group-hover:opacity-100 transition-opacity" />
               <span>Star on GitHub</span>
             </a>
           </div>

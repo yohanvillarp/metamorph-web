@@ -101,7 +101,7 @@ export function DocsHeader({ onOpenSearch }: DocsHeaderProps) {
           aria-label="GitHub Repository"
           title="GitHub Repository"
         >
-          <img src="/github.svg" alt="GitHub" className="w-4 h-4 invert opacity-80 hover:opacity-100 transition-opacity" />
+          <img src="/github.svg" alt="GitHub" className="w-4 h-4 opacity-80 hover:opacity-100 transition-opacity" />
         </a>
       </div>
     </header>

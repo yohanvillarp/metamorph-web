@@ -119,7 +119,7 @@ export function DocsPagination() {
             rel="noopener noreferrer"
             className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"
           >
-            <img src="/github.svg" alt="GitHub" className="w-3.5 h-3.5 invert opacity-80" />
+            <img src="/github.svg" alt="GitHub" className="w-3.5 h-3.5 opacity-80" />
             <span>GitHub</span>
           </a>
         </div>
