@@ -16,9 +16,9 @@ export function LandingPage() {
         keywords="framework migration, codemod, ai refactoring, mozaik v4, react to nextjs, express to nestjs, polymorphic package manager, shadow workspace"
       />
       <HeroSection />
-      <SwarmPipelineVisualizer />
-      <CodeTransformationDemo />
       <SupportedTech />
+      <CodeTransformationDemo />
+      <SwarmPipelineVisualizer />
       <CommunitySection />
       <CallToAction />
       
