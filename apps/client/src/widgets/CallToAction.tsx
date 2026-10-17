@@ -34,7 +34,7 @@ export function CallToAction() {
             </span>
           </h2>
           <p className="text-base md:text-lg text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Eliminate months of manual rewrites and regression hunting. Deploy the Mozaik v4 agent swarm inside a zero-risk shadow workspace today.
+            Eliminate months of manual rewrites and regression hunting. Deploy the autonomous Mozaik v4 agent swarm with real-time UI telemetry today.
           </p>
           
           <div className="inline-block p-0.5 rounded-xl bg-gradient-to-r from-cyan-500/20 via-white/5 to-teal-500/20 border border-white/10 mb-8 shadow-lg">

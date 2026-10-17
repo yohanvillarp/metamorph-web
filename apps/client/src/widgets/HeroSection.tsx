@@ -1,5 +1,15 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Terminal, Copy, Check, Shield, Cpu } from 'lucide-react';
+import { 
+  ArrowRight, 
+  Terminal, 
+  Copy, 
+  Check, 
+  Cpu, 
+  RefreshCw, 
+  Play, 
+  LayoutDashboard, 
+  Download 
+} from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/shared/ui/Button';
@@ -15,11 +25,27 @@ interface TerminalTab {
   lines: { text: string; color: string; prefix?: string }[];
 }
 
-const QUICK_COMMANDS: Record<PackageManager, string> = {
-  npm: 'npx @nikelyh/metamorph run',
-  pnpm: 'pnpm dlx @nikelyh/metamorph run',
-  bun: 'bunx @nikelyh/metamorph run',
-  yarn: 'yarn dlx @nikelyh/metamorph run',
+type CommandMode = 'migrate' | 'ui' | 'install';
+
+const COMMAND_MATRICES: Record<CommandMode, Record<PackageManager, string>> = {
+  migrate: {
+    npm: 'npx @nikelyh/metamorph run',
+    pnpm: 'pnpm dlx @nikelyh/metamorph run',
+    bun: 'bunx @nikelyh/metamorph run',
+    yarn: 'yarn dlx @nikelyh/metamorph run',
+  },
+  ui: {
+    npm: 'npx @nikelyh/metamorph ui',
+    pnpm: 'pnpm dlx @nikelyh/metamorph ui',
+    bun: 'bunx @nikelyh/metamorph ui',
+    yarn: 'yarn dlx @nikelyh/metamorph ui',
+  },
+  install: {
+    npm: 'npm install -g @nikelyh/metamorph',
+    pnpm: 'pnpm add -g @nikelyh/metamorph',
+    bun: 'bun add -g @nikelyh/metamorph',
+    yarn: 'yarn global add @nikelyh/metamorph',
+  },
 };
 
 const TERMINAL_TABS: TerminalTab[] = [
@@ -73,12 +99,13 @@ const TERMINAL_TABS: TerminalTab[] = [
 
 export function HeroSection() {
   const [selectedPm, setSelectedPm] = usePackageManager();
+  const [commandMode, setCommandMode] = useState<CommandMode>('migrate');
   const [activeTabId, setActiveTabId] = useState('run');
   const [isCopiedTerminal, setIsCopiedTerminal] = useState(false);
   const [isCopiedQuick, setIsCopiedQuick] = useState(false);
 
   const activeTab = TERMINAL_TABS.find((t) => t.id === activeTabId) || TERMINAL_TABS[0];
-  const quickCommand = QUICK_COMMANDS[selectedPm] || QUICK_COMMANDS.npm;
+  const quickCommand = COMMAND_MATRICES[commandMode][selectedPm] || COMMAND_MATRICES[commandMode].npm;
 
   const handleCopyTerminal = () => {
     navigator.clipboard.writeText(activeTab.command);
@@ -125,11 +152,11 @@ export function HeroSection() {
           </span>
           <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#0c0e17] border border-white/10 text-slate-300">
             <Cpu size={12} className="text-cyan-400" />
-            MOZAIK V4 EVENT SWARM
+            8-AGENT SWARM ORCHESTRATION
           </span>
           <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#0c0e17] border border-white/10 text-slate-300">
-            <Shield size={12} className="text-cyan-400" />
-            ZERO-RISK SHADOW WORKSPACE
+            <RefreshCw size={12} className="text-cyan-400" />
+            CLOSED-LOOP SELF-HEALING
           </span>
         </motion.div>
 
@@ -140,23 +167,60 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.25 }}
         >
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-4 leading-[1.08] text-white">
-            Autonomous Framework Migrations <br />
+            Migrate Entire Frameworks in Minutes. <br />
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-100 to-cyan-400">
-              With Zero Working-Tree Risk.
+              Autonomous Codebase Evolution at Scale.
             </span>
           </h1>
           <p className="text-sm sm:text-base md:text-lg text-slate-300 mb-6 max-w-3xl mx-auto font-normal leading-relaxed">
-            Automate architectural shifts across <strong className="text-white">React, Next.js, Vue, Svelte, Angular, Express, Fastify, NestJS</strong> and <strong className="text-white">Hono</strong>. 
-            Operates strictly inside an isolated shadow workspace—your original codebase remains untouched until verified.
+            Eliminate weeks of manual rewrites, broken routing, and dependency hell across <strong className="text-white">React, Next.js, Vue, Svelte, Angular, Express, Fastify, NestJS</strong> and <strong className="text-white">Hono</strong>. 
+            Metamorph deploys an autonomous multi-agent swarm that maps ASTs, refactors architectural patterns, and verifies compilation in real-time.
           </p>
 
-          {/* PRIMARY QUICK-START COMMAND DOCK (Immediate Frictionless Execution) */}
-          <div className="w-full max-w-xl mx-auto mb-6">
+          {/* PRIMARY QUICK-START COMMAND DOCK (Interactive Command Hub) */}
+          <div className="w-full max-w-2xl mx-auto mb-6">
+            {/* Mode Switcher: Migrate | Visual UI | Global Install */}
+            <div className="flex flex-wrap items-center justify-center gap-2 mb-3">
+              <button
+                onClick={() => setCommandMode('migrate')}
+                className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium transition-all cursor-pointer ${
+                  commandMode === 'migrate'
+                    ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm'
+                    : 'text-slate-400 hover:text-slate-200 border border-transparent hover:bg-white/5'
+                }`}
+              >
+                <Play size={12} className={commandMode === 'migrate' ? 'text-cyan-400' : 'text-slate-500'} />
+                Migrate Stack
+              </button>
+              <button
+                onClick={() => setCommandMode('ui')}
+                className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium transition-all cursor-pointer ${
+                  commandMode === 'ui'
+                    ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm'
+                    : 'text-slate-400 hover:text-slate-200 border border-transparent hover:bg-white/5'
+                }`}
+              >
+                <LayoutDashboard size={12} className={commandMode === 'ui' ? 'text-cyan-400' : 'text-slate-500'} />
+                Visual UI Dashboard
+              </button>
+              <button
+                onClick={() => setCommandMode('install')}
+                className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium transition-all cursor-pointer ${
+                  commandMode === 'install'
+                    ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm'
+                    : 'text-slate-400 hover:text-slate-200 border border-transparent hover:bg-white/5'
+                }`}
+              >
+                <Download size={12} className={commandMode === 'install' ? 'text-cyan-400' : 'text-slate-500'} />
+                Global Install
+              </button>
+            </div>
+
             <div className="relative group p-0.5 rounded-xl bg-gradient-to-r from-cyan-500/20 via-white/5 to-teal-500/20 border border-white/10 hover:border-cyan-500/30 transition-colors shadow-lg">
               <div className="flex items-center justify-between bg-[#0a0d16] rounded-[10px] px-3 py-2 gap-2">
                 {/* Package Manager Toggle */}
                 <div className="flex items-center gap-1 bg-[#06080f] p-0.5 rounded-lg border border-white/5">
-                  {(['npm', 'pnpm', 'bun'] as const).map((pm) => (
+                  {(['npm', 'pnpm', 'bun', 'yarn'] as const).map((pm) => (
                     <button
                       key={pm}
                       onClick={() => setSelectedPm(pm)}
@@ -199,10 +263,15 @@ export function HeroSection() {
               </div>
             </div>
             
-            <div className="flex items-center justify-center gap-3 mt-2 text-[11px] font-mono text-slate-500">
-              <span>No global install required</span>
-              <span>•</span>
-              <span>Deterministic offline <code className="text-cyan-400">--mock</code> ready</span>
+            <div className="flex flex-wrap items-center justify-center gap-3 mt-2.5 text-[11px] font-mono text-slate-400">
+              <span className="flex items-center gap-1">
+                <Check size={12} className="text-emerald-400" />
+                npm standard & zero-config
+              </span>
+              <span className="text-slate-600">•</span>
+              <span>Real-time Mozaik v4 UI telemetry</span>
+              <span className="text-slate-600">•</span>
+              <span>Offline <code className="text-cyan-300">--mock</code> ready</span>
             </div>
           </div>
 
