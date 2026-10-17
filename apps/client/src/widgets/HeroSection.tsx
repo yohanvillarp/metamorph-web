@@ -241,17 +241,6 @@ export function HeroSection() {
                 </button>
               </div>
             </div>
-            
-            <div className="flex flex-wrap items-center justify-center gap-3 mt-3 text-[11px] font-mono text-slate-400">
-              <span className="flex items-center gap-1">
-                <Check size={12} className="text-emerald-400" />
-                npm standard & zero-config
-              </span>
-              <span className="text-slate-600">•</span>
-              <span>Real-time Mozaik v4 UI telemetry</span>
-              <span className="text-slate-600">•</span>
-              <span>Offline <code className="text-cyan-300">--mock</code> ready</span>
-            </div>
           </div>
 
           {/* Action CTAs */}
