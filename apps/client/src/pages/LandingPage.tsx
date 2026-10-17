@@ -9,7 +9,7 @@ import { PROJECT_LINKS } from '@/shared/config';
 
 export function LandingPage() {
   return (
-    <main className="min-h-screen bg-[#06090e] text-slate-100 overflow-x-hidden pt-20">
+    <main className="min-h-screen bg-[#06090e] text-slate-100 overflow-x-hidden pt-16">
       <SEOHead
         title="Metamorph | The AI Multi-Agent Migration CLI"
         description="Refactor and migrate your entire codebase with zero risk and zero downtime. Powered by Mozaik AI and an elite swarm of autonomous agents."

@@ -2,6 +2,7 @@ import { ROUTES, PROJECT_LINKS } from '@/shared/config';
 import { preloadDocsRoutes } from '@/shared/lib/routePreloader';
 import { motion } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 
 export function LandingHeader() {
   const navigate = useNavigate();
@@ -29,110 +30,102 @@ export function LandingHeader() {
   };
 
   return (
-    <header className="fixed top-0 w-full z-50 backdrop-blur-xl bg-[#07080c]/90 border-b border-white/5 py-3 px-4 sm:px-6 md:px-10 flex justify-between items-center h-20 transition-all">
+    <header className="fixed top-0 w-full z-50 backdrop-blur-xl bg-[#06090e]/85 border-b border-white/[0.07] px-4 sm:px-8 h-16 flex justify-between items-center transition-all">
       {/* Brand & Logo */}
-      <div className="flex items-center gap-4 sm:gap-6">
+      <div className="flex items-center gap-3">
         <Link 
           to="/" 
           onClick={handleLogoClick}
-          className="group flex items-center gap-3 text-white transition-all cursor-pointer"
+          className="group flex items-center gap-2.5 text-white transition-all cursor-pointer"
           title="Metamorph Home"
         >
           <motion.div 
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.92 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            className="relative"
+            className="relative flex items-center justify-center"
           >
-            <div className="absolute -inset-1 bg-cyan-400/40 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute -inset-1 bg-cyan-400/25 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <img 
               src="/logo_metamorph.png" 
               alt="Metamorph Logo" 
-              className="relative w-10 h-10 object-contain drop-shadow-[0_0_12px_rgba(0,242,254,0.4)]" 
+              className="relative w-7 h-7 sm:w-8 sm:h-8 object-contain drop-shadow-[0_0_10px_rgba(0,242,254,0.35)]" 
             />
           </motion.div>
-          <div className="flex flex-col">
-            <span className="font-extrabold text-2xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-cyan-300 group-hover:to-cyan-200 transition-colors">
+          <div className="flex items-center gap-2">
+            <span className="font-bold text-base sm:text-lg tracking-tight text-white group-hover:text-cyan-200 transition-colors">
               Metamorph
             </span>
-            <span className="text-[10px] font-mono tracking-widest uppercase text-cyan-400/80 -mt-1 hidden sm:block">
-              Multi-Agent CLI
+            <span className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-mono font-medium text-cyan-300/90 bg-cyan-950/60 border border-cyan-500/20">
+              v2.3
             </span>
           </div>
         </Link>
-
       </div>
 
-      {/* Center Landing Navigation (Anchors) - Mathematically Centered Floating Dock */}
-      <nav className="hidden md:flex items-center gap-1 md:absolute md:left-1/2 md:-translate-x-1/2 bg-[#0c0e17]/95 border border-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-lg">
+      {/* Center Landing Navigation (Clean Integrated Links) */}
+      <nav className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
         <button
           onClick={() => scrollToSection('swarm')}
-          className="px-3 py-1 rounded-full text-xs font-mono text-slate-300 hover:text-cyan-300 hover:bg-white/5 transition-all cursor-pointer"
+          className="px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-slate-300 hover:text-white hover:bg-white/[0.04] transition-all cursor-pointer"
         >
           The Swarm
         </button>
         <button
           onClick={() => scrollToSection('demo')}
-          className="px-3 py-1 rounded-full text-xs font-mono text-slate-300 hover:text-cyan-300 hover:bg-white/5 transition-all cursor-pointer"
+          className="px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-slate-300 hover:text-white hover:bg-white/[0.04] transition-all cursor-pointer"
         >
           Code Demo
         </button>
         <button
           onClick={() => scrollToSection('matrix')}
-          className="px-3 py-1 rounded-full text-xs font-mono text-slate-300 hover:text-cyan-300 hover:bg-white/5 transition-all cursor-pointer"
+          className="px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-slate-300 hover:text-white hover:bg-white/[0.04] transition-all cursor-pointer"
         >
           Ecosystem
         </button>
         <button
           onClick={() => scrollToSection('community')}
-          className="px-3 py-1 rounded-full text-xs font-mono text-slate-300 hover:text-cyan-300 hover:bg-white/5 transition-all cursor-pointer"
+          className="px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-slate-300 hover:text-white hover:bg-white/[0.04] transition-all cursor-pointer"
         >
           Community
         </button>
-        <Link 
-          to={ROUTES.DOCS.ROOT}
-          onMouseEnter={preloadDocsRoutes}
-          onTouchStart={preloadDocsRoutes}
-          className="px-3 py-1 rounded-full text-xs font-mono text-slate-300 hover:text-cyan-300 hover:bg-white/5 transition-all"
-        >
-          Documentation
-        </Link>
       </nav>
 
-      {/* Right Marketing Links */}
-      <div className="flex items-center gap-2.5 sm:gap-3">
+      {/* Right Marketing Links & Docs CTA */}
+      <div className="flex items-center gap-2 sm:gap-3">
         <a 
           href={PROJECT_LINKS.discord} 
           target="_blank" 
           rel="noopener noreferrer" 
-          className="p-2 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-[#5865F2]/60 hover:bg-slate-800/80 transition-all hover:shadow-[0_0_15px_rgba(88,101,242,0.3)] flex items-center justify-center group" 
+          className="p-2 rounded-lg text-slate-400 hover:text-[#5865F2] hover:bg-white/[0.04] transition-all flex items-center justify-center group" 
           title="Join Discord Community"
           aria-label="Discord Community"
         >
-          <img src="/discord.svg" alt="Discord" className="w-4 h-4 object-contain transition-transform group-hover:scale-110" />
-        </a>
-
-        <a 
-          href={PROJECT_LINKS.npm} 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          className="p-2 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-red-500/50 hover:bg-slate-800/80 transition-all hover:shadow-[0_0_15px_rgba(213,0,0,0.2)]" 
-          title="npm: @nikelyh/metamorph"
-          aria-label="npm package"
-        >
-          <img src="/icons8-ngp.svg" alt="npm" className="w-4 h-4 object-contain" />
+          <img src="/discord.svg" alt="Discord" className="w-4 h-4 object-contain opacity-75 group-hover:opacity-100 transition-opacity" />
         </a>
 
         <a 
           href={PROJECT_LINKS.github} 
           target="_blank" 
           rel="noopener noreferrer" 
-          className="p-2 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/50 hover:bg-slate-800/80 transition-all hover:shadow-[0_0_15px_rgba(0,242,254,0.2)]" 
+          className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/[0.04] transition-all flex items-center justify-center group" 
           aria-label="GitHub Repository"
           title="GitHub Repository"
         >
-          <img src="/github.svg" alt="GitHub" className="w-4 h-4 invert opacity-80 hover:opacity-100 transition-opacity" />
+          <img src="/github.svg" alt="GitHub" className="w-4 h-4 invert opacity-75 group-hover:opacity-100 transition-opacity" />
         </a>
+
+        <div className="h-4 w-px bg-white/10 hidden sm:block mx-0.5" />
+
+        <Link 
+          to={ROUTES.DOCS.ROOT}
+          onMouseEnter={preloadDocsRoutes}
+          onTouchStart={preloadDocsRoutes}
+          className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-semibold bg-white text-slate-950 hover:bg-slate-200 transition-all shadow-sm"
+        >
+          <span>Docs</span>
+          <ArrowRight size={13} />
+        </Link>
       </div>
     </header>
   );
