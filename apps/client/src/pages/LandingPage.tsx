@@ -4,8 +4,8 @@ import { CodeTransformationDemo } from '@/widgets/CodeTransformationDemo';
 import { SupportedTech } from '@/widgets/SupportedTech';
 import { CommunitySection } from '@/widgets/CommunitySection';
 import { CallToAction } from '@/widgets/CallToAction';
+import { Footer } from '@/widgets/Footer';
 import { SEOHead } from '@/shared/ui/SEOHead';
-import { PROJECT_LINKS } from '@/shared/config';
 
 export function LandingPage() {
   return (
@@ -22,30 +22,7 @@ export function LandingPage() {
       <CommunitySection />
       <CallToAction />
       
-      <footer className="py-10 text-center text-slate-500 text-xs md:text-sm border-t border-cyan-500/10 bg-[#04060a]">
-        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <img src="/logo_metamorph.png" alt="Metamorph" className="w-6 h-6 object-contain" />
-            <span className="font-bold text-slate-300 font-mono">Metamorph Swarm CLI</span>
-          </div>
-          <p>© 2026 Metamorph. Built for high-reliability framework transformations. Powered by Mozaik v4.</p>
-          <div className="flex items-center gap-4 text-xs font-mono">
-            <a href={PROJECT_LINKS.discord} target="_blank" rel="noopener noreferrer" className="hover:text-[#5865F2] transition-colors flex items-center gap-1.5" title="Discord Community">
-              <img src="/discord.svg" alt="Discord" className="w-3.5 h-3.5 object-contain" />
-              <span>Discord</span>
-            </a>
-            <span>•</span>
-            <a href={PROJECT_LINKS.npm} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition-colors flex items-center gap-1.5">
-              <img src="/icons8-ngp.svg" alt="npm" className="w-3.5 h-3.5 object-contain" />
-              <span>npm: @nikelyh/metamorph</span>
-            </a>
-            <span>•</span>
-            <a href={PROJECT_LINKS.github} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition-colors">
-              GitHub
-            </a>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }

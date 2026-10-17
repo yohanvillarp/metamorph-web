@@ -53,9 +53,15 @@ export function LandingHeader() {
               <MetamorphLogo modelId={activeModelId} palette={activePalette} />
             </div>
           </motion.div>
-          <span className="font-bold text-base sm:text-lg tracking-tight text-white group-hover:text-cyan-200 transition-colors">
-            Metamorph
-          </span>
+          <div className="flex items-center tracking-tight select-none">
+            <span className="font-extrabold text-base sm:text-lg text-white group-hover:text-slate-100 transition-colors">
+              Meta
+            </span>
+            <span className="font-black text-base sm:text-lg bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-cyan-300 to-teal-300 group-hover:drop-shadow-[0_0_12px_rgba(0,242,254,0.6)] transition-all">
+              mørph
+            </span>
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 ml-1 shadow-[0_0_8px_rgba(0,242,254,0.9)] group-hover:scale-125 transition-transform" />
+          </div>
         </Link>
       </div>
 
