@@ -13,5 +13,6 @@ export const ROUTES = {
     },
     COMMUNITY: '/docs/community',
   },
+  LOGOS: '/logos',
 } as const;
 

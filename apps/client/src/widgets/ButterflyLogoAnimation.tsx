@@ -1,8 +1,11 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { useActiveLogo } from '@/shared/lib/useActiveLogo';
+import { MetamorphLogo } from '@/shared/ui/MetamorphLogo';
 
 export function ButterflyLogoAnimation({ className = "w-72 h-72" }: { className?: string }) {
   const [isHovered, setIsHovered] = useState(false);
+  const [, , activeModelId, activePalette] = useActiveLogo();
 
   return (
     <div 
@@ -47,11 +50,9 @@ export function ButterflyLogoAnimation({ className = "w-72 h-72" }: { className?
           }}
           className="w-full h-full flex items-center justify-center"
         >
-          <img 
-            src="/logo_metamorph.png" 
-            alt="Metamorph Geometric Butterfly" 
-            className="w-full h-full object-contain filter contrast-125 group-hover:scale-105 transition-transform duration-500" 
-          />
+          <div className="w-full h-full p-6 flex items-center justify-center filter contrast-125 group-hover:scale-105 transition-transform duration-500">
+            <MetamorphLogo modelId={activeModelId} palette={activePalette} />
+          </div>
         </motion.div>
 
         {/* Dynamic Light Scanlines over Logo */}

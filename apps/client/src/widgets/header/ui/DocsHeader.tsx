@@ -1,12 +1,15 @@
 import { Menu, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PROJECT_LINKS } from '@/shared/config';
+import { useActiveLogo } from '@/shared/lib/useActiveLogo';
+import { MetamorphLogo } from '@/shared/ui/MetamorphLogo';
 
 interface DocsHeaderProps {
   onOpenSearch: () => void;
 }
 
 export function DocsHeader({ onOpenSearch }: DocsHeaderProps) {
+  const [, , activeModelId, activePalette] = useActiveLogo();
   return (
     <header className="fixed top-0 w-full z-40 backdrop-blur-xl bg-[#06090e]/95 border-b border-cyan-500/15 px-3 sm:px-6 md:px-8 flex justify-between items-center h-16 sm:h-20 transition-all">
       {/* Left: Mobile Drawer Trigger + Brand Logo & Badge */}
@@ -25,11 +28,9 @@ export function DocsHeader({ onOpenSearch }: DocsHeaderProps) {
           className="group flex items-center gap-2 text-white cursor-pointer"
           title="Metamorph Home"
         >
-          <img 
-            src="/logo_metamorph.png" 
-            alt="Metamorph" 
-            className="w-7 h-7 sm:w-8 sm:h-8 object-contain drop-shadow-[0_0_10px_rgba(0,242,254,0.4)] group-hover:scale-105 transition-transform" 
-          />
+          <div className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center drop-shadow-[0_0_10px_rgba(0,242,254,0.4)] group-hover:scale-105 transition-transform">
+            <MetamorphLogo modelId={activeModelId} palette={activePalette} />
+          </div>
           <span className="font-extrabold text-base sm:text-lg tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-200 hidden md:inline">
             Metamorph
           </span>

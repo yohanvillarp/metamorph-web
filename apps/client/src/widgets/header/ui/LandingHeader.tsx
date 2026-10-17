@@ -3,10 +3,13 @@ import { preloadDocsRoutes } from '@/shared/lib/routePreloader';
 import { motion } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { useActiveLogo } from '@/shared/lib/useActiveLogo';
+import { MetamorphLogo } from '@/shared/ui/MetamorphLogo';
 
 export function LandingHeader() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [, , activeModelId, activePalette] = useActiveLogo();
 
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -46,11 +49,9 @@ export function LandingHeader() {
             className="relative flex items-center justify-center"
           >
             <div className="absolute -inset-1 bg-cyan-400/25 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <img 
-              src="/logo_metamorph.png" 
-              alt="Metamorph Logo" 
-              className="relative w-7 h-7 sm:w-8 sm:h-8 object-contain drop-shadow-[0_0_10px_rgba(0,242,254,0.35)]" 
-            />
+            <div className="relative w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center drop-shadow-[0_0_10px_rgba(0,242,254,0.35)]">
+              <MetamorphLogo modelId={activeModelId} palette={activePalette} />
+            </div>
           </motion.div>
           <span className="font-bold text-base sm:text-lg tracking-tight text-white group-hover:text-cyan-200 transition-colors">
             Metamorph
@@ -84,6 +85,12 @@ export function LandingHeader() {
         >
           Community
         </button>
+        <Link
+          to={ROUTES.LOGOS}
+          className="px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-cyan-300/80 hover:text-cyan-200 hover:bg-cyan-500/10 transition-all"
+        >
+          Logos
+        </Link>
       </nav>
 
       {/* Right Marketing Links & Docs CTA */}
