@@ -1,6 +1,7 @@
 import { Terminal, Key } from 'lucide-react';
 import { CodeBlock } from '@/shared/ui/CodeBlock';
 import { SEOHead } from '@/shared/ui/SEOHead';
+import { TechnicalCallout } from '@/shared/ui/TechnicalCallout';
 
 export const CliReferencePage = () => {
   return (
@@ -10,25 +11,32 @@ export const CliReferencePage = () => {
         description="Complete command-line documentation for Metamorph: metamorph run, ui, apply, rollback, detect, list, reset, monorepo flags, and environment variables."
         keywords="metamorph cli, cli reference, metamorph run, metamorph detect, metamorph apply, command line migration"
       />
-      <div className="mb-10">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/70 border border-cyan-500/40 text-cyan-300 text-xs font-mono uppercase tracking-wider mb-4">
-          <Terminal size={14} className="text-cyan-400" />
-          Command-Line Interface
+      {/* Header with High-Density Spec Tags */}
+      <div className="mb-10 pb-6 border-b border-slate-800/80">
+        <div className="flex flex-wrap items-center gap-2 mb-3">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-slate-900 border border-slate-700/80 text-cyan-400 font-mono text-[11px] font-bold tracking-wider uppercase">
+            <Terminal size={13} className="text-cyan-400" />
+            CLI SPECIFICATION
+          </span>
+          <span className="text-[11px] font-mono text-slate-500">BINARY: METAMORPH</span>
+          <span className="text-slate-700">•</span>
+          <span className="text-[11px] font-mono text-emerald-400">VERSION: 2.3.0</span>
         </div>
-        <h1 className="text-4xl font-extrabold text-white mb-4 tracking-tight">
+
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-3 tracking-tight">
           CLI Command Reference
         </h1>
-        <p className="text-lg text-slate-300 leading-relaxed">
-          Complete reference for the <code className="text-cyan-300 font-mono">@nikelyh/metamorph</code> command-line tools, flags, interactive flows, and environment variables.
+        <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
+          Complete engineering reference for the <code className="text-cyan-300 font-mono">@nikelyh/metamorph</code> executable, configuration cascades, flags, and isolated execution routines.
         </p>
       </div>
 
       {/* 1. metamorph run */}
       <div className="mb-12 scroll-mt-24" id="command-run">
-        <h2 className="text-2xl font-bold text-white mb-4 border-b border-cyan-500/20 pb-2 flex items-center gap-2">
+        <h2 className="text-xl font-bold text-white mb-3 border-b border-cyan-500/20 pb-2 flex items-center gap-2">
           <span className="text-cyan-400 font-mono">metamorph run [path]</span>
         </h2>
-        <p className="text-slate-300 mb-4 leading-relaxed">
+        <p className="text-slate-300 mb-4 text-xs sm:text-sm leading-relaxed">
           Initializes and runs an autonomous migration on the specified target path (defaults to current directory <code className="text-cyan-300 font-mono">.</code>).
         </p>
         
@@ -127,17 +135,41 @@ metamorph run --from express --to fastify --disable-agents reviewer,reporter
 # Custom model selection with high concurrency
 metamorph run --model gpt-5.4 --concurrency 5`} 
         />
+
+        <div className="mt-4">
+          <TechnicalCallout
+            type="spec"
+            title="Deterministic Mock Provider & Static Dry Runs"
+            badge="ZERO-COST VERIFICATION"
+          >
+            <p>
+              Use <code className="text-slate-200 font-mono">--dry-run</code> to inspect the Subsumption DAG and planned file mutations without performing any changes. To test the complete Mozaik swarm workflow offline without API keys or token expenditure, run with <code className="text-slate-200 font-mono">--mock</code>.
+            </p>
+          </TechnicalCallout>
+        </div>
       </div>
 
       {/* 2. metamorph config */}
       <div className="mb-12 scroll-mt-24" id="command-config">
-        <h2 className="text-2xl font-bold text-white mb-4 border-b border-cyan-500/20 pb-2 flex items-center gap-2">
+        <h2 className="text-xl font-bold text-white mb-3 border-b border-cyan-500/20 pb-2 flex items-center gap-2">
           <span className="text-cyan-400 font-mono">metamorph config [subcommand]</span>
         </h2>
-        <p className="text-slate-300 mb-4 leading-relaxed">
+        <p className="text-slate-300 mb-4 text-xs sm:text-sm leading-relaxed">
           Manages local and global settings through a cascading configuration system. Metamorph resolves settings following the strict precedence hierarchy:
           <code className="text-cyan-300 font-mono text-xs ml-1">CLI flags &gt; Environment variables &gt; Local .metamorphrc.json &gt; Global ~/.metamorphrc.json &gt; Defaults</code>.
         </p>
+
+        <div className="mb-6">
+          <TechnicalCallout
+            type="heuristic"
+            title="Cascading Configuration Resolution Hierarchy"
+            badge="PRECEDENCE SPECIFICATION"
+          >
+            <p>
+              The runtime resolves configuration in descending order: <strong className="text-cyan-300 font-mono">CLI flags</strong> &gt; <strong className="text-cyan-300 font-mono">process.env</strong> &gt; <strong className="text-cyan-300 font-mono">local .metamorphrc.json</strong> &gt; <strong className="text-cyan-300 font-mono">global ~/.metamorphrc.json</strong> &gt; <strong className="text-slate-400 font-mono">system defaults</strong>.
+            </p>
+          </TechnicalCallout>
+        </div>
 
         <h3 className="text-sm font-semibold text-cyan-400 uppercase tracking-wider font-mono mb-2">Subcommands & Wizard</h3>
         <div className="overflow-x-auto mb-4">

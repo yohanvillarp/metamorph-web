@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
-import { Sparkles, ArrowRight, ShieldCheck, Cpu, Layers, Terminal, Binary, PackageCheck } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Cpu, Layers, Terminal, Binary, PackageCheck, AlertTriangle } from 'lucide-react';
 import { SEOHead } from '@/shared/ui/SEOHead';
+import { TechnicalCallout } from '@/shared/ui/TechnicalCallout';
 
 export const OverviewPage = () => {
   return (
@@ -11,34 +12,52 @@ export const OverviewPage = () => {
         description="Discover how Metamorph automates full-stack software migrations through zero-risk shadow workspaces, Mozaik v4 event swarms, and the Project Intelligence Engine."
         keywords="metamorph philosophy, software migration, shadow workspace, mozaik v4, code refactoring, zero risk migration"
       />
-      <div className="mb-10">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/70 border border-cyan-500/40 text-cyan-300 text-xs font-mono uppercase tracking-wider mb-4">
-          <Sparkles size={14} className="text-cyan-400" />
-          Metamorph CLI
+      {/* Header with High-Density Spec Tags */}
+      <div className="mb-10 pb-6 border-b border-slate-800/80">
+        <div className="flex flex-wrap items-center gap-2 mb-3">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-slate-900 border border-slate-700/80 text-cyan-400 font-mono text-[11px] font-bold tracking-wider uppercase">
+            <Cpu size={13} className="text-cyan-400" />
+            ARCHITECTURE OVERVIEW
+          </span>
+          <span className="text-[11px] font-mono text-slate-500">ENGINE: MOZAIK V4</span>
+          <span className="text-slate-700">•</span>
+          <span className="text-[11px] font-mono text-emerald-400">ISOLATION: ZERO-RISK</span>
         </div>
-        <h1 className="text-4xl font-extrabold text-white mb-4 tracking-tight">
-          Overview & Philosophy
+
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-3 tracking-tight">
+          Overview &amp; Philosophy
         </h1>
-        <p className="text-lg text-slate-300 mb-4 leading-relaxed">
+        <p className="text-base sm:text-lg text-slate-300 mb-3 leading-relaxed">
           Metamorph is a Command Line Interface (CLI) designed to automate architectural shifts and framework migrations across modern full-stack codebases.
         </p>
-        <p className="text-slate-400 leading-relaxed">
+        <p className="text-sm text-slate-400 leading-relaxed">
           Unlike traditional codemods or static analysis scripts that rely on brittle regular expressions or shallow Abstract Syntax Tree (AST) transformations, Metamorph orchestrates a swarm of specialized AI agents powered by the <strong className="text-white">Mozaik v4</strong> runtime to understand the semantic context, domain logic, and architectural patterns of your application.
         </p>
       </div>
 
       <div className="mb-12 scroll-mt-24" id="the-problem">
-        <h2 className="text-2xl font-bold text-white mb-4 border-b border-cyan-500/20 pb-2">
-          The Problem with Traditional Codemods
+        <h2 className="text-xl font-bold text-white mb-3 flex items-center gap-2">
+          <AlertTriangle size={18} className="text-amber-400" />
+          <span>The Problem with Traditional Codemods</span>
         </h2>
-        <p className="text-slate-300 mb-4 leading-relaxed">
+        <p className="text-slate-300 mb-4 text-xs sm:text-sm leading-relaxed">
           Migrating a production application to a new framework (e.g. from Express to NestJS, or React SPA to Next.js App Router) has historically been an excruciating, error-prone endeavor:
         </p>
-        <ul className="list-disc pl-6 space-y-2 text-slate-400 mb-4">
-          <li><strong>Regressions in-place:</strong> Codemods modify source files directly. If an import fails or types desynchronize, the working tree is left broken.</li>
-          <li><strong>Context Blindness:</strong> Regex and basic AST transforms cannot deduce neighbor dependencies, missing exports, or required configuration scaffolds.</li>
-          <li><strong>Manual Verification Bottlenecks:</strong> Developers must manually install packages and resolve hundreds of compiler diagnostics by hand.</li>
+        <ul className="list-disc pl-6 space-y-2 text-xs sm:text-sm text-slate-400 mb-6">
+          <li><strong className="text-slate-200">Regressions in-place:</strong> Codemods modify source files directly. If an import fails or types desynchronize, the working tree is left broken.</li>
+          <li><strong className="text-slate-200">Context Blindness:</strong> Regex and basic AST transforms cannot deduce neighbor dependencies, missing exports, or required configuration scaffolds.</li>
+          <li><strong className="text-slate-200">Manual Verification Bottlenecks:</strong> Developers must manually install packages and resolve hundreds of compiler diagnostics by hand.</li>
         </ul>
+
+        <TechnicalCallout
+          type="diagnostic"
+          title="Static Regex vs. Autonomous Swarm Transformation"
+          badge="LIMITATION OF LEGACY CODEMODS"
+        >
+          <p>
+            Traditional AST scripts fail when signatures change across imported module boundaries. Metamorph solves this by maintaining a reactive Blackboard in Mozaik v4, allowing the <code className="text-slate-200 font-mono">ReviewerAgent</code> and <code className="text-slate-200 font-mono">IntegrationAgent</code> to test-compile in isolation and dispatch repair loops before source code is ever touched.
+          </p>
+        </TechnicalCallout>
       </div>
 
       <div className="mb-12 scroll-mt-24" id="the-metamorph-solution">
