@@ -108,11 +108,11 @@ export function LogoGalleryPage() {
   return (
     <main className="min-h-screen bg-[#06090e] text-slate-100 pt-24 pb-28 px-4 sm:px-6 md:px-12 selection:bg-cyan-500/30 selection:text-white">
       <SEOHead
-        title="Metamorph Logo Studio | 9 Vector Models & Live Color Customization"
-        description="Explore 9 handcrafted vector SVG logo concepts with live dynamic color palette testing, multi-scale rendering, and instant whole-site activation."
+        title="Metamorph Curated Logo Finalists | 3 Recommended Vector Models"
+        description="Explore the 3 curated finalist vector SVG logo concepts for Metamorph, ordered by official design recommendation with live dynamic color palette testing."
       />
 
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         {/* Navigation Breadcrumb */}
         <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
           <Link
@@ -125,7 +125,7 @@ export function LogoGalleryPage() {
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2 text-xs font-mono text-slate-400 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">
               <Sparkles size={12} className="text-cyan-400" />
-              <span>9 Mathematically Symmetrical Vector Models</span>
+              <span>3 Curated Finalists in Recommendation Order</span>
             </div>
           </div>
         </div>
@@ -134,13 +134,13 @@ export function LogoGalleryPage() {
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs font-mono mb-4">
             <Layers size={13} />
-            BRAND IDENTITY & VECTOR STUDIO
+            CURATED BRAND IDENTITY FINALISTS
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
-            Metamorph 9-Model Logo Suite
+            Metamorph Finalist Logo Suite
           </h1>
           <p className="text-slate-300 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-            Nine distinct butterfly architectures engineered with proportional forewings, streamlined chrysalises, and pure bezier lift. Test any color palette live below.
+            Only the top 3 recommended concepts, arranged in strict order of brand suitability. Test live color palettes or activate your choice across the entire site.
           </p>
         </div>
 
@@ -355,8 +355,8 @@ export function LogoGalleryPage() {
           </AnimatePresence>
         </div>
 
-        {/* 10 Models Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+        {/* 3 Finalists Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
           {LOGO_OPTIONS.map((opt, idx) => {
             const isSelected = activeModelId === opt.modelId;
 
@@ -365,30 +365,45 @@ export function LogoGalleryPage() {
                 key={opt.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, delay: idx * 0.05 }}
-                className={`relative rounded-2xl p-6 transition-all border ${
+                transition={{ duration: 0.35, delay: idx * 0.08 }}
+                className={`relative rounded-2xl p-6 transition-all border flex flex-col justify-between ${
                   isSelected
                     ? 'bg-[#090e1a] border-cyan-500/50 shadow-[0_0_35px_rgba(0,242,254,0.18)] ring-1 ring-cyan-400/40'
                     : 'bg-[#080b13] border-white/10 hover:border-white/20'
                 }`}
               >
-                {/* Active Indicator Chip */}
-                {isSelected && (
-                  <div className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cyan-500 text-slate-950 font-mono text-[10px] font-bold shadow-md">
-                    <Check size={11} strokeWidth={3} />
-                    CURRENTLY ACTIVE
-                  </div>
-                )}
+                <div>
+                  {/* Rank & Active Badge Header */}
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <span
+                      className={`text-[10px] font-mono uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full border ${
+                        opt.rank === 1
+                          ? 'bg-amber-500/15 text-amber-300 border-amber-500/30 shadow-[0_0_12px_rgba(245,158,11,0.2)]'
+                          : opt.rank === 2
+                          ? 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30'
+                          : 'bg-purple-500/15 text-purple-300 border-purple-500/30'
+                      }`}
+                    >
+                      {opt.badge}
+                    </span>
 
-                {/* Card Title & Pillar */}
-                <div className="mb-4 pr-32">
-                  <span className="text-[11px] font-mono uppercase tracking-wider text-cyan-400 block mb-1">
-                    {opt.concept}
-                  </span>
-                  <h2 className="text-lg sm:text-xl font-bold text-white tracking-tight">
-                    {opt.name}
-                  </h2>
-                </div>
+                    {isSelected && (
+                      <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-cyan-500 text-slate-950 font-mono text-[9px] font-bold shadow-md">
+                        <Check size={10} strokeWidth={3} />
+                        ACTIVE
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Card Title & Pillar */}
+                  <div className="mb-4">
+                    <h2 className="text-lg font-bold text-white tracking-tight">
+                      {opt.name}
+                    </h2>
+                    <span className="text-[11px] font-mono text-cyan-400/90 block mt-0.5">
+                      {opt.concept}
+                    </span>
+                  </div>
 
                 {/* Interactive Logo Canvas */}
                 <div
@@ -449,9 +464,10 @@ export function LogoGalleryPage() {
                     </li>
                   ))}
                 </ul>
+              </div>
 
-                {/* Control Actions */}
-                <div className="flex flex-wrap items-center gap-2 pt-4 border-t border-white/5">
+              {/* Control Actions */}
+              <div className="flex flex-wrap items-center gap-2 pt-4 border-t border-white/5 mt-auto">
                   <button
                     onClick={() => selectLogo(opt.modelId)}
                     className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer ${

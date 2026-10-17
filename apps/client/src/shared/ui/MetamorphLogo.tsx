@@ -19,174 +19,7 @@ export function MetamorphLogo({
   const renderModel = () => {
     switch (modelId) {
       case 1:
-        // Model 1: Morphic Glass Wings (Cyber-Chrysalis)
-        return (
-          <>
-            <defs>
-              <linearGradient id={`${pId}-left`} x1="20" y1="20" x2="100" y2="110" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor={p.primary} stopOpacity="0.95" />
-                <stop offset="100%" stopColor={p.secondary} stopOpacity="0.25" />
-              </linearGradient>
-              <linearGradient id={`${pId}-right`} x1="180" y1="20" x2="100" y2="110" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor={p.accent} stopOpacity="0.95" />
-                <stop offset="50%" stopColor={p.primary} stopOpacity="0.85" />
-                <stop offset="100%" stopColor={p.secondary} stopOpacity="0.25" />
-              </linearGradient>
-              <linearGradient id={`${pId}-spine`} x1="100" y1="40" x2="100" y2="160" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor={p.accent} />
-                <stop offset="50%" stopColor={p.primary} />
-                <stop offset="100%" stopColor={p.secondary} />
-              </linearGradient>
-            </defs>
-            {/* Left Forewing */}
-            <path
-              d="M97 84 C80 50 48 24 22 36 C8 44 10 74 28 94 C46 114 80 110 97 90 Z"
-              fill={`url(#${pId}-left)`}
-              stroke={p.primary}
-              strokeWidth="2"
-              strokeLinejoin="round"
-            />
-            {/* Right Forewing */}
-            <path
-              d="M103 84 C120 50 152 24 178 36 C192 44 190 74 172 94 C154 114 120 110 103 90 Z"
-              fill={`url(#${pId}-right)`}
-              stroke={p.primary}
-              strokeWidth="2"
-              strokeLinejoin="round"
-            />
-            {/* Left Hindwing */}
-            <path
-              d="M97 96 C76 108 44 122 42 144 C40 164 66 172 82 158 C94 146 97 124 98 106 Z"
-              fill={`url(#${pId}-left)`}
-              fillOpacity="0.45"
-              stroke={p.secondary}
-              strokeWidth="1.75"
-              strokeLinejoin="round"
-            />
-            {/* Right Hindwing */}
-            <path
-              d="M103 96 C124 108 156 122 158 144 C160 164 134 172 118 158 C106 146 103 124 102 106 Z"
-              fill={`url(#${pId}-right)`}
-              fillOpacity="0.45"
-              stroke={p.secondary}
-              strokeWidth="1.75"
-              strokeLinejoin="round"
-            />
-            {/* Central Spindle Body */}
-            <path
-              d="M100 48 C102.5 70 102.5 125 100 152 C97.5 125 97.5 70 100 48 Z"
-              fill={`url(#${pId}-spine)`}
-            />
-            {/* Delicate Antennas */}
-            <path d="M98 48 Q94 34 84 28" stroke={p.primary} strokeWidth="1.75" strokeLinecap="round" fill="none" />
-            <path d="M102 48 Q106 34 116 28" stroke={p.primary} strokeWidth="1.75" strokeLinecap="round" fill="none" />
-            <circle cx="84" cy="28" r="1.75" fill={p.accent} />
-            <circle cx="116" cy="28" r="1.75" fill={p.accent} />
-          </>
-        );
-
-      case 2:
-        // Model 2: Dual Fluid Ribbon (Continuous Origami Flow)
-        return (
-          <>
-            <defs>
-              <linearGradient id={`${pId}-ribbon-left`} x1="20" y1="30" x2="100" y2="160" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor={p.accent} />
-                <stop offset="40%" stopColor={p.primary} />
-                <stop offset="100%" stopColor={p.secondary} />
-              </linearGradient>
-              <linearGradient id={`${pId}-ribbon-right`} x1="180" y1="30" x2="100" y2="160" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor={p.accent} />
-                <stop offset="40%" stopColor={p.primary} />
-                <stop offset="100%" stopColor={p.secondary} />
-              </linearGradient>
-            </defs>
-            {/* Left Continuous Ribbon Wing */}
-            <path
-              d="M98 68 C80 34 46 22 24 36 C4 48 12 86 42 104 C68 120 92 102 98 92 C88 114 68 142 56 156 C44 168 56 174 72 166 C92 154 97 124 98 102"
-              fill={`url(#${pId}-ribbon-left)`}
-              fillOpacity="0.25"
-              stroke={`url(#${pId}-ribbon-left)`}
-              strokeWidth="2.75"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            {/* Right Continuous Ribbon Wing */}
-            <path
-              d="M102 68 C120 34 154 22 176 36 C196 48 188 86 158 104 C132 120 108 102 102 92 C112 114 132 142 144 156 C156 168 144 174 128 166 C108 154 103 124 102 102"
-              fill={`url(#${pId}-ribbon-right)`}
-              fillOpacity="0.25"
-              stroke={`url(#${pId}-ribbon-right)`}
-              strokeWidth="2.75"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            {/* Harmonious Central Spine & Antennas */}
-            <line x1="100" y1="52" x2="100" y2="150" stroke={p.accent} strokeWidth="2.5" strokeLinecap="round" />
-            <path d="M98 52 Q92 38 82 32" stroke={p.primary} strokeWidth="1.5" strokeLinecap="round" fill="none" />
-            <path d="M102 52 Q108 38 118 32" stroke={p.primary} strokeWidth="1.5" strokeLinecap="round" fill="none" />
-            <circle cx="82" cy="32" r="1.5" fill={p.accent} />
-            <circle cx="118" cy="32" r="1.5" fill={p.accent} />
-            <circle cx="100" cy="52" r="3" fill={p.primary} />
-          </>
-        );
-
-      case 3:
-        // Model 3: Architectural Code-Wings (< and > Evolution)
-        return (
-          <>
-            <defs>
-              <linearGradient id={`${pId}-chevron`} x1="20" y1="30" x2="180" y2="170" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor={p.primary} />
-                <stop offset="100%" stopColor={p.secondary} />
-              </linearGradient>
-            </defs>
-            {/* Left Forewing (< syntax wing) */}
-            <path
-              d="M96 78 L26 44 C18 40 16 56 26 68 L66 102 C82 106 94 94 96 78 Z"
-              fill={`url(#${pId}-chevron)`}
-              stroke={p.primary}
-              strokeWidth="2"
-              strokeLinejoin="round"
-            />
-            {/* Right Forewing (> syntax wing) */}
-            <path
-              d="M104 78 L174 44 C182 40 184 56 174 68 L134 102 C118 106 106 94 104 78 Z"
-              fill={`url(#${pId}-chevron)`}
-              stroke={p.primary}
-              strokeWidth="2"
-              strokeLinejoin="round"
-            />
-            {/* Left Hindwing */}
-            <path
-              d="M96 94 L50 116 C38 124 40 146 56 156 L82 146 C92 134 96 114 96 94 Z"
-              fill={p.secondary}
-              fillOpacity="0.35"
-              stroke={p.secondary}
-              strokeWidth="1.75"
-              strokeLinejoin="round"
-            />
-            {/* Right Hindwing */}
-            <path
-              d="M104 94 L150 116 C162 124 160 146 144 156 L118 146 C108 134 104 114 104 94 Z"
-              fill={p.secondary}
-              fillOpacity="0.35"
-              stroke={p.secondary}
-              strokeWidth="1.75"
-              strokeLinejoin="round"
-            />
-            {/* Code Token Spine & Terminal Indicator */}
-            <line x1="100" y1="46" x2="100" y2="154" stroke={p.accent} strokeWidth="2.5" strokeLinecap="round" />
-            <polygon points="100,74 106,88 100,102 94,88" fill={p.accent} />
-            <path d="M98 46 Q92 34 84 28" stroke={p.primary} strokeWidth="1.5" strokeLinecap="round" fill="none" />
-            <path d="M102 46 Q108 34 116 28" stroke={p.primary} strokeWidth="1.5" strokeLinecap="round" fill="none" />
-            <circle cx="84" cy="28" r="1.5" fill={p.accent} />
-            <circle cx="116" cy="28" r="1.5" fill={p.accent} />
-          </>
-        );
-
-      case 4:
-        // Model 4: Fluid Aerodynamic Wings (User Recommended Favorite)
+        // Rank 1: Fluid Aerodynamic Wings (Primary Recommendation)
         return (
           <>
             <defs>
@@ -246,193 +79,8 @@ export function MetamorphLogo({
           </>
         );
 
-      case 5:
-        // Model 5: Minimal Faceted Origami (Low-Poly Chrysalis)
-        return (
-          <>
-            <defs>
-              <linearGradient id={`${pId}-poly-up`} x1="25" y1="35" x2="100" y2="105" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor={p.accent} />
-                <stop offset="50%" stopColor={p.primary} />
-                <stop offset="100%" stopColor={p.secondary} />
-              </linearGradient>
-              <linearGradient id={`${pId}-poly-down`} x1="25" y1="95" x2="100" y2="165" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor={p.primary} />
-                <stop offset="100%" stopColor={p.secondary} />
-              </linearGradient>
-            </defs>
-            {/* Left Upper Facets */}
-            <polygon points="97,80 32,38 18,74 70,102 97,92" fill={`url(#${pId}-poly-up)`} stroke={p.accent} strokeWidth="1.5" strokeLinejoin="round" />
-            <polygon points="97,80 70,102 97,92" fill={p.secondary} fillOpacity="0.5" stroke={p.primary} strokeWidth="1" strokeLinejoin="round" />
-            {/* Right Upper Facets (Symmetric Lighting) */}
-            <polygon points="103,80 168,38 182,74 130,102 103,92" fill={`url(#${pId}-poly-up)`} stroke={p.accent} strokeWidth="1.5" strokeLinejoin="round" />
-            <polygon points="103,80 130,102 103,92" fill={p.secondary} fillOpacity="0.5" stroke={p.primary} strokeWidth="1" strokeLinejoin="round" />
-            {/* Left Lower Facet */}
-            <polygon points="97,98 62,112 46,152 80,162 97,126" fill={`url(#${pId}-poly-down)`} stroke={p.secondary} strokeWidth="1.5" strokeLinejoin="round" />
-            {/* Right Lower Facet */}
-            <polygon points="103,98 138,112 154,152 120,162 103,126" fill={`url(#${pId}-poly-down)`} stroke={p.secondary} strokeWidth="1.5" strokeLinejoin="round" />
-            {/* Faceted Chrysalis Body */}
-            <polygon points="100,50 104,82 100,148 96,82" fill={p.accent} />
-            <path d="M98 50 L84 32" stroke={p.primary} strokeWidth="1.5" strokeLinecap="round" />
-            <path d="M102 50 L116 32" stroke={p.primary} strokeWidth="1.5" strokeLinecap="round" />
-            <circle cx="84" cy="32" r="1.5" fill={p.accent} />
-            <circle cx="116" cy="32" r="1.5" fill={p.accent} />
-          </>
-        );
-
-      case 6:
-        // Model 6: The Monarch Minimalist (Pure Classical Silhouette)
-        return (
-          <>
-            <defs>
-              <linearGradient id={`${pId}-monarch`} x1="25" y1="25" x2="100" y2="110" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor={p.accent} />
-                <stop offset="30%" stopColor={p.primary} />
-                <stop offset="100%" stopColor={p.secondary} />
-              </linearGradient>
-            </defs>
-            {/* Left Forewing */}
-            <path
-              d="M97 82 C80 48 52 24 26 32 C10 38 8 66 24 88 C40 110 76 110 97 90 Z"
-              fill={`url(#${pId}-monarch)`}
-              stroke={p.primary}
-              strokeWidth="2"
-              strokeLinejoin="round"
-            />
-            {/* Left Hindwing Scallop */}
-            <path
-              d="M97 96 C76 106 44 116 42 138 C40 160 64 170 80 156 C92 144 96 122 97 104 Z"
-              fill={p.secondary}
-              fillOpacity="0.45"
-              stroke={p.secondary}
-              strokeWidth="1.75"
-              strokeLinejoin="round"
-            />
-            {/* Right Forewing */}
-            <path
-              d="M103 82 C120 48 148 24 174 32 C190 38 192 66 176 88 C160 110 124 110 103 90 Z"
-              fill={`url(#${pId}-monarch)`}
-              stroke={p.primary}
-              strokeWidth="2"
-              strokeLinejoin="round"
-            />
-            {/* Right Hindwing Scallop */}
-            <path
-              d="M103 96 C124 106 156 116 158 138 C160 160 136 170 120 156 C108 144 104 122 103 104 Z"
-              fill={p.secondary}
-              fillOpacity="0.45"
-              stroke={p.secondary}
-              strokeWidth="1.75"
-              strokeLinejoin="round"
-            />
-            {/* Slender Thorax & Abdomen */}
-            <path d="M100 48 C102.5 70 102.5 125 100 152 C97.5 125 97.5 70 100 48 Z" fill={p.accent} />
-            <path d="M98 48 Q94 34 84 28" stroke={p.primary} strokeWidth="1.5" strokeLinecap="round" fill="none" />
-            <path d="M102 48 Q106 34 116 28" stroke={p.primary} strokeWidth="1.5" strokeLinecap="round" fill="none" />
-            <circle cx="84" cy="28" r="1.5" fill={p.accent} />
-            <circle cx="116" cy="28" r="1.5" fill={p.accent} />
-          </>
-        );
-
-      case 7:
-        // Model 7: Dual-Wave Transformation (Liquid Flight)
-        return (
-          <>
-            <defs>
-              <linearGradient id={`${pId}-wave`} x1="20" y1="30" x2="180" y2="160" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor={p.primary} />
-                <stop offset="60%" stopColor={p.secondary} />
-                <stop offset="100%" stopColor={p.accent} />
-              </linearGradient>
-            </defs>
-            {/* Left Upper Wave */}
-            <path
-              d="M96 84 C76 48 44 22 22 34 C6 42 10 76 30 96 C48 116 82 112 96 94 Z"
-              fill={`url(#${pId}-wave)`}
-              fillOpacity="0.4"
-              stroke={p.primary}
-              strokeWidth="2.25"
-              strokeLinejoin="round"
-            />
-            {/* Left Lower Wave */}
-            <path
-              d="M96 100 C72 112 40 126 40 146 C40 164 62 170 78 158 C90 148 94 128 96 110 Z"
-              fill={p.secondary}
-              fillOpacity="0.5"
-              stroke={p.secondary}
-              strokeWidth="1.75"
-              strokeLinejoin="round"
-            />
-            {/* Right Upper Wave */}
-            <path
-              d="M104 84 C124 48 156 22 178 34 C194 42 190 76 170 96 C152 116 118 112 104 94 Z"
-              fill={`url(#${pId}-wave)`}
-              fillOpacity="0.4"
-              stroke={p.primary}
-              strokeWidth="2.25"
-              strokeLinejoin="round"
-            />
-            {/* Right Lower Wave */}
-            <path
-              d="M104 100 C128 112 160 126 160 146 C160 164 138 170 122 158 C110 148 106 128 104 110 Z"
-              fill={p.secondary}
-              fillOpacity="0.5"
-              stroke={p.secondary}
-              strokeWidth="1.75"
-              strokeLinejoin="round"
-            />
-            {/* Spine & Resonance nodes */}
-            <line x1="100" y1="50" x2="100" y2="152" stroke={p.accent} strokeWidth="2.25" strokeLinecap="round" />
-            <path d="M98 50 Q92 36 82 30" stroke={p.primary} strokeWidth="1.5" strokeLinecap="round" fill="none" />
-            <path d="M102 50 Q108 36 118 30" stroke={p.primary} strokeWidth="1.5" strokeLinecap="round" fill="none" />
-            <circle cx="82" cy="30" r="1.5" fill={p.accent} />
-            <circle cx="118" cy="30" r="1.5" fill={p.accent} />
-            <circle cx="100" cy="50" r="2.5" fill={p.primary} />
-          </>
-        );
-
-      case 8:
-        // Model 8: Code-Brace Chrysalis ({ and } Syntax)
-        return (
-          <>
-            <defs>
-              <linearGradient id={`${pId}-brace`} x1="20" y1="30" x2="180" y2="160" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor={p.primary} />
-                <stop offset="100%" stopColor={p.secondary} />
-              </linearGradient>
-            </defs>
-            {/* Left Wing sculpted as programming bracket { */}
-            <path
-              d="M96 56 C74 54 48 26 28 36 C10 44 14 74 34 94 C46 104 74 100 86 102 C74 106 44 116 42 138 C40 160 66 168 82 154 C92 144 95 120 96 106"
-              fill={`url(#${pId}-brace)`}
-              fillOpacity="0.3"
-              stroke={p.primary}
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            {/* Right Wing sculpted as programming bracket } */}
-            <path
-              d="M104 56 C126 54 152 26 172 36 C190 44 186 74 166 94 C154 104 126 100 114 102 C126 106 156 116 158 138 C160 160 134 168 118 154 C108 144 105 120 104 106"
-              fill={`url(#${pId}-brace)`}
-              fillOpacity="0.3"
-              stroke={p.primary}
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            {/* Inner Chrysalis Spindle */}
-            <path d="M100 48 C102 70 102 125 100 152 C98 125 98 70 100 48 Z" fill={p.accent} />
-            <path d="M98 48 Q94 34 86 28" stroke={p.primary} strokeWidth="1.5" strokeLinecap="round" fill="none" />
-            <path d="M102 48 Q106 34 114 28" stroke={p.primary} strokeWidth="1.5" strokeLinecap="round" fill="none" />
-            <circle cx="86" cy="28" r="1.5" fill={p.accent} />
-            <circle cx="114" cy="28" r="1.5" fill={p.accent} />
-          </>
-        );
-
-      case 9:
-      default:
-        // Model 9: Monoline Flight Contour (Minimalist Continuous Line)
+      case 2:
+        // Rank 2: Monoline Flight Contour (Minimalist Tech Style)
         return (
           <>
             <defs>
@@ -489,6 +137,46 @@ export function MetamorphLogo({
             <circle cx="86" cy="30" r="1.5" fill={p.accent} />
             <circle cx="114" cy="30" r="1.5" fill={p.accent} />
             <circle cx="100" cy="50" r="2.25" fill={p.primary} />
+          </>
+        );
+
+      case 3:
+      default:
+        // Rank 3: Code-Brace Chrysalis ({ and } Developer Syntax)
+        return (
+          <>
+            <defs>
+              <linearGradient id={`${pId}-brace`} x1="20" y1="30" x2="180" y2="160" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor={p.primary} />
+                <stop offset="100%" stopColor={p.secondary} />
+              </linearGradient>
+            </defs>
+            {/* Left Wing sculpted as programming bracket { */}
+            <path
+              d="M96 56 C74 54 48 26 28 36 C10 44 14 74 34 94 C46 104 74 100 86 102 C74 106 44 116 42 138 C40 160 66 168 82 154 C92 144 95 120 96 106"
+              fill={`url(#${pId}-brace)`}
+              fillOpacity="0.3"
+              stroke={p.primary}
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            {/* Right Wing sculpted as programming bracket } */}
+            <path
+              d="M104 56 C126 54 152 26 172 36 C190 44 186 74 166 94 C154 104 126 100 114 102 C126 106 156 116 158 138 C160 160 134 168 118 154 C108 144 105 120 104 106"
+              fill={`url(#${pId}-brace)`}
+              fillOpacity="0.3"
+              stroke={p.primary}
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            {/* Inner Chrysalis Spindle */}
+            <path d="M100 48 C102 70 102 125 100 152 C98 125 98 70 100 48 Z" fill={p.accent} />
+            <path d="M98 48 Q94 34 86 28" stroke={p.primary} strokeWidth="1.5" strokeLinecap="round" fill="none" />
+            <path d="M102 48 Q106 34 114 28" stroke={p.primary} strokeWidth="1.5" strokeLinecap="round" fill="none" />
+            <circle cx="86" cy="28" r="1.5" fill={p.accent} />
+            <circle cx="114" cy="28" r="1.5" fill={p.accent} />
           </>
         );
     }

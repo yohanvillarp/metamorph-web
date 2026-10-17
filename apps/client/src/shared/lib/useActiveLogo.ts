@@ -4,8 +4,10 @@ import { type ColorPalette, DEFAULT_PALETTE } from '@/shared/config/logoPalettes
 export interface LogoOption {
   id: string;
   modelId: number;
+  rank: number;
   name: string;
   concept: string;
+  badge: string;
   path: string;
   description: string;
   highlights: string[];
@@ -13,85 +15,52 @@ export interface LogoOption {
 
 export const LOGO_OPTIONS: LogoOption[] = [
   {
-    id: 'v1-cyber-chrysalis',
+    id: 'v1-fluid-wings',
     modelId: 1,
-    name: 'Concept 1: Morphic Glass Wings',
-    concept: 'Metamorph UI Cyber-Glass Core',
-    path: '/logos/metamorph-v1-cyber-chrysalis.svg',
-    description: 'Clean, aerodynamic glass butterfly wings with smooth bezier curves and subtle glowing gradients matching the obsidian & cyan Metamorph UI.',
-    highlights: ['Natural aerodynamic wing curves', 'Simplified 4-wing anatomy', 'Subtle cyber-glass translucent glow'],
+    rank: 1,
+    name: 'Concept 1: Fluid Aerodynamic Wings',
+    concept: 'Continuous Metamorphosis & Dynamic Lift',
+    badge: 'TOP RECOMMENDATION',
+    path: '/logos/metamorph-v1-fluid-wings.svg',
+    description: 'Wide expansive forewings with parabolic arches and organic teardrop hindwings in luminous gradient harmony. Transmits flight, lightness, and autonomous speed.',
+    highlights: [
+      'Natural aerodynamic lift with parabolic curves',
+      'Teardrop hindwings for perfect organic grounding',
+      'High-contrast clarity at 16px favicon scale',
+      'Optimal gradient expression across all color palettes',
+    ],
   },
   {
-    id: 'v2-origami-m',
+    id: 'v2-monoline-flight',
     modelId: 2,
-    name: 'Concept 2: Dual Fluid Ribbon',
-    concept: 'Continuous Flow Evolution',
-    path: '/logos/metamorph-v2-origami-m.svg',
-    description: 'Two continuous fluid ribbons that sweep outward to form forewings and loop gracefully down into hindwings in one unbroken, harmonic stroke.',
-    highlights: ['Unbroken fluid wing stroke', 'Clean modern silhouette', 'High clarity at 16px favicon scale'],
+    rank: 2,
+    name: 'Concept 2: Monoline Flight Contour',
+    concept: 'Modern Minimalist Architecture (Linear Style)',
+    badge: 'SECOND CHOICE',
+    path: '/logos/metamorph-v2-monoline-flight.svg',
+    description: 'A pure, continuous 2.5px vector line contour forming the quintessential butterfly silhouette with delicate inner accents and glowing terminal nodes.',
+    highlights: [
+      'Ultra-clean continuous vector line aesthetic',
+      'Zero visual clutter or heavy solid weights',
+      'Flawless contrast on obsidian and light backgrounds',
+      'Modern dev-tool branding style (Linear / Vercel)',
+    ],
   },
   {
-    id: 'v3-swarm-nodes',
+    id: 'v3-code-brace',
     modelId: 3,
-    name: 'Concept 3: Architectural Code-Wings',
-    concept: 'Code Evolution & Syntax Metamorphosis',
-    path: '/logos/metamorph-v3-swarm-nodes.svg',
-    description: 'Two forward-sweeping transform brackets (< and >) softening and unfurling into proportional butterfly wings, symbolizing code taking flight.',
-    highlights: ['Meaningful syntax transformation (< >)', 'Clear butterfly silhouette', 'Balanced forewing and hindwing ratio'],
-  },
-  {
-    id: 'v4-infinite-morph',
-    modelId: 4,
-    name: 'Concept 4: Fluid Aerodynamic Wings',
-    concept: 'Graceful Continuous Metamorphosis (Recommended)',
-    path: '/logos/metamorph-v4-infinite-morph.svg',
-    description: 'Refined fluid wing approach: wide expansive forewings with parabolic arches and teardrop hindwings in radiant electric cyan and teal.',
-    highlights: ['Expansive forewings with natural lift', 'Teardrop hindwings for organic balance', 'Pure vector curves without visual clutter'],
-  },
-  {
-    id: 'v5-brutalist-hex',
-    modelId: 5,
-    name: 'Concept 5: Pure Poly Wings',
-    concept: 'Minimalist Faceted Origami',
-    path: '/logos/metamorph-v5-brutalist-hex.svg',
-    description: 'Balanced angled geometric planes forming an unmistakable low-poly butterfly. Stripped of all extra lines, frames, and noise for maximum impact.',
-    highlights: ['Pure 4-plane geometric butterfly', 'Clear architectural lighting', 'Bold, modern, and noise-free'],
-  },
-  {
-    id: 'v6-monarch-minimal',
-    modelId: 6,
-    name: 'Concept 6: The Monarch Minimalist',
-    concept: 'Pure Classical Butterfly Geometry',
-    path: '/logos/metamorph-v6-monarch-minimal.svg',
-    description: 'Iconic, unmistakably authentic butterfly silhouette crafted from pure aerodynamic bezier curves, vibrant electric cyan gradients, and zero extraneous clutter.',
-    highlights: ['Classic, authentic butterfly anatomy', 'Broad forewings with natural lift', 'Instant recognition across all sizes'],
-  },
-  {
-    id: 'v7-fluid-waves',
-    modelId: 7,
-    name: 'Concept 7: Dual-Wave Transformation',
-    concept: 'Liquid Motion & Smooth Metamorphosis',
-    path: '/logos/metamorph-v7-fluid-waves.svg',
-    description: 'Liquid S-curves sweeping outward into aerodynamic wing petals. Smooth, fluid transition between cyan and electric indigo.',
-    highlights: ['Liquid S-curve wing contours', 'Dual-tone cyan to indigo gradient', 'Continuous aerodynamic flight'],
-  },
-  {
-    id: 'v8-code-brace-morph',
-    modelId: 8,
-    name: 'Concept 8: Code-Brace Chrysalis',
-    concept: 'Syntax Metamorphosis ({ and })',
-    path: '/logos/metamorph-v8-code-brace-morph.svg',
-    description: 'Subtly weaves programming syntax { and } into the outer wing curves around a central chrysalis body. Elegant and developer-native.',
-    highlights: ['Organic code brackets in wing shape', 'Subtle developer-centric metaphor', 'Crisp stroke definition'],
-  },
-  {
-    id: 'v9-monoline-flight',
-    modelId: 9,
-    name: 'Concept 9: Monoline Flight Contour',
-    concept: 'Apple & Linear Style Minimalist Vector',
-    path: '/logos/metamorph-v9-monoline-flight.svg',
-    description: 'A pure, continuous 2.5px vector line contour forming the quintessential butterfly silhouette with delicate inner accents and glowing nodes.',
-    highlights: ['Clean continuous monoline stroke', 'Zero visual weight or noise', 'Superb dark-mode contrast'],
+    rank: 3,
+    name: 'Concept 3: Code-Brace Chrysalis',
+    concept: 'Developer Syntax Identity ({ and })',
+    badge: 'THIRD CHOICE',
+    path: '/logos/metamorph-v3-code-brace.svg',
+    description: 'Subtly weaves programming syntax braces { and } into the outer wing curves around a central glowing chrysalis body. Elegant, clever, and developer-native.',
+    highlights: [
+      'Organic code brackets sculpted as wing contours',
+      'Direct developer-centric metaphor (syntax in flight)',
+      'Sharp stroke definition and crisp center spindle',
+      'Unmistakable identity for code migration swarms',
+    ],
   },
 ];
 
@@ -122,7 +91,7 @@ export function useActiveLogo(): [
       const savedModel = localStorage.getItem(STORAGE_KEY_MODEL);
       if (savedModel) {
         const parsed = parseInt(savedModel, 10);
-        if (parsed >= 1 && parsed <= 9) return parsed;
+        if (parsed >= 1 && parsed <= 3) return parsed;
       }
       const savedPath = localStorage.getItem(STORAGE_KEY_LOGO);
       if (savedPath) {
@@ -132,7 +101,7 @@ export function useActiveLogo(): [
     } catch {
       // Fallback
     }
-    return 4; // Default to Concept 4 (User's favorite)
+    return 1; // Default to Top Recommendation (Concept 1: Fluid Aerodynamic Wings)
   });
 
   const [palette, setPaletteState] = useState<ColorPalette>(() => {
@@ -148,7 +117,7 @@ export function useActiveLogo(): [
     return DEFAULT_PALETTE;
   });
 
-  const activeOption = LOGO_OPTIONS.find((o) => o.modelId === modelId) || LOGO_OPTIONS[3];
+  const activeOption = LOGO_OPTIONS.find((o) => o.modelId === modelId) || LOGO_OPTIONS[0];
   const activeLogo = activeOption.path;
 
   useEffect(() => {
@@ -175,8 +144,8 @@ export function useActiveLogo(): [
   }, [modelId]);
 
   const selectLogo = (pathOrModel: string | number) => {
-    let nextModel = 4;
-    let nextPath = LOGO_OPTIONS[3].path;
+    let nextModel = 1;
+    let nextPath = LOGO_OPTIONS[0].path;
 
     if (typeof pathOrModel === 'number') {
       nextModel = pathOrModel;
