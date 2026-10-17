@@ -95,8 +95,8 @@ export function HeroSection() {
   return (
     <section id="hero" className="relative min-h-[90vh] flex flex-col items-center justify-center px-4 pt-4 pb-20 overflow-hidden">
       {/* Background Cybernetic Radial Glows */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-cyan-500/10 blur-[140px] rounded-full pointer-events-none" />
-      <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-blue-600/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[500px] bg-cyan-500/5 blur-[160px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/3 left-1/4 w-[350px] h-[350px] bg-blue-600/5 blur-[140px] rounded-full pointer-events-none" />
 
       <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
         {/* Subtle, Proportionate Brand Logo Animation */}
@@ -107,7 +107,7 @@ export function HeroSection() {
           className="mb-5"
         >
           <div className="relative inline-block">
-            <div className="absolute -inset-2 bg-cyan-500/20 rounded-full blur-xl animate-pulse" />
+            <div className="absolute -inset-2 bg-cyan-500/10 rounded-full blur-lg" />
             <ButterflyLogoAnimation className="w-20 h-20 md:w-24 md:h-24 relative z-10" />
           </div>
         </motion.div>
@@ -117,17 +117,17 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.15 }}
-          className="flex flex-wrap items-center justify-center gap-2 mb-4"
+          className="flex flex-wrap items-center justify-center gap-2 mb-4 text-[11px] font-mono"
         >
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-bold bg-emerald-950/70 border border-emerald-500/40 text-emerald-300">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#0c0e17] border border-emerald-500/30 text-emerald-300">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
             v2.3.0 STABLE
           </span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-medium bg-cyan-950/70 border border-cyan-500/40 text-cyan-300 shadow-[0_0_12px_rgba(0,242,254,0.15)]">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#0c0e17] border border-white/10 text-slate-300">
             <Cpu size={12} className="text-cyan-400" />
             MOZAIK V4 EVENT SWARM
           </span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-medium bg-slate-900 border border-slate-700 text-slate-300">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#0c0e17] border border-white/10 text-slate-300">
             <Shield size={12} className="text-cyan-400" />
             ZERO-RISK SHADOW WORKSPACE
           </span>
@@ -141,7 +141,7 @@ export function HeroSection() {
         >
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-4 leading-[1.08] text-white">
             Autonomous Framework Migrations <br />
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-200 to-cyan-400 text-glow-cyan">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-100 to-cyan-400">
               With Zero Working-Tree Risk.
             </span>
           </h1>
@@ -152,17 +152,17 @@ export function HeroSection() {
 
           {/* PRIMARY QUICK-START COMMAND DOCK (Immediate Frictionless Execution) */}
           <div className="w-full max-w-xl mx-auto mb-6">
-            <div className="relative group p-1 rounded-2xl bg-gradient-to-r from-cyan-500/30 via-slate-800 to-teal-500/30 border border-cyan-500/40 shadow-[0_0_25px_rgba(0,242,254,0.1)]">
-              <div className="flex items-center justify-between bg-[#080d19] rounded-xl px-3 py-2 gap-2">
+            <div className="relative group p-0.5 rounded-xl bg-gradient-to-r from-cyan-500/20 via-white/5 to-teal-500/20 border border-white/10 hover:border-cyan-500/30 transition-colors shadow-lg">
+              <div className="flex items-center justify-between bg-[#0a0d16] rounded-[10px] px-3 py-2 gap-2">
                 {/* Package Manager Toggle */}
-                <div className="flex items-center gap-1 bg-[#050811] p-0.5 rounded-lg border border-slate-800/80">
+                <div className="flex items-center gap-1 bg-[#06080f] p-0.5 rounded-lg border border-white/5">
                   {(['npm', 'pnpm', 'bun'] as const).map((pm) => (
                     <button
                       key={pm}
                       onClick={() => setSelectedPm(pm)}
-                      className={`px-2 py-0.5 rounded text-[11px] font-mono font-bold uppercase transition-all cursor-pointer ${
+                      className={`px-2.5 py-0.5 rounded text-[11px] font-mono font-bold uppercase transition-all cursor-pointer ${
                         selectedPm === pm
-                          ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-sm'
+                          ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 shadow-sm'
                           : 'text-slate-500 hover:text-slate-300'
                       }`}
                     >
@@ -180,7 +180,7 @@ export function HeroSection() {
                 {/* Instant 1-Click Copy Button */}
                 <button
                   onClick={handleCopyQuick}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/30 text-cyan-300 hover:text-white transition-all text-xs font-mono font-semibold cursor-pointer shrink-0"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/25 text-cyan-300 hover:text-white transition-all text-xs font-mono font-semibold cursor-pointer shrink-0"
                   title="Copy command to clipboard"
                   aria-label="Copy quick run command"
                 >
@@ -217,16 +217,16 @@ export function HeroSection() {
               href={PROJECT_LINKS.discord}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 hover:border-[#5865F2]/60 text-slate-200 hover:text-white transition-all text-sm font-medium"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0c0e17] hover:bg-[#121524] border border-white/10 hover:border-[#5865F2]/50 text-slate-300 hover:text-white transition-all text-sm font-medium shadow-sm cursor-pointer"
             >
               <img src="/discord.svg" alt="Discord" className="w-4 h-4 object-contain" />
-              <span>Join Discord Community</span>
+              <span>Discord Community</span>
             </a>
             <a
               href={PROJECT_LINKS.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 hover:border-cyan-500/40 text-slate-200 hover:text-white transition-all text-sm font-medium"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0c0e17] hover:bg-[#121524] border border-white/10 hover:border-white/20 text-slate-300 hover:text-white transition-all text-sm font-medium shadow-sm cursor-pointer"
             >
               <img src="/github.svg" alt="GitHub" className="w-4 h-4 object-contain" />
               <span>Star on GitHub</span>
@@ -241,10 +241,10 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="relative w-full max-w-3xl mx-auto"
         >
-          {/* Cyan Glow Border */}
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-teal-400 rounded-2xl blur-md opacity-30 animate-pulse" />
+          {/* Subtle Outer Glow Border */}
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/20 to-teal-400/20 rounded-2xl blur-md opacity-20" />
 
-          <div className="relative bg-[#070b13] border border-cyan-500/30 rounded-2xl overflow-hidden shadow-2xl backdrop-blur-xl">
+          <div className="relative bg-[#070910] border border-white/10 rounded-2xl overflow-hidden shadow-2xl backdrop-blur-xl">
             {/* Terminal Tab Bar */}
             <div className="flex items-center justify-between px-4 py-3 bg-[#0a101d] border-b border-white/5">
               <div className="flex items-center gap-2">

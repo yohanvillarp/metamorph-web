@@ -2,6 +2,16 @@
 @import "tailwindcss";
 
 @theme {
+  --color-surface-base: var(--surface-base);
+  --color-surface-card: var(--surface-card);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-surface-overlay: var(--surface-overlay);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-accent: var(--border-accent);
+  --color-accent-cyan: var(--accent-cyan);
+  --color-accent-cyan-hover: var(--accent-cyan-hover);
+  --color-accent-discord: var(--accent-discord);
+
   --color-neo-bg: var(--neo-bg);
   --color-neo-text: var(--neo-text);
   --color-neo-text-muted: var(--neo-text-muted);
@@ -20,18 +30,30 @@
 
 @layer base {
   :root {
-    /* Cyber-Polygonal Cyan & Deep Obsidian Palette (Matches Butterfly Logo) */
-    --neo-bg: #06090e;
-    --neo-text: #f1f5f9;
+    /* Modular Deep Titanium & Electric Cyan Palette */
+    --surface-base: #07080c;
+    --surface-card: #0c0e17;
+    --surface-elevated: #111420;
+    --surface-overlay: #161a29;
+    
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-accent: rgba(34, 211, 238, 0.35);
+
+    --accent-cyan: #22d3ee;
+    --accent-cyan-hover: #06b6d4;
+    --accent-discord: #5865F2;
+
+    --neo-bg: #07080c;
+    --neo-text: #f8fafc;
     --neo-text-muted: #94a3b8;
-    --neo-border: #1e293b;
-    --neo-shadow: rgba(0, 242, 254, 0.15);
-    --neo-surface: #0b111e;
-    --neo-primary: #06b6d4;
-    --neo-primary-text: #06090e;
-    --neo-accent: #00f2fe;
+    --neo-border: rgba(255, 255, 255, 0.08);
+    --neo-shadow: rgba(34, 211, 238, 0.08);
+    --neo-surface: #0c0e17;
+    --neo-primary: #22d3ee;
+    --neo-primary-text: #07080c;
+    --neo-accent: #22d3ee;
     --neo-cyan: #22d3ee;
-    --neo-cyan-glow: rgba(0, 242, 254, 0.4);
+    --neo-cyan-glow: rgba(34, 211, 238, 0.2);
   }
 
   html {
@@ -39,31 +61,28 @@
   }
 
   ::selection {
-    background-color: rgba(6, 182, 212, 0.35);
+    background-color: rgba(6, 182, 212, 0.3);
     color: #ffffff;
-    text-shadow: 0 0 8px rgba(0, 242, 254, 0.6);
   }
 
   ::-moz-selection {
-    background-color: rgba(6, 182, 212, 0.35);
+    background-color: rgba(6, 182, 212, 0.3);
     color: #ffffff;
-    text-shadow: 0 0 8px rgba(0, 242, 254, 0.6);
   }
 
   body {
-    @apply bg-neo-bg text-neo-text font-sans antialiased;
+    @apply bg-surface-base text-neo-text font-sans antialiased;
     margin: 0;
     min-height: 100vh;
-    background-color: #06090e;
+    background-color: #07080c;
     background-image: 
-      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 242, 254, 0.12), transparent),
-      radial-gradient(circle at 100% 30%, rgba(6, 182, 212, 0.06), transparent 50%),
-      radial-gradient(circle at 0% 70%, rgba(14, 165, 233, 0.05), transparent 50%);
+      radial-gradient(ellipse 70% 35% at 50% -5%, rgba(34, 211, 238, 0.05), transparent),
+      radial-gradient(circle at 100% 25%, rgba(6, 182, 212, 0.02), transparent 40%);
   }
 
   :focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.6), 0 0 15px rgba(0, 242, 254, 0.3);
+    box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.5), 0 0 10px rgba(34, 211, 238, 0.2);
   }
 }
 
@@ -97,19 +116,19 @@
   }
   
   .neo-btn-primary {
-    @apply px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-cyan-400 hover:from-cyan-400 hover:to-cyan-300 text-slate-950 border border-cyan-300/60 rounded-xl shadow-[0_0_25px_rgba(0,242,254,0.45)] hover:shadow-[0_0_35px_rgba(0,242,254,0.65)] active:scale-95 transition-all font-bold cursor-pointer select-none tracking-wide;
+    @apply px-5 py-2.5 bg-cyan-400 hover:bg-cyan-300 text-slate-950 border border-cyan-300/50 rounded-xl shadow-[0_0_15px_rgba(34,211,238,0.2)] hover:shadow-[0_0_20px_rgba(34,211,238,0.35)] active:scale-95 transition-all font-bold cursor-pointer select-none tracking-wide;
   }
   
   .neo-btn-secondary {
-    @apply px-5 py-2.5 bg-[#0b1220]/80 hover:bg-[#10192e] text-slate-200 border border-cyan-500/30 hover:border-cyan-400/60 rounded-xl shadow-[0_0_15px_rgba(0,242,254,0.1)] active:scale-95 transition-all font-medium cursor-pointer select-none;
+    @apply px-5 py-2.5 bg-surface-card hover:bg-surface-elevated text-slate-200 border border-white/10 hover:border-white/20 rounded-xl active:scale-95 transition-all font-medium cursor-pointer select-none;
   }
 
   .text-glow-cyan {
-    text-shadow: 0 0 15px rgba(0, 242, 254, 0.6), 0 0 30px rgba(0, 242, 254, 0.3);
+    text-shadow: 0 0 12px rgba(34, 211, 238, 0.2);
   }
 
   .glow-box-cyan {
-    box-shadow: 0 0 25px rgba(0, 242, 254, 0.35);
+    box-shadow: 0 0 18px rgba(34, 211, 238, 0.12);
   }
 }
 

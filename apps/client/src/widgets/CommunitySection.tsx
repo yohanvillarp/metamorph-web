@@ -136,13 +136,13 @@ export function CommunitySection() {
         )}
 
         {/* Discord Community Callout Card */}
-        <div className="mb-12 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-[#0c1326] via-[#080d19] to-[#06090e] border border-[#5865F2]/40 shadow-[0_0_35px_rgba(88,101,242,0.12)] relative overflow-hidden group">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-[#5865F2]/10 blur-[90px] rounded-full pointer-events-none -mr-20 -mt-20 group-hover:bg-[#5865F2]/20 transition-all duration-700" />
+        <div className="mb-12 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-[#0c0f1a] via-[#090b14] to-[#07080c] border border-white/10 hover:border-[#5865F2]/40 shadow-xl relative overflow-hidden group transition-all duration-300">
+          <div className="absolute top-0 right-0 w-72 h-72 bg-[#5865F2]/5 blur-[80px] rounded-full pointer-events-none -mr-16 -mt-16 group-hover:bg-[#5865F2]/10 transition-all duration-700" />
           
           <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#5865F2]/20 border border-[#5865F2]/40 text-[#a5b4fc] text-xs font-mono uppercase tracking-wider mb-3">
-                <MessageSquare size={14} className="text-[#818cf8]" />
+              <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-[#5865F2]/10 border border-[#5865F2]/25 text-[#a5b4fc] text-[11px] font-mono uppercase tracking-wider mb-3">
+                <MessageSquare size={13} className="text-[#818cf8]" />
                 Official Community Server
               </div>
               <h3 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight mb-2">
@@ -151,11 +151,11 @@ export function CommunitySection() {
               <p className="text-slate-300 text-sm md:text-base leading-relaxed mb-4">
                 Connect directly with core maintainers and framework engineers. Get real-time help with migrations, propose new AST catalogs, and share migration benchmarks.
               </p>
-              <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400">
-                <span className="px-2.5 py-1 rounded-md bg-[#050811] border border-slate-800 text-cyan-300">#migration-help</span>
-                <span className="px-2.5 py-1 rounded-md bg-[#050811] border border-slate-800 text-teal-300">#agent-dev</span>
-                <span className="px-2.5 py-1 rounded-md bg-[#050811] border border-slate-800 text-indigo-300">#showcase</span>
-                <span className="px-2.5 py-1 rounded-md bg-[#050811] border border-slate-800 text-slate-400">#feedback</span>
+              <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
+                <span className="px-2.5 py-1 rounded-md bg-[#080a11] border border-white/10 text-slate-300 hover:text-white transition-colors">#migration-help</span>
+                <span className="px-2.5 py-1 rounded-md bg-[#080a11] border border-white/10 text-slate-300 hover:text-white transition-colors">#agent-dev</span>
+                <span className="px-2.5 py-1 rounded-md bg-[#080a11] border border-white/10 text-slate-300 hover:text-white transition-colors">#showcase</span>
+                <span className="px-2.5 py-1 rounded-md bg-[#080a11] border border-white/10 text-slate-300 hover:text-white transition-colors">#feedback</span>
               </div>
             </div>
 
@@ -164,11 +164,11 @@ export function CommunitySection() {
                 href={PROJECT_LINKS.discord}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full md:w-auto px-6 py-3.5 rounded-xl bg-[#5865F2] hover:bg-[#4752c4] text-white font-semibold text-sm transition-all shadow-[0_0_20px_rgba(88,101,242,0.4)] hover:shadow-[0_0_30px_rgba(88,101,242,0.6)] flex items-center justify-center gap-2.5 group/btn"
+                className="w-full md:w-auto px-5 py-3 rounded-xl bg-[#5865F2] hover:bg-[#4752c4] text-white font-semibold text-sm transition-all shadow-md hover:shadow-[0_0_20px_rgba(88,101,242,0.35)] flex items-center justify-center gap-2.5 group/btn cursor-pointer"
               >
-                <img src="/discord.svg" alt="Discord" className="w-5 h-5 object-contain invert brightness-200 transition-transform group-hover/btn:scale-110" />
+                <img src="/discord.svg" alt="Discord" className="w-4 h-4 object-contain brightness-200 transition-transform group-hover/btn:scale-105" />
                 <span>Join Discord Community</span>
-                <ExternalLink size={16} />
+                <ExternalLink size={15} />
               </a>
             </div>
           </div>

@@ -9,10 +9,10 @@ export function Button({ className, variant = 'primary', ...props }: ButtonProps
   const baseStyles = "px-6 py-3 rounded-lg font-semibold transition-all duration-300 backdrop-blur-md flex items-center justify-center gap-2 select-none";
   
   const variants = {
-    primary: "bg-neo-primary/90 hover:bg-neo-primary text-white border border-blue-400/50 shadow-[0_0_15px_rgba(59,130,246,0.4)] hover:shadow-[0_0_25px_rgba(59,130,246,0.6)]",
-    secondary: "bg-neo-surface text-neo-text border border-neo-border hover:bg-white/5",
-    purple: "bg-purple-500/90 hover:bg-purple-500 text-white border border-purple-400/50 shadow-[0_0_15px_rgba(168,85,247,0.4)]",
-    outline: "bg-transparent text-neo-accent border border-neo-accent/50 hover:bg-neo-accent/10",
+    primary: "bg-cyan-400 hover:bg-cyan-300 text-slate-950 border border-cyan-300/50 shadow-[0_0_15px_rgba(34,211,238,0.2)] hover:shadow-[0_0_20px_rgba(34,211,238,0.35)] font-bold tracking-wide",
+    secondary: "bg-[#0d0f17] text-slate-200 border border-white/10 hover:border-white/20 hover:bg-[#131622] hover:text-white font-medium",
+    purple: "bg-[#5865F2]/20 hover:bg-[#5865F2] text-white border border-[#5865F2]/40 shadow-sm transition-all",
+    outline: "bg-transparent text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500/10",
   };
 
   return (
