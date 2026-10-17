@@ -52,14 +52,9 @@ export function LandingHeader() {
               className="relative w-7 h-7 sm:w-8 sm:h-8 object-contain drop-shadow-[0_0_10px_rgba(0,242,254,0.35)]" 
             />
           </motion.div>
-          <div className="flex items-center gap-2">
-            <span className="font-bold text-base sm:text-lg tracking-tight text-white group-hover:text-cyan-200 transition-colors">
-              Metamorph
-            </span>
-            <span className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-mono font-medium text-cyan-300/90 bg-cyan-950/60 border border-cyan-500/20">
-              v2.3
-            </span>
-          </div>
+          <span className="font-bold text-base sm:text-lg tracking-tight text-white group-hover:text-cyan-200 transition-colors">
+            Metamorph
+          </span>
         </Link>
       </div>
 
