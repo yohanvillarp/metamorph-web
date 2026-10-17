@@ -118,9 +118,9 @@ export function HeroSection() {
 
   return (
     <section id="hero" className="relative flex flex-col items-center justify-start px-4 pt-16 sm:pt-20 md:pt-24 pb-20 overflow-hidden">
-      {/* Background Cybernetic Radial Glows */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[500px] bg-cyan-500/5 blur-[160px] rounded-full pointer-events-none" />
-      <div className="absolute top-1/3 left-1/4 w-[350px] h-[350px] bg-blue-600/5 blur-[140px] rounded-full pointer-events-none" />
+      {/* Background Cybernetic Radial Glows (Logo 1 Fluid Wings Palette) */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[550px] bg-[#00f2fe]/10 blur-[170px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-[#0284c7]/20 blur-[150px] rounded-full pointer-events-none" />
 
       <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
         {/* Main Headings */}
@@ -131,7 +131,7 @@ export function HeroSection() {
         >
           <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-5 leading-[1.08] text-white max-w-4xl mx-auto">
             The AI Multi-Agent <br />
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-100 to-cyan-400">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-[#7df9ff] to-[#00f2fe] drop-shadow-[0_0_40px_rgba(0,242,254,0.35)]">
               Framework Migration Swarm.
             </span>
           </h1>

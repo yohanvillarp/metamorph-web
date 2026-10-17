@@ -30,30 +30,30 @@
 
 @layer base {
   :root {
-    /* Modular Deep Titanium & Electric Cyan Palette */
-    --surface-base: #07080c;
-    --surface-card: #0c0e17;
-    --surface-elevated: #111420;
-    --surface-overlay: #161a29;
+    /* Fluid Aerodynamic (Logo 1) Palette: Electric Cyan & Ocean Cobalt */
+    --surface-base: #050811;
+    --surface-card: #090e1a;
+    --surface-elevated: #0e1628;
+    --surface-overlay: #131e36;
     
     --border-subtle: rgba(255, 255, 255, 0.08);
-    --border-accent: rgba(34, 211, 238, 0.35);
+    --border-accent: rgba(0, 242, 254, 0.45);
 
-    --accent-cyan: #22d3ee;
-    --accent-cyan-hover: #06b6d4;
+    --accent-cyan: #00f2fe;
+    --accent-cyan-hover: #38bdf8;
     --accent-discord: #5865F2;
 
-    --neo-bg: #07080c;
+    --neo-bg: #050811;
     --neo-text: #f8fafc;
     --neo-text-muted: #94a3b8;
-    --neo-border: rgba(255, 255, 255, 0.08);
-    --neo-shadow: rgba(34, 211, 238, 0.08);
-    --neo-surface: #0c0e17;
-    --neo-primary: #22d3ee;
-    --neo-primary-text: #07080c;
-    --neo-accent: #22d3ee;
-    --neo-cyan: #22d3ee;
-    --neo-cyan-glow: rgba(34, 211, 238, 0.2);
+    --neo-border: rgba(0, 242, 254, 0.15);
+    --neo-shadow: rgba(0, 242, 254, 0.2);
+    --neo-surface: #090e1a;
+    --neo-primary: #00f2fe;
+    --neo-primary-text: #050811;
+    --neo-accent: #0284c7;
+    --neo-cyan: #00f2fe;
+    --neo-cyan-glow: rgba(0, 242, 254, 0.35);
   }
 
   html {
@@ -61,12 +61,12 @@
   }
 
   ::selection {
-    background-color: rgba(6, 182, 212, 0.3);
+    background-color: rgba(0, 242, 254, 0.35);
     color: #ffffff;
   }
 
   ::-moz-selection {
-    background-color: rgba(6, 182, 212, 0.3);
+    background-color: rgba(0, 242, 254, 0.35);
     color: #ffffff;
   }
 
@@ -74,10 +74,11 @@
     @apply bg-surface-base text-neo-text font-sans antialiased;
     margin: 0;
     min-height: 100vh;
-    background-color: #07080c;
+    background-color: #050811;
     background-image: 
-      radial-gradient(ellipse 70% 35% at 50% -5%, rgba(34, 211, 238, 0.05), transparent),
-      radial-gradient(circle at 100% 25%, rgba(6, 182, 212, 0.02), transparent 40%);
+      radial-gradient(ellipse 85% 45% at 50% -10%, rgba(0, 242, 254, 0.12), transparent 70%),
+      radial-gradient(circle at 100% 30%, rgba(2, 132, 199, 0.1), transparent 50%),
+      radial-gradient(circle at 0% 70%, rgba(0, 242, 254, 0.06), transparent 45%);
   }
 
   :focus-visible {

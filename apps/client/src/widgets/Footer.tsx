@@ -31,10 +31,9 @@ export function Footer() {
                   <span className="font-extrabold text-lg text-white group-hover:text-slate-100 transition-colors">
                     Meta
                   </span>
-                  <span className="font-black text-lg bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-cyan-300 to-teal-300 group-hover:drop-shadow-[0_0_12px_rgba(0,242,254,0.6)] transition-all">
+                  <span className="font-black text-lg bg-clip-text text-transparent bg-gradient-to-r from-[#00f2fe] via-cyan-300 to-[#0284c7] group-hover:drop-shadow-[0_0_12px_rgba(0,242,254,0.6)] transition-all">
                     mørph
                   </span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 ml-1 shadow-[0_0_8px_rgba(0,242,254,0.9)]" />
                 </div>
                 <span className="text-[11px] font-mono text-cyan-400/80 -mt-0.5">
                   Autonomous Migration Swarm
