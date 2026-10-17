@@ -29,7 +29,7 @@ export function LandingHeader() {
   };
 
   return (
-    <header className="fixed top-0 w-full z-40 backdrop-blur-xl bg-[#06090e]/80 border-b border-cyan-500/10 py-3 px-4 sm:px-6 md:px-10 flex justify-between items-center h-20 transition-all">
+    <header className="fixed top-0 w-full z-50 backdrop-blur-xl bg-[#07080c]/90 border-b border-white/5 py-3 px-4 sm:px-6 md:px-10 flex justify-between items-center h-20 transition-all">
       {/* Brand & Logo */}
       <div className="flex items-center gap-4 sm:gap-6">
         <Link 
@@ -64,7 +64,7 @@ export function LandingHeader() {
       </div>
 
       {/* Center Landing Navigation (Anchors) - Mathematically Centered Floating Dock */}
-      <nav className="hidden md:flex items-center gap-1 md:absolute md:left-1/2 md:-translate-x-1/2 bg-[#090f1d]/90 border border-cyan-500/20 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-[0_0_25px_rgba(0,242,254,0.08)]">
+      <nav className="hidden md:flex items-center gap-1 md:absolute md:left-1/2 md:-translate-x-1/2 bg-[#0c0e17]/95 border border-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-lg">
         <button
           onClick={() => scrollToSection('swarm')}
           className="px-3 py-1 rounded-full text-xs font-mono text-slate-300 hover:text-cyan-300 hover:bg-white/5 transition-all cursor-pointer"

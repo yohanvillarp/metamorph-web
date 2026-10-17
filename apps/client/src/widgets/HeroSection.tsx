@@ -93,7 +93,7 @@ export function HeroSection() {
   };
 
   return (
-    <section id="hero" className="relative min-h-[90vh] flex flex-col items-center justify-center px-4 pt-4 pb-20 overflow-hidden">
+    <section id="hero" className="relative flex flex-col items-center justify-start px-4 pt-10 sm:pt-14 md:pt-16 pb-20 overflow-hidden">
       {/* Background Cybernetic Radial Glows */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[500px] bg-cyan-500/5 blur-[160px] rounded-full pointer-events-none" />
       <div className="absolute top-1/3 left-1/4 w-[350px] h-[350px] bg-blue-600/5 blur-[140px] rounded-full pointer-events-none" />

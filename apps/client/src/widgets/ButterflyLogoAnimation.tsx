@@ -17,17 +17,17 @@ export function ButterflyLogoAnimation({ className = "w-72 h-72" }: { className?
           opacity: isHovered ? [0.6, 0.9, 0.75] : [0.3, 0.5, 0.3],
         }}
         transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-        className="absolute inset-0 bg-gradient-to-r from-cyan-500/30 via-[#00f2fe]/40 to-cyan-400/25 blur-3xl rounded-full pointer-events-none"
+        className="absolute inset-0 bg-gradient-to-r from-cyan-500/15 via-cyan-400/20 to-teal-400/15 blur-xl rounded-full pointer-events-none"
       />
 
       {/* Cyber Polygon Geometric Ambient Mesh */}
       <motion.div
         animate={{ rotate: [0, 360] }}
         transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
-        className="absolute -inset-10 border border-cyan-500/10 rounded-full pointer-events-none"
+        className="absolute -inset-2 border border-cyan-500/15 rounded-full pointer-events-none"
         style={{
-          backgroundImage: 'radial-gradient(circle, rgba(0,242,254,0.15) 1px, transparent 1px)',
-          backgroundSize: '24px 24px',
+          backgroundImage: 'radial-gradient(circle, rgba(0,242,254,0.12) 1px, transparent 1px)',
+          backgroundSize: '16px 16px',
         }}
       />
 
