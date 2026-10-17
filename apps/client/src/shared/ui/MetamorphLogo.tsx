@@ -431,74 +431,8 @@ export function MetamorphLogo({
         );
 
       case 9:
-        // Model 9: Layered Wing Petals (Multi-Depth Shards)
-        return (
-          <>
-            <defs>
-              <linearGradient id={`${pId}-petal`} x1="20" y1="20" x2="180" y2="170" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor={p.accent} />
-                <stop offset="40%" stopColor={p.primary} />
-                <stop offset="100%" stopColor={p.secondary} />
-              </linearGradient>
-            </defs>
-            {/* Left Lower Petal */}
-            <path
-              d="M96 102 C74 114 46 126 44 146 C42 164 66 170 82 156 C94 144 96 122 96 102 Z"
-              fill={p.secondary}
-              fillOpacity="0.5"
-              stroke={p.primary}
-              strokeWidth="1.2"
-            />
-            {/* Left Mid Petal */}
-            <path
-              d="M96 86 C70 68 38 76 28 94 C20 110 44 120 66 116 C84 112 94 96 96 86 Z"
-              fill={p.secondary}
-              fillOpacity="0.65"
-              stroke={p.secondary}
-              strokeWidth="1.2"
-            />
-            {/* Left Top Petal */}
-            <path
-              d="M96 76 C80 44 54 24 28 32 C14 38 16 62 34 80 C52 98 82 94 96 76 Z"
-              fill={`url(#${pId}-petal)`}
-              stroke={p.accent}
-              strokeWidth="1.5"
-            />
-            {/* Right Lower Petal */}
-            <path
-              d="M104 102 C126 114 154 126 156 146 C158 164 134 170 118 156 C106 144 104 122 104 102 Z"
-              fill={p.secondary}
-              fillOpacity="0.5"
-              stroke={p.primary}
-              strokeWidth="1.2"
-            />
-            {/* Right Mid Petal */}
-            <path
-              d="M104 86 C130 68 162 76 172 94 C180 110 156 120 134 116 C116 112 106 96 104 86 Z"
-              fill={p.secondary}
-              fillOpacity="0.65"
-              stroke={p.secondary}
-              strokeWidth="1.2"
-            />
-            {/* Right Top Petal */}
-            <path
-              d="M104 76 C120 44 146 24 172 32 C186 38 184 62 166 80 C148 98 118 94 104 76 Z"
-              fill={`url(#${pId}-petal)`}
-              stroke={p.accent}
-              strokeWidth="1.5"
-            />
-            {/* Spine & Antennas */}
-            <path d="M100 48 C102 70 102 125 100 152 C98 125 98 70 100 48 Z" fill={p.accent} />
-            <path d="M98 48 Q94 34 84 28" stroke={p.primary} strokeWidth="1.5" strokeLinecap="round" fill="none" />
-            <path d="M102 48 Q106 34 116 28" stroke={p.primary} strokeWidth="1.5" strokeLinecap="round" fill="none" />
-            <circle cx="84" cy="28" r="1.5" fill={p.accent} />
-            <circle cx="116" cy="28" r="1.5" fill={p.accent} />
-          </>
-        );
-
-      case 10:
       default:
-        // Model 10: Monoline Flight Contour (Minimalist Continuous Line)
+        // Model 9: Monoline Flight Contour (Minimalist Continuous Line)
         return (
           <>
             <defs>

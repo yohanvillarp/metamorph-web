@@ -85,20 +85,11 @@ export const LOGO_OPTIONS: LogoOption[] = [
     highlights: ['Organic code brackets in wing shape', 'Subtle developer-centric metaphor', 'Crisp stroke definition'],
   },
   {
-    id: 'v9-layered-shards',
+    id: 'v9-monoline-flight',
     modelId: 9,
-    name: 'Concept 9: Layered Wing Petals',
-    concept: 'Multi-Depth Translucent Shards',
-    path: '/logos/metamorph-v9-layered-shards.svg',
-    description: 'Cascading translucent curved wing feathers per side, simulating the optical depth of flapping wings during flight.',
-    highlights: ['3-petal translucent layering', 'Optical flight depth', 'Rich cyan-teal color transitions'],
-  },
-  {
-    id: 'v10-monoline-flight',
-    modelId: 10,
-    name: 'Concept 10: Monoline Flight Contour',
+    name: 'Concept 9: Monoline Flight Contour',
     concept: 'Apple & Linear Style Minimalist Vector',
-    path: '/logos/metamorph-v10-monoline-flight.svg',
+    path: '/logos/metamorph-v9-monoline-flight.svg',
     description: 'A pure, continuous 2.5px vector line contour forming the quintessential butterfly silhouette with delicate inner accents and glowing nodes.',
     highlights: ['Clean continuous monoline stroke', 'Zero visual weight or noise', 'Superb dark-mode contrast'],
   },
@@ -131,7 +122,7 @@ export function useActiveLogo(): [
       const savedModel = localStorage.getItem(STORAGE_KEY_MODEL);
       if (savedModel) {
         const parsed = parseInt(savedModel, 10);
-        if (parsed >= 1 && parsed <= 10) return parsed;
+        if (parsed >= 1 && parsed <= 9) return parsed;
       }
       const savedPath = localStorage.getItem(STORAGE_KEY_LOGO);
       if (savedPath) {

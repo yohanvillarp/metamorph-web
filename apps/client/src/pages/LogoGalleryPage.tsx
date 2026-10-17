@@ -108,8 +108,8 @@ export function LogoGalleryPage() {
   return (
     <main className="min-h-screen bg-[#06090e] text-slate-100 pt-24 pb-28 px-4 sm:px-6 md:px-12 selection:bg-cyan-500/30 selection:text-white">
       <SEOHead
-        title="Metamorph Logo Studio | 10 Vector Models & Live Color Customization"
-        description="Explore 10 handcrafted vector SVG logo concepts with live dynamic color palette testing, multi-scale rendering, and instant whole-site activation."
+        title="Metamorph Logo Studio | 9 Vector Models & Live Color Customization"
+        description="Explore 9 handcrafted vector SVG logo concepts with live dynamic color palette testing, multi-scale rendering, and instant whole-site activation."
       />
 
       <div className="max-w-6xl mx-auto">
@@ -125,7 +125,7 @@ export function LogoGalleryPage() {
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2 text-xs font-mono text-slate-400 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">
               <Sparkles size={12} className="text-cyan-400" />
-              <span>10 Mathematically Symmetrical Vector Models</span>
+              <span>9 Mathematically Symmetrical Vector Models</span>
             </div>
           </div>
         </div>
@@ -137,10 +137,10 @@ export function LogoGalleryPage() {
             BRAND IDENTITY & VECTOR STUDIO
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
-            Metamorph 10-Model Logo Suite
+            Metamorph 9-Model Logo Suite
           </h1>
           <p className="text-slate-300 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-            Ten distinct butterfly architectures engineered with proportional forewings, streamlined chrysalises, and pure bezier lift. Test any color palette live below.
+            Nine distinct butterfly architectures engineered with proportional forewings, streamlined chrysalises, and pure bezier lift. Test any color palette live below.
           </p>
         </div>
 
