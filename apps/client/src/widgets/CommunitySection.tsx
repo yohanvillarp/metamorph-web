@@ -1,5 +1,4 @@
 import {
-  Users,
   GitPullRequest,
   Heart,
   ExternalLink,
@@ -43,10 +42,6 @@ export function CommunitySection() {
       <div className="max-w-6xl mx-auto px-4 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/70 border border-cyan-500/30 text-cyan-300 text-xs font-mono uppercase tracking-wider mb-4">
-            <Users size={14} className="text-cyan-400" />
-            Metamorph Core Ecosystem
-          </div>
           <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4 font-sans">
             Powered by{' '}
             <span className="bg-gradient-to-r from-cyan-400 via-teal-300 to-cyan-200 bg-clip-text text-transparent">

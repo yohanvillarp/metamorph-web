@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ShieldCheck, Sparkles, CheckCircle2, Layers } from 'lucide-react';
+import { ShieldCheck, CheckCircle2, Layers } from 'lucide-react';
 
 interface CodeExample {
   id: string;
@@ -157,10 +157,6 @@ export function CodeTransformationDemo() {
 
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-mono uppercase tracking-wider mb-4">
-            <Sparkles size={14} className="text-cyan-400" />
-            Semantic AST Transformation
-          </div>
           <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
             Not Regex. Not Naive Codemods. <br />
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-400">

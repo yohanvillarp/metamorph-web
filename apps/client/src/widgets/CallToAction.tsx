@@ -7,7 +7,7 @@ import { ROUTES, PROJECT_LINKS } from '@/shared/config';
 
 export function CallToAction() {
   const [copied, setCopied] = useState(false);
-  const command = 'npm install -g @nikelyh/metamorph';
+  const command = 'npx @nikelyh/metamorph run';
 
   const handleCopy = () => {
     navigator.clipboard.writeText(command);
@@ -16,9 +16,9 @@ export function CallToAction() {
   };
 
   return (
-    <section className="py-32 px-4 relative overflow-hidden bg-[#06090e] border-t border-cyan-500/10">
+    <section className="py-28 px-4 relative overflow-hidden bg-surface-base border-t border-white/5">
       {/* Background Cyan Radial Halos */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-cyan-500/15 blur-[160px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-cyan-500/5 blur-[160px] rounded-full pointer-events-none" />
       
       <div className="max-w-4xl mx-auto relative z-10 text-center">
         <motion.div
@@ -27,26 +27,23 @@ export function CallToAction() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/70 border border-cyan-500/40 text-cyan-300 text-xs font-mono uppercase tracking-wider mb-6">
-            Autonomous Evolution
-          </div>
-          <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-5 tracking-tight">
             Ready to Metamorphose <br />
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-200 to-cyan-300 text-glow-cyan">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-100 to-cyan-400">
               Your Entire Stack?
             </span>
           </h2>
-          <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
             Eliminate months of manual rewrites and regression hunting. Deploy the Mozaik v4 agent swarm inside a zero-risk shadow workspace today.
           </p>
           
-          <div className="inline-block p-1 rounded-2xl bg-gradient-to-r from-cyan-500/40 via-teal-400/30 to-blue-500/40 mb-10 shadow-[0_0_30px_rgba(0,242,254,0.2)]">
-            <div className="flex items-center justify-between gap-4 px-6 py-4 bg-[#070b13] rounded-xl font-mono text-sm sm:text-base text-slate-200">
+          <div className="inline-block p-0.5 rounded-xl bg-gradient-to-r from-cyan-500/20 via-white/5 to-teal-500/20 border border-white/10 mb-8 shadow-lg">
+            <div className="flex items-center justify-between gap-4 px-5 py-3 bg-[#0a0d16] rounded-[10px] font-mono text-sm sm:text-base text-slate-200">
               <span className="text-cyan-400 flex items-center gap-2">
-                <Terminal size={18} />
-                <span className="text-slate-500">$</span>
+                <Terminal size={17} />
+                <span className="text-slate-500 select-none mr-1 font-bold">$</span>
               </span>
-              <span className="text-slate-100 font-semibold">{command}</span>
+              <span className="text-cyan-200 font-semibold">{command}</span>
               <button
                 onClick={handleCopy}
                 className="ml-4 p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition-colors cursor-pointer"

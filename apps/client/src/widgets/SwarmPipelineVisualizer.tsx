@@ -9,7 +9,6 @@ import {
   Wrench, 
   FileSpreadsheet, 
   RefreshCw, 
-  Zap,
   Activity
 } from 'lucide-react';
 
@@ -142,10 +141,6 @@ export function SwarmPipelineVisualizer() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/70 border border-cyan-500/40 text-cyan-300 text-xs font-mono uppercase tracking-wider mb-4 shadow-[0_0_15px_rgba(0,242,254,0.2)]">
-            <Zap size={14} className="text-cyan-400" />
-            Mozaik v4 Event-Driven Swarm
-          </div>
           <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
             Autonomous 8-Agent Swarm <br />
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-300 to-sky-400">
