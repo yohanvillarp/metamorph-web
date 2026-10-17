@@ -154,7 +154,7 @@ export function SupportedTech() {
             {[
               { id: 'all', label: 'All Migrations', count: allMigrations.length },
               { id: 'frontend', label: 'Frontend (React, Next, Vue, Svelte, Angular)', count: allMigrations.filter(m => m.isFrontend).length },
-              { id: 'backend', label: 'Backend (Express, Fastify, NestJS)', count: allMigrations.filter(m => !m.isFrontend).length },
+              { id: 'backend', label: 'Backend (Express, Fastify, NestJS, Hono)', count: allMigrations.filter(m => !m.isFrontend).length },
             ].map((tab) => (
               <button
                 key={tab.id}

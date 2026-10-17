@@ -10,8 +10,8 @@ export const BackendMigrationsPage = () => {
     <div className="max-w-4xl">
       <SEOHead
         title="Backend Framework Migrations | Metamorph Matrix"
-        description="Automated backend framework migrations across Express, Fastify, and NestJS with dependency scaffolding and lifecycle adaptation."
-        keywords="express to fastify, express to nestjs, fastify to nestjs, backend migration, nodejs framework migration"
+        description="Automated backend framework migrations across Express, Fastify, NestJS, and Hono with dependency scaffolding and lifecycle adaptation."
+        keywords="express to fastify, express to nestjs, express to hono, fastify to hono, nestjs to hono, backend migration, nodejs framework migration"
       />
       <div className="mb-12">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/70 border border-cyan-500/40 text-cyan-300 text-xs font-mono uppercase tracking-wider mb-4">
@@ -22,7 +22,7 @@ export const BackendMigrationsPage = () => {
           Backend Framework Migrations
         </h1>
         <p className="text-lg text-slate-300 leading-relaxed">
-          Explore the fully supported migration paths for your backend architecture. Metamorph provides automated, zero-risk transitions between <strong className="text-white">Express</strong>, <strong className="text-white">Fastify</strong>, and <strong className="text-white">NestJS</strong> with manual DI vs IoC resolution and request lifecycle adaptation.
+          Explore the fully supported migration paths for your backend architecture. Metamorph provides automated, zero-risk transitions between <strong className="text-white">Express</strong>, <strong className="text-white">Fastify</strong>, <strong className="text-white">NestJS</strong>, and <strong className="text-white">Hono</strong> with manual DI vs IoC resolution and request lifecycle adaptation.
         </p>
       </div>
 

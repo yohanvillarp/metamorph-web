@@ -16,7 +16,7 @@ import { PROJECT_LINKS } from '@/shared/config';
 const CONTRIBUTION_AREAS = [
   {
     title: 'Migration Rules & Catalogs',
-    desc: 'Add new framework pairs or expand existing AST transformations across React, Next.js, Fastify, and NestJS.',
+    desc: 'Add new framework pairs or expand existing AST transformations across React, Next.js, Fastify, NestJS, and Hono.',
     icon: Code2,
   },
   {

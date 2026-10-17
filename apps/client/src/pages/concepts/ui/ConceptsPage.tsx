@@ -294,12 +294,12 @@ export const ConceptsPage = () => {
           8. Backend Target Structural Validation Parity
         </h2>
         <p className="text-slate-300 mb-4 leading-relaxed">
-          Backend server migrations require rigorous architectural assertions matching modern frontend framework rigor. Metamorph integrates dedicated validation plugins (<code className="text-cyan-300 font-mono text-xs">target-express</code>, <code className="text-cyan-300 font-mono text-xs">target-fastify</code>, <code className="text-cyan-300 font-mono text-xs">target-nestjs</code>):
+          Backend server migrations require rigorous architectural assertions matching modern frontend framework rigor. Metamorph integrates dedicated validation plugins (<code className="text-cyan-300 font-mono text-xs">target-express</code>, <code className="text-cyan-300 font-mono text-xs">target-fastify</code>, <code className="text-cyan-300 font-mono text-xs">target-nestjs</code>, <code className="text-cyan-300 font-mono text-xs">target-hono</code>):
         </p>
         <ul className="list-disc pl-6 space-y-2 text-slate-300 mb-6 text-sm">
           <li><strong>Adaptive Entrypoint Resolution:</strong> Dynamically locates bootstrap files (<code className="text-slate-400 font-mono">src/app.ts</code>, <code className="text-slate-400 font-mono">server.ts</code>, <code className="text-slate-400 font-mono">src/main.ts</code>) and configures dev/start scripts automatically.</li>
-          <li><strong>Structural AST Assertions:</strong> IntegrationAgent executes deep AST verification to validate dependency injection decorators, route registration, and middleware adaptors.</li>
-          <li><strong>Target Repair Heuristics:</strong> When compilation fails inside the shadow workspace, target-specific heuristics generate surgical repair hints for the worker swarm.</li>
+          <li><strong>Structural AST Assertions:</strong> IntegrationAgent executes deep AST verification to validate dependency injection decorators, route registration, middleware adaptors, and Context handlers (<code className="text-slate-400 font-mono">c.json()</code> vs <code className="text-slate-400 font-mono">res.json()</code>).</li>
+          <li><strong>Target Repair Heuristics:</strong> When compilation fails inside the shadow workspace, target-specific heuristics generate surgical repair hints for the worker swarm (including <code className="text-slate-400 font-mono">@hono/node-server</code> serve bindings).</li>
         </ul>
       </div>
 

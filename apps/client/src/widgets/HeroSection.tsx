@@ -125,7 +125,7 @@ export function HeroSection() {
             </span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-slate-400 mb-10 max-w-3xl mx-auto font-light leading-relaxed">
-            Automate architectural shifts across <strong className="text-white">React, Next.js, Vue, Svelte, Angular, Express, Fastify</strong> and <strong className="text-white">NestJS</strong>. 
+            Automate architectural shifts across <strong className="text-white">React, Next.js, Vue, Svelte, Angular, Express, Fastify, NestJS</strong> and <strong className="text-white">Hono</strong>. 
             Powered by Mozaik v4 agents operating inside an isolated sandbox—your original codebase remains completely untouched until verified.
           </p>
 
