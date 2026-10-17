@@ -144,13 +144,13 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-5 leading-[1.08] text-white max-w-4xl mx-auto">
-            Migrate Entire Frameworks <br />
+            The AI Multi-Agent <br />
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-100 to-cyan-400">
-              in Minutes, Not Months.
+              Framework Migration Swarm.
             </span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-slate-300 mb-8 max-w-2xl mx-auto font-normal leading-relaxed">
-            Automate complex architectural shifts across <strong className="text-white">React, Next.js, Vue, Svelte, Angular, Express, Fastify, NestJS</strong> and <strong className="text-white">Hono</strong> with an autonomous multi-agent swarm and closed-loop verification.
+            Automate complex architectural shifts across <strong className="text-white">React, Next.js, Vue, Svelte, Angular, Express, Fastify, NestJS</strong> and <strong className="text-white">Hono</strong> with semantic AST refactoring and closed-loop build verification.
           </p>
 
           {/* PRIMARY QUICK-START COMMAND DOCK (Unified Terminal Card) */}
