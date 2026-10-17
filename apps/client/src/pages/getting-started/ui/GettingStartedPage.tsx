@@ -1,5 +1,5 @@
 import { CodeBlock } from '@/shared/ui/CodeBlock';
-import { Key, ShieldCheck, PlayCircle, ExternalLink, Package } from 'lucide-react';
+import { Key, ShieldCheck, PlayCircle, ExternalLink, Package, PackageCheck, Sparkles } from 'lucide-react';
 import { SEOHead } from '@/shared/ui/SEOHead';
 
 export const GettingStartedPage = () => {
@@ -73,8 +73,7 @@ npx @nikelyh/metamorph run`}
           <span>2. Configure Your API Key</span>
         </h2>
         <p className="text-slate-300 mb-4 text-sm leading-relaxed">
-          Metamorph blocks execution upfront if no API key is detected, preventing your swarm from halting mid-flight. 
-          Create a <code className="text-cyan-300 font-mono">.env</code> file in your project directory or export it in your shell:
+          When executing live inference, Metamorph requires an LLM API key. Create a <code className="text-cyan-300 font-mono">.env</code> file in your project directory or export it in your shell:
         </p>
         <CodeBlock 
           code={`# In your project .env file
@@ -86,6 +85,12 @@ export OPENAI_API_KEY="sk-..."
 # Or directly in PowerShell (Windows):
 $env:OPENAI_API_KEY="sk-..."`} 
         />
+        <div className="mt-4 p-3.5 rounded-xl bg-cyan-950/30 border border-cyan-500/30 text-xs text-slate-300 flex items-start gap-2.5">
+          <Sparkles size={16} className="text-cyan-400 flex-shrink-0 mt-0.5" />
+          <p className="leading-relaxed">
+            <strong className="text-cyan-300">Zero-Cost Offline Runs:</strong> You can test the full swarm completely offline with zero external API credentials and $0.00 spend using the deterministic mock provider: <code className="text-cyan-300 font-mono">metamorph run --mock</code>.
+          </p>
+        </div>
       </div>
 
       {/* Configuration Wizard */}
@@ -110,14 +115,15 @@ $env:OPENAI_API_KEY="sk-..."`}
         <CodeBlock code="cd my-legacy-project\nmetamorph run" />
         
         <p className="text-slate-300 my-4 text-sm leading-relaxed">
-          The <strong className="text-white">Project Intelligence Engine (PIE)</strong> scans your project, detects technologies (e.g. Express, React, NestJS), and prompts you with valid migration paths. 
-          You can also specify source and destination explicitly:
+          The <strong className="text-white">Project Intelligence Engine (PIE)</strong> scans your project, detects technologies (e.g. Express, React, NestJS, Hono), and prompts you with valid migration paths. 
+          You can also preview the plan without making changes using <code className="text-cyan-300 font-mono">--dry-run</code>:
         </p>
-        <CodeBlock code="metamorph run --from react --to next" />
+        <CodeBlock code="# Preview plan without executing inference or modifying files\nmetamorph run --from express --to hono --dry-run\n\n# Or execute directly with explicit targets\nmetamorph run --from react --to next" />
 
         <div className="mt-6 p-4 rounded-xl bg-[#080d17] border border-cyan-500/20 text-xs text-slate-300 space-y-2">
-          <div className="font-mono text-cyan-300 font-bold flex items-center gap-1.5">
-            <span>📦 Monorepo Execution & Workspace Targeting</span>
+          <div className="font-mono text-cyan-300 font-bold flex items-center gap-2">
+            <PackageCheck size={16} className="text-cyan-400" />
+            <span>Monorepo Execution & Workspace Targeting</span>
           </div>
           <p className="text-slate-400 leading-relaxed">
             If executed inside a monorepo (Turborepo, pnpm workspaces, npm/yarn workspaces, or Lerna), Metamorph automatically discovers member packages and allows interactive selection, or direct targeting with <code className="text-cyan-300 font-mono">--workspace &lt;pkg&gt;</code>:
@@ -126,8 +132,9 @@ $env:OPENAI_API_KEY="sk-..."`}
         </div>
 
         <div className="mt-4 p-4 rounded-xl bg-[#080d17] border border-cyan-500/20 text-xs text-slate-300 space-y-2">
-          <div className="font-mono text-cyan-300 font-bold flex items-center gap-1.5">
-            <span>⚡ Polymorphic Package Management (PPME)</span>
+          <div className="font-mono text-cyan-300 font-bold flex items-center gap-2">
+            <Sparkles size={16} className="text-cyan-400" />
+            <span>Polymorphic Package Management (PPME)</span>
           </div>
           <p className="text-slate-400 leading-relaxed">
             Metamorph dynamically adapts to <strong className="text-white">npm</strong>, <strong className="text-white">pnpm</strong>, <strong className="text-white">yarn</strong>, and <strong className="text-white">bun</strong>. Dependency installs and shadow verification builds strictly respect your project lockfile, while host manifests are updated without child process leakage.

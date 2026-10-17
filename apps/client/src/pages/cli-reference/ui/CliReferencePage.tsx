@@ -89,6 +89,16 @@ export const CliReferencePage = () => {
                 <td className="p-3">Default: 2 (e.g. --retries 3)</td>
               </tr>
               <tr>
+                <td className="p-3 text-cyan-300 font-bold">--dry-run</td>
+                <td className="p-3">Preview migration plan, rule sets, and package changes without executing LLM inference or writing files</td>
+                <td className="p-3">Flag (e.g. metamorph run --dry-run)</td>
+              </tr>
+              <tr>
+                <td className="p-3 text-cyan-300 font-bold">--mock</td>
+                <td className="p-3">Run 100% offline with the Deterministic Mock LLM Provider at $0.00 cost with simulated token metrics</td>
+                <td className="p-3">Flag (e.g. metamorph run --mock)</td>
+              </tr>
+              <tr>
                 <td className="p-3 text-cyan-300 font-bold">--integration-rounds &lt;number&gt;</td>
                 <td className="p-3">Maximum shadow build integration rounds</td>
                 <td className="p-3">Default: 4 (e.g. --integration-rounds 2)</td>
@@ -99,10 +109,16 @@ export const CliReferencePage = () => {
 
         <h3 className="text-sm font-semibold text-slate-300 font-mono mb-2">Execution Examples & Cost Optimization:</h3>
         <p className="text-xs text-slate-400 mb-3 leading-relaxed">
-          You can tune execution for maximum speed or minimal token spend using adaptive swarm bypass flags:
+          You can preview plans safely, test offline at zero cost, or tune execution for maximum speed:
         </p>
         <CodeBlock 
-          code={`# Run on a specific monorepo workspace package
+          code={`# Preview migration plan and affected files with zero LLM inference
+metamorph run --from express --to hono --dry-run
+
+# Run completely offline with zero API keys ($0.00 expenditure)
+metamorph run --from express --to fastify --mock
+
+# Run on a specific monorepo workspace package
 metamorph run --workspace apps/client --from react --to next
 
 # Low-cost fast run (disables reviewer & reporter, triggering 0-token fallbacks)

@@ -111,6 +111,22 @@ export const SEARCH_INDEX: SearchItem[] = [
     href: `${ROUTES.DOCS.CLI_REFERENCE}#command-run`,
     keywords: ['concurrency', 'parallel', 'workers', 'queue', 'speed'],
   },
+  {
+    id: 'flag-dry-run',
+    title: '--dry-run',
+    description: 'Previews migration plan, catalogs, and modified files without executing LLM inference or writing changes.',
+    category: 'Flag',
+    href: `${ROUTES.DOCS.CLI_REFERENCE}#command-run`,
+    keywords: ['dry-run', 'preview', 'inspect', 'plan', 'safe', 'static'],
+  },
+  {
+    id: 'flag-mock',
+    title: '--mock',
+    description: 'Enables the Deterministic Mock LLM Provider for 100% offline, zero-cost ($0.00) execution without API keys.',
+    category: 'Flag',
+    href: `${ROUTES.DOCS.CLI_REFERENCE}#command-run`,
+    keywords: ['mock', 'offline', 'testing', 'zero-cost', 'simulate', 'ci', 'free'],
+  },
 
   // Agents
   {
@@ -214,10 +230,18 @@ export const SEARCH_INDEX: SearchItem[] = [
   {
     id: 'arch-backend-parity',
     title: 'Backend Validation Parity',
-    description: 'Shadow verification plugins for Express, Fastify, and NestJS with entrypoint resolution.',
+    description: 'Shadow verification plugins for Express, Fastify, NestJS, and Hono with entrypoint resolution.',
     category: 'Architecture',
     href: `${ROUTES.DOCS.CONCEPTS}#backend-validation`,
-    keywords: ['backend', 'express', 'fastify', 'nestjs', 'validation', 'parity'],
+    keywords: ['backend', 'express', 'fastify', 'nestjs', 'hono', 'validation', 'parity'],
+  },
+  {
+    id: 'arch-diff-viewer',
+    title: 'Shadow Workspace Diff Viewer',
+    description: 'Visual file-level diff inspection tab in Dashboard UI with syntax-highlighted unified diffs.',
+    category: 'Architecture',
+    href: `${ROUTES.DOCS.CLI_REFERENCE}#command-ui`,
+    keywords: ['diff', 'viewer', 'shadow diff', 'unified diff', 'inspection', 'dashboard', 'ui'],
   },
   {
     id: 'arch-cascading-config',
@@ -252,6 +276,30 @@ export const SEARCH_INDEX: SearchItem[] = [
     category: 'Migration',
     href: ROUTES.DOCS.MIGRATIONS.BACKEND,
     keywords: ['express', 'nestjs', 'ioc', 'dependency injection', 'controllers', 'backend'],
+  },
+  {
+    id: 'mig-express-hono',
+    title: 'Express to Hono',
+    description: 'Ultra-fast web standards API migration adapting Express routes to Hono Context and node-server.',
+    category: 'Migration',
+    href: ROUTES.DOCS.MIGRATIONS.BACKEND,
+    keywords: ['express', 'hono', 'web standards', 'node-server', 'backend'],
+  },
+  {
+    id: 'mig-fastify-hono',
+    title: 'Fastify to Hono',
+    description: 'Transition Fastify route plugins to lightweight, web-standards Hono applications.',
+    category: 'Migration',
+    href: ROUTES.DOCS.MIGRATIONS.BACKEND,
+    keywords: ['fastify', 'hono', 'plugins', 'backend'],
+  },
+  {
+    id: 'mig-nestjs-hono',
+    title: 'NestJS to Hono',
+    description: 'Streamline heavyweight NestJS modules and controllers to pure, minimal Hono handlers.',
+    category: 'Migration',
+    href: ROUTES.DOCS.MIGRATIONS.BACKEND,
+    keywords: ['nestjs', 'hono', 'modules', 'controllers', 'backend'],
   },
   {
     id: 'community-discord',

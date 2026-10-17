@@ -106,7 +106,7 @@ export const OverviewPage = () => {
               Real-Time UI & Git Exporter
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Monitor agents live with <code className="text-cyan-300 font-mono">metamorph ui</code> and export verified builds to clean Git branches with <code className="text-cyan-300 font-mono">metamorph apply</code>.
+              Monitor agents live with <code className="text-cyan-300 font-mono">metamorph ui</code> (including the real-time Shadow Diff Viewer) and export verified builds to clean Git branches with <code className="text-cyan-300 font-mono">metamorph apply</code>.
             </p>
           </div>
         </div>
