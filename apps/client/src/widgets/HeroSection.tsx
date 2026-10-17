@@ -97,7 +97,7 @@ const TERMINAL_TABS: TerminalTab[] = [
 
 export function HeroSection() {
   const [selectedPm, setSelectedPm] = usePackageManager();
-  const [commandMode, setCommandMode] = useState<CommandMode>('migrate');
+  const [commandMode, setCommandMode] = useState<CommandMode>('install');
   const [activeTabId, setActiveTabId] = useState('run');
   const [isCopiedTerminal, setIsCopiedTerminal] = useState(false);
   const [isCopiedQuick, setIsCopiedQuick] = useState(false);
@@ -161,6 +161,17 @@ export function HeroSection() {
                 {/* Mode Selector */}
                 <div className="flex items-center gap-1 bg-[#04060a] p-1 rounded-lg border border-white/5">
                   <button
+                    onClick={() => setCommandMode('install')}
+                    className={`flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-mono font-medium transition-all cursor-pointer ${
+                      commandMode === 'install'
+                        ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 shadow-sm'
+                        : 'text-slate-400 hover:text-slate-200'
+                    }`}
+                  >
+                    <Download size={11} className={commandMode === 'install' ? 'text-cyan-400' : 'text-slate-500'} />
+                    Global Install
+                  </button>
+                  <button
                     onClick={() => setCommandMode('migrate')}
                     className={`flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-mono font-medium transition-all cursor-pointer ${
                       commandMode === 'migrate'
@@ -181,17 +192,6 @@ export function HeroSection() {
                   >
                     <LayoutDashboard size={11} className={commandMode === 'ui' ? 'text-cyan-400' : 'text-slate-500'} />
                     Dashboard UI
-                  </button>
-                  <button
-                    onClick={() => setCommandMode('install')}
-                    className={`flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-mono font-medium transition-all cursor-pointer ${
-                      commandMode === 'install'
-                        ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 shadow-sm'
-                        : 'text-slate-400 hover:text-slate-200'
-                    }`}
-                  >
-                    <Download size={11} className={commandMode === 'install' ? 'text-cyan-400' : 'text-slate-500'} />
-                    Global Install
                   </button>
                 </div>
 
