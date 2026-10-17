@@ -226,9 +226,9 @@ export function HeroSection() {
               href={PROJECT_LINKS.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0c0e17] hover:bg-[#121524] border border-white/10 hover:border-white/20 text-slate-300 hover:text-white transition-all text-sm font-medium shadow-sm cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0c0e17] hover:bg-[#121524] border border-white/10 hover:border-white/20 text-slate-300 hover:text-white transition-all text-sm font-medium shadow-sm cursor-pointer group"
             >
-              <img src="/github.svg" alt="GitHub" className="w-4 h-4 object-contain" />
+              <img src="/github.svg" alt="GitHub" className="w-4 h-4 invert opacity-80 group-hover:opacity-100 transition-opacity" />
               <span>Star on GitHub</span>
             </a>
           </div>
