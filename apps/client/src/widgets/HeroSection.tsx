@@ -11,7 +11,6 @@ import {
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/shared/ui/Button';
-import { ButterflyLogoAnimation } from '@/widgets/ButterflyLogoAnimation';
 import { ROUTES } from '@/shared/config/routes';
 import { PROJECT_LINKS } from '@/shared/config';
 import { usePackageManager, type PackageManager } from '@/shared/lib/usePackageManager';
@@ -118,25 +117,12 @@ export function HeroSection() {
   };
 
   return (
-    <section id="hero" className="relative flex flex-col items-center justify-start px-4 pt-10 sm:pt-14 md:pt-16 pb-20 overflow-hidden">
+    <section id="hero" className="relative flex flex-col items-center justify-start px-4 pt-16 sm:pt-20 md:pt-24 pb-20 overflow-hidden">
       {/* Background Cybernetic Radial Glows */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[500px] bg-cyan-500/5 blur-[160px] rounded-full pointer-events-none" />
       <div className="absolute top-1/3 left-1/4 w-[350px] h-[350px] bg-blue-600/5 blur-[140px] rounded-full pointer-events-none" />
 
       <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
-        {/* Subtle, Proportionate Brand Logo Animation */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="mb-5"
-        >
-          <div className="relative inline-block">
-            <div className="absolute -inset-2 bg-cyan-500/10 rounded-full blur-lg" />
-            <ButterflyLogoAnimation className="w-20 h-20 md:w-24 md:h-24 relative z-10" />
-          </div>
-        </motion.div>
-
         {/* Main Headings */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
