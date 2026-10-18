@@ -34,7 +34,7 @@ export function CommunitySection() {
     useMetamorphContributors();
 
   return (
-    <section id="community" className="scroll-mt-24 py-24 relative overflow-hidden bg-[#06090e] border-t border-cyan-500/10">
+    <section id="community" className="scroll-mt-24 py-24 relative overflow-hidden bg-transparent border-t border-cyan-500/10">
       {/* Ambient background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-cyan-500/5 blur-[120px] rounded-full pointer-events-none" />
 

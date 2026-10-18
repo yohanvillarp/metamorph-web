@@ -9,7 +9,6 @@ import {
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/shared/ui/Button';
-import { WindBreeze } from '@/shared/ui/WindBreeze';
 import { ROUTES } from '@/shared/config/routes';
 import { usePackageManager, type PackageManager } from '@/shared/lib/usePackageManager';
 
@@ -74,9 +73,8 @@ export function HeroSection() {
         id="hero" 
         className="sticky top-0 h-screen w-full flex flex-col items-center justify-center px-4 overflow-hidden"
       >
-        {/* Scroll-Reactive Wind Breeze & Ambient Layer */}
+        {/* Ambient Glow Layer */}
         <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
-          <WindBreeze />
           <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[380px] bg-cyan-500/[0.035] blur-[130px] rounded-full pointer-events-none" />
         </div>
 

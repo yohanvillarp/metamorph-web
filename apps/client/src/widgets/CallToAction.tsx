@@ -16,7 +16,7 @@ export function CallToAction() {
   };
 
   return (
-    <section className="py-28 px-4 relative overflow-hidden bg-surface-base border-t border-white/5">
+    <section className="py-28 px-4 relative overflow-hidden bg-transparent border-t border-white/5">
       {/* Background Cyan Radial Halos */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-cyan-500/5 blur-[160px] rounded-full pointer-events-none" />
       
