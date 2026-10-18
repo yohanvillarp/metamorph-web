@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { MetamorphLogo } from './MetamorphLogo';
 
 export interface CyberLoaderProps {
   message?: string;
@@ -44,11 +45,9 @@ export function CyberLoader({
           transition={{ duration: 2, ease: 'easeInOut', repeat: Infinity }}
           className="w-10 h-10 rounded-full bg-gradient-to-tr from-cyan-950 via-[#0a1b2d] to-cyan-500/20 border border-cyan-400/60 flex items-center justify-center shadow-[0_0_20px_rgba(0,242,254,0.35)]"
         >
-          <img
-            src="/logo_metamorph.png"
-            alt="Metamorph Core"
-            className="w-6 h-6 object-contain drop-shadow-[0_0_8px_rgba(0,242,254,0.6)]"
-          />
+          <div className="w-6 h-6 flex items-center justify-center drop-shadow-[0_0_8px_rgba(0,242,254,0.6)]">
+            <MetamorphLogo />
+          </div>
         </motion.div>
 
         {/* Orbiting Quantum Sparks */}
