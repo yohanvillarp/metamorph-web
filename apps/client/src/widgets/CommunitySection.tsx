@@ -5,7 +5,6 @@ import {
   Code2,
   Sparkles,
   ShieldCheck,
-  Bot,
   Flame,
   MessageSquare,
 } from 'lucide-react';
@@ -31,7 +30,7 @@ const CONTRIBUTION_AREAS = [
 ];
 
 export function CommunitySection() {
-  const { humanContributors, botContributors, totalContributions, isLoading, isLive } =
+  const { humanContributors, totalContributions, isLoading, isLive } =
     useMetamorphContributors();
 
   return (
@@ -102,33 +101,6 @@ export function CommunitySection() {
             )}
           </div>
         </div>
-
-        {/* Automated Swarm & Bot Contributors */}
-        {botContributors.length > 0 && (
-          <div className="mb-12 p-4 rounded-xl bg-[#060a14] border border-slate-800/60 flex items-center justify-between flex-wrap gap-3">
-            <div className="flex items-center gap-2">
-              <Bot size={16} className="text-cyan-400" />
-              <span className="text-xs font-mono text-slate-300">
-                Automated Dependencies &amp; Bot Partners:
-              </span>
-            </div>
-            <div className="flex items-center gap-2 flex-wrap">
-              {botContributors.map((bot) => (
-                <a
-                  key={bot.login}
-                  href={bot.html_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-cyan-300 transition-colors"
-                >
-                  <img src={bot.avatar_url} alt={bot.login} className="w-3.5 h-3.5 rounded-full" />
-                  <span>{bot.login}</span>
-                  <span className="text-slate-500">({bot.contributions})</span>
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
 
         {/* Discord Community Callout Card */}
         <div className="mb-12 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-[#0c0f1a] via-[#090b14] to-[#07080c] border border-white/10 hover:border-[#5865F2]/40 shadow-xl relative overflow-hidden group transition-all duration-300">

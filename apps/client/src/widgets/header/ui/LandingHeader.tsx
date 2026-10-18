@@ -1,7 +1,7 @@
 import { ROUTES, PROJECT_LINKS } from '@/shared/config';
 import { preloadDocsRoutes } from '@/shared/lib/routePreloader';
 import { motion } from 'framer-motion';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { useActiveLogo } from '@/shared/lib/useActiveLogo';
 import { MetamorphLogo } from '@/shared/ui/MetamorphLogo';
@@ -21,16 +21,6 @@ export function LandingHeader() {
     }
   };
 
-  const scrollToSection = (sectionId: string) => {
-    if (location.pathname !== ROUTES.HOME) {
-      navigate(`${ROUTES.HOME}#${sectionId}`);
-    } else {
-      const el = document.getElementById(sectionId);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  };
 
   return (
     <header className="fixed top-0 w-full z-50 backdrop-blur-xl bg-[#06090e]/85 border-b border-white/[0.07] px-4 sm:px-8 h-16 flex justify-between items-center transition-all">
@@ -64,41 +54,71 @@ export function LandingHeader() {
         </Link>
       </div>
 
-      {/* Center Landing Navigation (Clean Integrated Links) */}
+      {/* Center Landing Navigation (Canonical React Router NavLinks) */}
       <nav className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
-        <button
-          onClick={() => scrollToSection('swarm')}
-          className="px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-slate-300 hover:text-white hover:bg-white/[0.04] transition-all cursor-pointer"
+        <NavLink
+          to={ROUTES.DOCS.ROOT}
+          className={({ isActive }) =>
+            `px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-all ${
+              isActive
+                ? 'text-cyan-300 bg-cyan-500/10'
+                : 'text-slate-300 hover:text-white hover:bg-white/[0.04]'
+            }`
+          }
+        >
+          Docs
+        </NavLink>
+        <NavLink
+          to={ROUTES.DOCS.SWARM}
+          className={({ isActive }) =>
+            `px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-all ${
+              isActive
+                ? 'text-cyan-300 bg-cyan-500/10'
+                : 'text-slate-300 hover:text-white hover:bg-white/[0.04]'
+            }`
+          }
         >
           The Swarm
-        </button>
-        <button
-          onClick={() => scrollToSection('demo')}
-          className="px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-slate-300 hover:text-white hover:bg-white/[0.04] transition-all cursor-pointer"
+        </NavLink>
+        <NavLink
+          to={ROUTES.DOCS.MIGRATIONS.FRONTEND}
+          className={({ isActive }) =>
+            `px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-all ${
+              isActive
+                ? 'text-cyan-300 bg-cyan-500/10'
+                : 'text-slate-300 hover:text-white hover:bg-white/[0.04]'
+            }`
+          }
         >
-          Code Demo
-        </button>
-        <button
-          onClick={() => scrollToSection('matrix')}
-          className="px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-slate-300 hover:text-white hover:bg-white/[0.04] transition-all cursor-pointer"
+          Migrations
+        </NavLink>
+        <NavLink
+          to={ROUTES.DOCS.CLI_REFERENCE}
+          className={({ isActive }) =>
+            `px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-all ${
+              isActive
+                ? 'text-cyan-300 bg-cyan-500/10'
+                : 'text-slate-300 hover:text-white hover:bg-white/[0.04]'
+            }`
+          }
         >
-          Ecosystem
-        </button>
-        <button
-          onClick={() => scrollToSection('community')}
-          className="px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-slate-300 hover:text-white hover:bg-white/[0.04] transition-all cursor-pointer"
+          CLI Reference
+        </NavLink>
+        <NavLink
+          to={ROUTES.DOCS.COMMUNITY}
+          className={({ isActive }) =>
+            `px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-all ${
+              isActive
+                ? 'text-cyan-300 bg-cyan-500/10'
+                : 'text-slate-300 hover:text-white hover:bg-white/[0.04]'
+            }`
+          }
         >
           Community
-        </button>
-        <Link
-          to={ROUTES.LOGOS}
-          className="px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-cyan-300/80 hover:text-cyan-200 hover:bg-cyan-500/10 transition-all"
-        >
-          Logos
-        </Link>
+        </NavLink>
       </nav>
 
-      {/* Right Marketing Links & Docs CTA */}
+      {/* Right Marketing Links & Quickstart CTA */}
       <div className="flex items-center gap-2 sm:gap-3">
         <a 
           href={PROJECT_LINKS.discord} 
@@ -125,12 +145,12 @@ export function LandingHeader() {
         <div className="h-4 w-px bg-white/10 hidden sm:block mx-0.5" />
 
         <Link 
-          to={ROUTES.DOCS.ROOT}
+          to={ROUTES.DOCS.GETTING_STARTED}
           onMouseEnter={preloadDocsRoutes}
           onTouchStart={preloadDocsRoutes}
           className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-semibold bg-white text-slate-950 hover:bg-slate-200 transition-all shadow-sm"
         >
-          <span>Docs</span>
+          <span>Quickstart</span>
           <ArrowRight size={13} />
         </Link>
       </div>
