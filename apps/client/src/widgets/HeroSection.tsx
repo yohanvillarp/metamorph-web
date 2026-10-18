@@ -56,8 +56,10 @@ export function HeroSection() {
     ]
   );
 
-  // 4. Subtle bottom scroll cue
-  const opacityScrollCue = useTransform(scrollYProgress, [0, 0.15], [0.85, 0]);
+  // 4. Soft feather scroll cue: progressive falloff + gentle drift down
+  const opacityScrollCue = useTransform(scrollYProgress, [0, 0.08, 0.22], [0.85, 0.65, 0]);
+  const yScrollCue = useTransform(scrollYProgress, [0, 0.22], [0, 14]);
+  const scaleScrollCue = useTransform(scrollYProgress, [0, 0.22], [1, 0.95]);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(command);
@@ -191,13 +193,17 @@ export function HeroSection() {
           </motion.div>
         </div>
 
-        {/* Scroll Cue Indicator */}
+        {/* Scroll Cue Indicator with Smooth Feather & Drift */}
         <motion.div
-          style={{ opacity: opacityScrollCue }}
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-[11px] font-mono text-slate-500 pointer-events-none"
+          style={{ 
+            opacity: opacityScrollCue,
+            y: yScrollCue,
+            scale: scaleScrollCue,
+          }}
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-[11px] font-mono text-slate-400 pointer-events-none"
         >
-          <span>Scroll to explore</span>
-          <ChevronDown size={14} className="animate-bounce text-cyan-400" />
+          <span className="tracking-wide">Scroll to explore</span>
+          <ChevronDown size={14} className="animate-bounce text-cyan-400/80" />
         </motion.div>
       </section>
     </div>
