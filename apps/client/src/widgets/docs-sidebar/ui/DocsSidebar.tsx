@@ -132,14 +132,18 @@ export const DocsSidebar = ({ mobileOpen, setMobileOpen }: DocsSidebarProps) => 
       </div>
 
       {/* 6. Community & Ecosystem */}
+      {/* 6. Ecosystem & Contributing */}
       <div>
         <div className="px-3 mb-2 text-[11px] font-mono uppercase tracking-wider text-slate-500 font-bold flex items-center gap-1.5">
           <Users size={12} className="text-cyan-400" />
-          <span>Ecosystem</span>
+          <span>Contributing</span>
         </div>
         <nav className="flex flex-col gap-1">
-          <Link to={ROUTES.DOCS.COMMUNITY} className={getLinkClasses(ROUTES.DOCS.COMMUNITY)}>
-            Community &amp; Contributing
+          <Link to={ROUTES.DOCS.CONTRIBUTING} className={getLinkClasses(ROUTES.DOCS.CONTRIBUTING)}>
+            Developer Guide
+          </Link>
+          <Link to={ROUTES.COMMUNITY} className={getLinkClasses(ROUTES.COMMUNITY)}>
+            Community Hub
           </Link>
           <a
             href={PROJECT_LINKS.discord}

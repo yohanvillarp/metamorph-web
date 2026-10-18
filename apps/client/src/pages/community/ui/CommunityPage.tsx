@@ -1,199 +1,133 @@
 import { Link } from 'react-router-dom';
 import {
-  Users,
   GitPullRequest,
   ExternalLink,
   Terminal,
   Layers,
-  Sparkles,
-  MessageSquare,
+  Shield,
+  ArrowRight,
+  BookOpen,
+  CheckCircle2,
+  Users,
 } from 'lucide-react';
 import { SEOHead } from '@/shared/ui/SEOHead';
 import { CodeBlock } from '@/shared/ui/CodeBlock';
-import { useMetamorphContributors, ContributorCard } from '@/entities/contributor';
 import { ROUTES, PROJECT_LINKS } from '@/shared/config';
 
 export const CommunityPage = () => {
-  const { humanContributors, botContributors, totalContributions, isLive } =
-    useMetamorphContributors();
-
   return (
     <div className="max-w-4xl">
       <SEOHead
-        title="Community & Contributing Guide | Metamorph Docs"
-        description="Comprehensive developer guide to contributing to @nikelyh/metamorph: local monorepo setup, adding migration target catalogs, testing in shadow workspaces, and the Contributors Hall of Fame."
-        keywords="contribute to metamorph, metamorph community, open source migration, framework codemod contribution, mozaik v4 development"
-        canonicalPath="/docs/community"
-        structuredData={{
-          '@context': 'https://schema.org',
-          '@type': 'TechArticle',
-          headline: 'Metamorph Community & Contributing Guide',
-          description:
-            'How to contribute new framework targets, tests, and documentation to @nikelyh/metamorph.',
-          author: {
-            '@type': 'Person',
-            name: 'Yohan Nikel Villar Presentación',
-            alternateName: ['Yohan Villar', 'Yohan Nikel Villar', 'nikelyh', 'yohanvillarp'],
-            url: 'https://github.com/yohanvillarp',
-          },
-          publisher: {
-            '@type': 'Organization',
-            name: 'Metamorph',
-            url: 'https://metamorph.nikelyh.tech',
-          },
-        }}
+        title="Developer Contributing Guide | Metamorph Docs"
+        description="Comprehensive developer guide to contributing to @nikelyh/metamorph: local monorepo setup, adding migration target catalogs, testing in shadow workspaces, and pull request standards."
+        keywords="contribute to metamorph, developer guide, open source migration, framework codemod contribution, mozaik v4 development, ast catalogs"
+        canonicalPath="/docs/contributing"
       />
 
       {/* Header */}
-      <div className="mb-10">
+      <div className="mb-8">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/70 border border-cyan-500/40 text-cyan-300 text-xs font-mono uppercase tracking-wider mb-4">
-          <Users size={14} className="text-cyan-400" />
-          Community &amp; Open Source
+          <BookOpen size={14} className="text-cyan-400" />
+          Developer Guide
         </div>
         <h1 className="text-4xl font-extrabold text-white mb-4 tracking-tight">
-          Community &amp; Contributing
+          Contributing to Metamorph
         </h1>
-        <p className="text-lg text-slate-300 leading-relaxed mb-4">
-          Metamorph is built entirely in the open. We welcome bug reports, feature requests, documentation improvements, and pull requests to expand framework migration catalogs.
+        <p className="text-lg text-slate-300 leading-relaxed">
+          Metamorph is built and maintained in the open. This guide explains how to set up the monorepo locally, implement new framework migration catalogs in <code className="text-cyan-300 font-mono">@nikelyh/domain</code>, verify changes inside shadow workspaces, and submit pull requests.
         </p>
-        <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 bg-cyan-950/40 border border-cyan-500/20 px-3 py-1.5 rounded-lg w-fit">
-          <span className="relative flex h-2 w-2">
-            <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${isLive ? 'bg-emerald-400' : 'bg-cyan-400'}`} />
-            <span className={`relative inline-flex rounded-full h-2 w-2 ${isLive ? 'bg-emerald-500' : 'bg-cyan-500'}`} />
+      </div>
+
+      {/* Community Hub Reference Callout Banner */}
+      <div className="mb-10 p-4 rounded-xl bg-gradient-to-r from-cyan-950/40 via-slate-900/60 to-cyan-950/40 border border-cyan-500/30 flex items-center justify-between flex-wrap gap-3">
+        <div className="flex items-center gap-2.5">
+          <Users size={16} className="text-cyan-400" />
+          <span className="text-xs text-slate-300">
+            Looking for Discord channels, live maintainer chat, and the Contributors Hall of Fame?
           </span>
-          <span>Core telemetry synchronized from yohanvillarp/metamorph ({totalContributions}+ commits)</span>
         </div>
+        <Link
+          to={ROUTES.COMMUNITY}
+          className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-cyan-300 hover:text-white transition-colors"
+        >
+          <span>Visit Community Hub</span>
+          <ArrowRight size={13} />
+        </Link>
       </div>
 
-      {/* Official Discord Server Callout */}
-      <div className="mb-12 scroll-mt-24 p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-[#0c142b] via-[#080d19] to-[#050811] border border-[#5865F2]/40 shadow-[0_0_30px_rgba(88,101,242,0.15)] relative overflow-hidden group" id="discord-community">
-        <div className="absolute top-0 right-0 w-72 h-72 bg-[#5865F2]/10 blur-[80px] rounded-full pointer-events-none -mr-16 -mt-16" />
-        
-        <div className="relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#5865F2]/20 border border-[#5865F2]/40 text-[#a5b4fc] text-xs font-mono uppercase tracking-wider mb-4">
-            <MessageSquare size={14} className="text-[#818cf8]" />
-            Official Community Server
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3 tracking-tight">
-            Connect in Real Time with Core Engineers
-          </h2>
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
-            Whether you are running your first autonomous migration, building custom AST rules for a private framework, or troubleshooting a shadow sandbox, the Metamorph Discord community is the fastest place to get support.
-          </p>
-
-          <div className="grid sm:grid-cols-2 gap-3 mb-6">
-            <div className="p-3.5 rounded-xl bg-[#060a15] border border-slate-800">
-              <h3 className="font-mono text-xs font-bold text-cyan-300 mb-1">#migration-help</h3>
-              <p className="text-xs text-slate-400">Share command outputs, debug shadow builds, and get tips for complex codebases.</p>
-            </div>
-            <div className="p-3.5 rounded-xl bg-[#060a15] border border-slate-800">
-              <h3 className="font-mono text-xs font-bold text-teal-300 mb-1">#agent-dev</h3>
-              <p className="text-xs text-slate-400">Discuss Mozaik v4 blackboard events, AST heuristics, and prompt tuning.</p>
-            </div>
-            <div className="p-3.5 rounded-xl bg-[#060a15] border border-slate-800">
-              <h3 className="font-mono text-xs font-bold text-indigo-300 mb-1">#showcase</h3>
-              <p className="text-xs text-slate-400">Show off successful migrations, PR branches, and community target catalogs.</p>
-            </div>
-            <div className="p-3.5 rounded-xl bg-[#060a15] border border-slate-800">
-              <h3 className="font-mono text-xs font-bold text-amber-300 mb-1">#announcements</h3>
-              <p className="text-xs text-slate-400">Stay up to date with new package releases, CLI features, and engine upgrades.</p>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-4">
-            <a
-              href={PROJECT_LINKS.discord}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 rounded-xl bg-[#5865F2] hover:bg-[#4752c4] text-white font-semibold text-xs sm:text-sm font-mono transition-all shadow-[0_0_20px_rgba(88,101,242,0.4)] flex items-center gap-2.5"
-            >
-              <img src="/discord.svg" alt="Discord" className="w-4 h-4 object-contain invert brightness-200" />
-              <span>Join Metamorph Discord</span>
-              <ExternalLink size={14} />
-            </a>
-            <a
-              href={PROJECT_LINKS.discussions}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-5 py-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white text-xs sm:text-sm font-mono transition-all flex items-center gap-2"
-            >
-              <span>GitHub Discussions</span>
-              <ExternalLink size={14} />
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* 1. Contributors Hall of Fame */}
-      <div className="mb-12 scroll-mt-24" id="hall-of-fame">
+      {/* 1. Core Architectural Invariants */}
+      <div className="mb-12 scroll-mt-24" id="invariants">
         <h2 className="text-2xl font-bold text-white mb-4 border-b border-cyan-500/20 pb-2 flex items-center gap-2">
-          <Sparkles className="text-cyan-400" size={22} />
-          <span>Contributors Hall of Fame</span>
+          <Shield className="text-cyan-400" size={22} />
+          <span>Core Invariants (Never Violate)</span>
         </h2>
-        <p className="text-slate-300 mb-6 leading-relaxed">
-          The developers who have written code, designed architecture, and contributed to the <code className="text-cyan-300 font-mono">@nikelyh/metamorph</code> core engine:
+        <p className="text-slate-300 mb-4 leading-relaxed text-sm">
+          Every contribution must uphold the core architectural invariants of Metamorph:
         </p>
 
-        <div className="grid sm:grid-cols-2 gap-4 mb-6">
-          {humanContributors.map((contributor) => (
-            <ContributorCard
-              key={contributor.login}
-              contributor={contributor}
-              metricLabel="contributions"
-            />
-          ))}
-        </div>
-
-        {botContributors.length > 0 && (
-          <div className="p-3.5 rounded-xl bg-[#060a14] border border-slate-800/60 flex items-center justify-between flex-wrap gap-2 text-xs font-mono text-slate-400">
-            <span>Automated Bot Partners:</span>
-            <div className="flex items-center gap-2 flex-wrap">
-              {botContributors.map((b) => (
-                <a
-                  key={b.login}
-                  href={b.html_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-cyan-300 transition-colors"
-                >
-                  @{b.login} ({b.contributions})
-                </a>
-              ))}
-            </div>
+        <div className="space-y-3 mb-6">
+          <div className="p-4 rounded-xl bg-[#080d17] border border-slate-800">
+            <h3 className="font-bold text-white text-sm mb-1 flex items-center gap-2">
+              <CheckCircle2 size={16} className="text-cyan-400" />
+              <span>Zero-Risk Shadow Workspace Confinement</span>
+            </h3>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Never mutate user source code directly during an active migration. All transformations, dependency installs, and build checks take place strictly inside <code className="text-cyan-300 font-mono">.metamorph/shadow/&lt;runId&gt;</code>.
+            </p>
           </div>
-        )}
+
+          <div className="p-4 rounded-xl bg-[#080d17] border border-slate-800">
+            <h3 className="font-bold text-white text-sm mb-1 flex items-center gap-2">
+              <CheckCircle2 size={16} className="text-cyan-400" />
+              <span>Zero I/O in @nikelyh/domain</span>
+            </h3>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              The domain package is pure and deterministic. It is strictly prohibited from importing filesystem modules (<code className="text-cyan-300 font-mono">node:fs</code>), databases (<code className="text-cyan-300 font-mono">node:sqlite</code>), or external network protocols.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl bg-[#080d17] border border-slate-800">
+            <h3 className="font-bold text-white text-sm mb-1 flex items-center gap-2">
+              <CheckCircle2 size={16} className="text-cyan-400" />
+              <span>Ephemeral Participant Lifecycles</span>
+            </h3>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              All dynamic agent participants (<code className="text-cyan-300 font-mono">Worker</code>, <code className="text-cyan-300 font-mono">Reviewer</code>) must execute <code className="text-cyan-300 font-mono">await participant.leave()</code> in <code className="text-cyan-300 font-mono">finally</code> blocks to guarantee zero memory leaks.
+            </p>
+          </div>
+        </div>
       </div>
 
-      {/* 2. Development Setup */}
-      <div className="mb-12 scroll-mt-24" id="development-setup">
+      {/* 2. Monorepo Setup */}
+      <div className="mb-12 scroll-mt-24" id="local-setup">
         <h2 className="text-2xl font-bold text-white mb-4 border-b border-cyan-500/20 pb-2 flex items-center gap-2">
           <Terminal className="text-cyan-400" size={22} />
-          <span>Local Development Setup</span>
+          <span>Local Monorepo Setup</span>
         </h2>
-        <p className="text-slate-300 mb-4 leading-relaxed">
-          The core repository uses <strong>Turborepo</strong> with npm workspaces. Clone the repository and initialize dependencies:
+        <p className="text-slate-300 mb-4 leading-relaxed text-sm">
+          Metamorph is managed as an npm monorepo with Turborepo. Node.js <code className="text-cyan-300 font-mono">&gt;= 22.5.0</code> and <code className="text-cyan-300 font-mono">npm@10.8.2</code> are required.
         </p>
 
-        <CodeBlock
-          code={`# Clone the core engine repository
-git clone https://github.com/yohanvillarp/metamorph.git
-cd metamorph
+        <div className="space-y-4 mb-6">
+          <div>
+            <h3 className="text-xs font-mono uppercase text-slate-400 mb-2">1. Clone &amp; Install Dependencies</h3>
+            <CodeBlock code={`git clone https://github.com/yohanvillarp/metamorph.git\ncd metamorph\nnpm install`} />
+          </div>
 
-# Install monorepo dependencies
-npm install
+          <div>
+            <h3 className="text-xs font-mono uppercase text-slate-400 mb-2">2. Compile &amp; Typecheck Workspace</h3>
+            <CodeBlock code={`npm run build\nnpm run typecheck`} />
+          </div>
 
-# Build all packages (@nikelyh/domain, application, infrastructure, cli, dashboard)
-npm run build`}
-        />
+          <div>
+            <h3 className="text-xs font-mono uppercase text-slate-400 mb-2">3. Execute the Full Automated Test Suite</h3>
+            <CodeBlock code="npm run test" />
+          </div>
 
-        <div className="mt-4 p-4 rounded-xl bg-cyan-950/20 border border-cyan-500/30 text-xs text-slate-300 leading-relaxed">
-          <strong className="text-cyan-300">Monorepo Structure:</strong>
-          <ul className="list-disc pl-5 mt-2 space-y-1 text-slate-400">
-            <li><code className="text-cyan-300 font-mono">packages/@nikelyh/domain</code>: Pure entities and rules (Zero I/O, zero external dependencies).</li>
-            <li><code className="text-cyan-300 font-mono">packages/@nikelyh/application</code>: Mozaik v4 agent handlers and ConcurrencyQueue.</li>
-            <li><code className="text-cyan-300 font-mono">packages/@nikelyh/infrastructure</code>: SQLite persistence, ShadowWorkspace, and ts-morph AST adapters.</li>
-            <li><code className="text-cyan-300 font-mono">packages/@nikelyh/cli</code>: Commander CLI entry points and Ora terminal presenters.</li>
-          </ul>
+          <div>
+            <h3 className="text-xs font-mono uppercase text-slate-400 mb-2">4. Run CLI Directly from Source</h3>
+            <CodeBlock code="npm --prefix packages/@nikelyh/cli run dev -- run ../../scratch/playground --from react --to next" />
+          </div>
         </div>
       </div>
 
@@ -203,8 +137,8 @@ npm run build`}
           <Layers className="text-cyan-400" size={22} />
           <span>Contributing New Migration Pairs</span>
         </h2>
-        <p className="text-slate-300 mb-4 leading-relaxed">
-          To contribute support for a new framework pair (e.g., <code className="text-cyan-300 font-mono">vue</code> to <code className="text-cyan-300 font-mono">react</code>, or <code className="text-cyan-300 font-mono">koa</code> to <code className="text-cyan-300 font-mono">fastify</code>):
+        <p className="text-slate-300 mb-4 leading-relaxed text-sm">
+          To contribute support for a new framework pair (e.g., <code className="text-cyan-300 font-mono">vue</code> to <code className="text-cyan-300 font-mono">svelte</code>, or <code className="text-cyan-300 font-mono">express</code> to <code className="text-cyan-300 font-mono">hono</code>):
         </p>
 
         <div className="space-y-4 text-xs">
@@ -247,7 +181,7 @@ npm run build`}
           <GitPullRequest className="text-cyan-400" size={22} />
           <span>Pull Request Standards</span>
         </h2>
-        <p className="text-slate-300 mb-4 leading-relaxed">
+        <p className="text-slate-300 mb-4 leading-relaxed text-sm">
           All contributions go through automated CI matrix verification on Node 20 and Node 22. When preparing your PR:
         </p>
 
@@ -263,7 +197,7 @@ npm run build`}
             href={PROJECT_LINKS.issues}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-2.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 font-medium text-xs font-mono transition-all flex items-center gap-2"
+            className="px-5 py-2.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 font-medium text-xs font-mono transition-all flex items-center gap-2 cursor-pointer"
           >
             <span>Explore Issues on GitHub</span>
             <ExternalLink size={14} />

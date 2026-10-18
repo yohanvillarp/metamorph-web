@@ -19,6 +19,7 @@ const CliReferencePage = lazy(() => import('./pages/cli-reference').then((m) => 
 const BackendMigrationsPage = lazy(() => import('./pages/migrations').then((m) => ({ default: m.BackendMigrationsPage })));
 const FrontendMigrationsPage = lazy(() => import('./pages/migrations').then((m) => ({ default: m.FrontendMigrationsPage })));
 const CommunityPage = lazy(() => import('./pages/community').then((m) => ({ default: m.CommunityPage })));
+const CommunityHubPage = lazy(() => import('./pages/community').then((m) => ({ default: m.CommunityHubPage })));
 const LogoGalleryPage = lazy(() => import('./pages/LogoGalleryPage').then((m) => ({ default: m.LogoGalleryPage })));
 const NotFoundPage = lazy(() => import('./pages/not-found').then((m) => ({ default: m.NotFoundPage })));
 
@@ -35,6 +36,7 @@ function App() {
       <Suspense fallback={<CyberLoader fullScreen message="INITIALIZING METAMORPH..." />}>
         <Routes>
           <Route path={ROUTES.HOME} element={<LandingPage />} />
+          <Route path={ROUTES.COMMUNITY} element={<CommunityHubPage />} />
           <Route path={ROUTES.LOGOS} element={<LogoGalleryPage />} />
           
           <Route path={ROUTES.DOCS.ROOT} element={<DocsLayout />}>
@@ -45,6 +47,7 @@ function App() {
             <Route path="cli-reference" element={<CliReferencePage />} />
             <Route path="migrations/backend" element={<BackendMigrationsPage />} />
             <Route path="migrations/frontend" element={<FrontendMigrationsPage />} />
+            <Route path="contributing" element={<CommunityPage />} />
             <Route path="community" element={<CommunityPage />} />
           </Route>
 

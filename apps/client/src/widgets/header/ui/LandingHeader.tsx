@@ -105,7 +105,7 @@ export function LandingHeader() {
           CLI Reference
         </NavLink>
         <NavLink
-          to={ROUTES.DOCS.COMMUNITY}
+          to={ROUTES.COMMUNITY}
           className={({ isActive }) =>
             `px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-all ${
               isActive

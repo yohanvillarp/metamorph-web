@@ -1,5 +1,6 @@
 export const ROUTES = {
   HOME: '/',
+  COMMUNITY: '/community',
   DOCS: {
     ROOT: '/docs',
     GETTING_STARTED: '/docs/getting-started',
@@ -11,6 +12,7 @@ export const ROUTES = {
       BACKEND: '/docs/migrations/backend',
       FRONTEND: '/docs/migrations/frontend',
     },
+    CONTRIBUTING: '/docs/contributing',
     COMMUNITY: '/docs/community',
   },
   LOGOS: '/logos',
