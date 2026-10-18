@@ -70,32 +70,32 @@ export function WindBreeze({ className = '' }: WindBreezeProps) {
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('wheel', handleWheel, { passive: true });
 
-    // Color palette: soft cyan, sky cyan, ice white, slate dust
+    // Color palette: soft matte cyan, sky cyan, slate dust, muted mist
     const colors = [
       'rgba(0, 242, 254, ',   // Neon Cyan
       'rgba(56, 189, 248, ',  // Sky cyan
-      'rgba(224, 242, 254, ', // Ice white
-      'rgba(148, 163, 184, ', // Slate dust
+      'rgba(203, 213, 225, ', // Slate dust
+      'rgba(148, 163, 184, ', // Muted mist
     ];
 
-    // Initialize organic wind particles
-    const particleCount = 60;
+    // Subtle atmospheric particle count (balanced & non-intrusive)
+    const particleCount = 38;
     const particles: Particle[] = [];
 
     const createParticle = (spawnAnywhere = false): Particle => {
-      const x = spawnAnywhere ? Math.random() * (width || 1200) : -30 - Math.random() * 80;
+      const x = spawnAnywhere ? Math.random() * (width || 1200) : -25 - Math.random() * 60;
       const y = Math.random() * (height || 800);
       return {
         x,
         y,
         baseY: y,
-        size: 0.9 + Math.random() * 1.6, // Fine micro motes (0.9px - 2.5px)
-        speedX: 0.7 + Math.random() * 1.1, // Gentle horizontal draft
-        amplitude: 5 + Math.random() * 12, // Subtle sinusoidal wave (wind flutter)
-        frequency: 0.0012 + Math.random() * 0.0022,
+        size: 0.7 + Math.random() * 1.1, // Delicate micro motes (0.7px - 1.8px)
+        speedX: 0.5 + Math.random() * 0.8, // Gentle horizontal draft
+        amplitude: 4 + Math.random() * 10, // Subtle wave
+        frequency: 0.001 + Math.random() * 0.002,
         phase: Math.random() * Math.PI * 2,
         opacity: 0,
-        maxOpacity: 0.22 + Math.random() * 0.32, // Clearly visible yet elegant matte opacity
+        maxOpacity: 0.10 + Math.random() * 0.14, // Industry standard ambient opacity (0.10 - 0.24)
         color: colors[Math.floor(Math.random() * colors.length)],
       };
     };
@@ -111,46 +111,46 @@ export function WindBreeze({ className = '' }: WindBreezeProps) {
       ctx.clearRect(0, 0, width, height);
 
       // Smooth decay of scroll velocity into natural breeze
-      currentVelocity += (targetVelocity - currentVelocity) * 0.09;
+      currentVelocity += (targetVelocity - currentVelocity) * 0.08;
       targetVelocity *= 0.92; // Inertial dampening
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
 
-        // Reactive horizontal drift boosted by scroll velocity
-        const speedBoost = 1 + currentVelocity * 2.5;
+        // Reactive horizontal drift boosted gently by scroll velocity
+        const speedBoost = 1 + currentVelocity * 1.8;
         const effectiveSpeed = p.speedX * speedBoost;
         p.x += effectiveSpeed;
 
         // Harmonic flutter wave with scroll turbulence
-        const waveAmp = p.amplitude * (1 + currentVelocity * 0.4);
+        const waveAmp = p.amplitude * (1 + currentVelocity * 0.3);
         p.y = p.baseY + Math.sin(time * p.frequency + p.phase) * waveAmp;
 
-        // Fade in when entering from the left, fade out near the right edge
-        if (p.x < 120) {
-          p.opacity = Math.min(p.maxOpacity, p.opacity + 0.012);
-        } else if (p.x > width - 120) {
-          p.opacity = Math.max(0, p.opacity - 0.012);
+        // Smooth fade at viewport edges
+        if (p.x < 100) {
+          p.opacity = Math.min(p.maxOpacity, p.opacity + 0.008);
+        } else if (p.x > width - 100) {
+          p.opacity = Math.max(0, p.opacity - 0.008);
         } else {
-          p.opacity = Math.min(p.maxOpacity, p.opacity + 0.006);
+          p.opacity = Math.min(p.maxOpacity, p.opacity + 0.004);
         }
 
-        // Luminous boost during high wind surges
+        // Ambient luminous boost during scroll surge capped at a subtle ceiling
         let effectiveOpacity = p.opacity;
-        if (currentVelocity > 0.3) {
-          effectiveOpacity = Math.min(0.75, effectiveOpacity * (1 + currentVelocity * 0.35));
+        if (currentVelocity > 0.2) {
+          effectiveOpacity = Math.min(0.38, effectiveOpacity * (1 + currentVelocity * 0.25));
         }
 
         if (effectiveOpacity > 0.01) {
-          // Aerodynamic speed trail streak when scrolling/surging
+          // Soft, feathered aerodynamic velocity tail when scrolling
           if (currentVelocity > 0.15) {
-            const streakLen = Math.min(effectiveSpeed * 7, 36);
+            const streakLen = Math.min(effectiveSpeed * 4, 18);
             ctx.beginPath();
             ctx.moveTo(p.x - streakLen, p.y);
             ctx.lineTo(p.x, p.y);
-            ctx.lineWidth = p.size * 0.85;
+            ctx.lineWidth = p.size * 0.75;
             ctx.lineCap = 'round';
-            ctx.strokeStyle = `${p.color}${effectiveOpacity * 0.65})`;
+            ctx.strokeStyle = `${p.color}${effectiveOpacity * 0.38})`;
             ctx.stroke();
           }
 
@@ -162,7 +162,7 @@ export function WindBreeze({ className = '' }: WindBreezeProps) {
         }
 
         // Reset particle when it leaves viewport boundary
-        if (p.x > width + 50) {
+        if (p.x > width + 40) {
           particles[i] = createParticle(false);
         }
       }

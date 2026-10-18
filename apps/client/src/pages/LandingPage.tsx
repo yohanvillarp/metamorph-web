@@ -2,8 +2,6 @@ import { HeroSection } from '@/widgets/HeroSection';
 import { SwarmPipelineVisualizer } from '@/widgets/SwarmPipelineVisualizer';
 import { CodeTransformationDemo } from '@/widgets/CodeTransformationDemo';
 import { SupportedTech } from '@/widgets/SupportedTech';
-import { CommunitySection } from '@/widgets/CommunitySection';
-import { CallToAction } from '@/widgets/CallToAction';
 import { Footer } from '@/widgets/Footer';
 import { SEOHead } from '@/shared/ui/SEOHead';
 import { WindBreeze } from '@/shared/ui/WindBreeze';
@@ -25,8 +23,6 @@ export function LandingPage() {
         <SupportedTech />
         <CodeTransformationDemo />
         <SwarmPipelineVisualizer />
-        <CommunitySection />
-        <CallToAction />
         <Footer />
       </div>
     </main>
