@@ -115,15 +115,9 @@ export function CommunitySection() {
               <h3 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight mb-2">
                 Join the Metamorph Swarm on Discord
               </h3>
-              <p className="text-slate-300 text-sm md:text-base leading-relaxed mb-4">
-                Connect directly with core maintainers and framework engineers. Get real-time help with migrations, propose new AST catalogs, and share migration benchmarks.
+              <p className="text-slate-300 text-sm md:text-base leading-relaxed">
+                Connect directly with other developers using Metamorph. Ask questions, share migration feedback, and collaborate on open issues.
               </p>
-              <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
-                <span className="px-2.5 py-1 rounded-md bg-[#080a11] border border-white/10 text-slate-300 hover:text-white transition-colors">#migration-help</span>
-                <span className="px-2.5 py-1 rounded-md bg-[#080a11] border border-white/10 text-slate-300 hover:text-white transition-colors">#agent-dev</span>
-                <span className="px-2.5 py-1 rounded-md bg-[#080a11] border border-white/10 text-slate-300 hover:text-white transition-colors">#showcase</span>
-                <span className="px-2.5 py-1 rounded-md bg-[#080a11] border border-white/10 text-slate-300 hover:text-white transition-colors">#feedback</span>
-              </div>
             </div>
 
             <div className="flex-shrink-0 w-full md:w-auto">

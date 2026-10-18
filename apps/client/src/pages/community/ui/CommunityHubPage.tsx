@@ -97,16 +97,9 @@ export function CommunityHubPage() {
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-3">
                   Connect on Discord
                 </h2>
-                <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
                   A place to ask questions, troubleshoot migrations together, share what you’re building, and talk about code and new ideas.
                 </p>
-                
-                <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-slate-300">
-                  <span className="px-3 py-1 rounded-lg bg-slate-900 border border-white/10">#migration-help</span>
-                  <span className="px-3 py-1 rounded-lg bg-slate-900 border border-white/10">#general-discussion</span>
-                  <span className="px-3 py-1 rounded-lg bg-slate-900 border border-white/10">#showcase</span>
-                  <span className="px-3 py-1 rounded-lg bg-slate-900 border border-white/10">#feedback</span>
-                </div>
               </div>
 
               <div className="flex-shrink-0 w-full md:w-auto">
