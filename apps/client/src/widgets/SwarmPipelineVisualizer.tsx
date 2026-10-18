@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { 
   FolderSearch, 
   PackageCheck, 
@@ -127,9 +127,24 @@ const SWARM_AGENTS: AgentDetail[] = [
 export function SwarmPipelineVisualizer() {
   const [selectedAgent, setSelectedAgent] = useState<string>(SWARM_AGENTS[2].id); // Default Worker
   const activeAgent = SWARM_AGENTS.find((a) => a.id === selectedAgent) || SWARM_AGENTS[2];
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'center center'],
+  });
+
+  const sectionY = useTransform(scrollYProgress, [0, 1], [50, 0]);
+  const sectionRotateX = useTransform(scrollYProgress, [0, 1], [6, 0]);
+  const sectionOpacity = useTransform(scrollYProgress, [0, 0.6], [0.35, 1]);
 
   return (
-    <section id="swarm" className="py-24 px-4 relative bg-[#080c14]/40 border-t border-b border-cyan-500/10 overflow-hidden">
+    <section 
+      ref={sectionRef} 
+      id="swarm" 
+      className="py-24 px-4 relative bg-[#080c14]/40 border-t border-b border-cyan-500/10 overflow-hidden"
+      style={{ perspective: 1200 }}
+    >
       {/* Background cyber grid */}
       <div 
         className="absolute inset-0 opacity-15 pointer-events-none"
@@ -139,21 +154,40 @@ export function SwarmPipelineVisualizer() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <motion.div 
+        style={{
+          y: sectionY,
+          rotateX: sectionRotateX,
+          opacity: sectionOpacity,
+        }}
+        className="max-w-7xl mx-auto relative z-10 transform-gpu"
+      >
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+          <motion.h2 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4"
+          >
             Autonomous 8-Agent Swarm <br />
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-300 to-sky-400">
               With Self-Repair Integration Loops
             </span>
-          </h2>
-          <p className="text-slate-400 max-w-3xl mx-auto text-base md:text-lg">
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-slate-400 max-w-3xl mx-auto text-base md:text-lg"
+          >
             Unlike simple linear scripts, Metamorph agents collaborate over a semantic event bus with blackboard architecture. 
             If a compiler test fails in the shadow workspace, the integration agent automatically guides workers to repair it.
-          </p>
+          </motion.p>
         </div>
 
-        {/* Interactive Swarm Flow Nodes */}
+        {/* Interactive Swarm Flow Nodes with Kinetic Entry & Halo */}
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 mb-10">
           {SWARM_AGENTS.map((agent, index) => {
             const isSelected = agent.id === selectedAgent;
@@ -163,14 +197,27 @@ export function SwarmPipelineVisualizer() {
               <motion.button
                 key={agent.id}
                 onClick={() => setSelectedAgent(agent.id)}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.04, duration: 0.35 }}
+                whileHover={{ scale: 1.04, transition: { duration: 0.15 } }}
+                whileTap={{ scale: 0.97 }}
                 className={`flex flex-col items-center text-center p-4 rounded-xl border transition-all cursor-pointer relative group ${
                   isSelected
-                    ? 'bg-[#0f1a2e] border-cyan-400 shadow-[0_0_20px_rgba(0,242,254,0.3)] ring-1 ring-cyan-400'
+                    ? 'bg-[#0f1a2e] border-cyan-400 shadow-[0_0_20px_rgba(0,242,254,0.3)]'
                     : 'bg-[#0b1220]/80 border-slate-800/80 hover:border-cyan-500/40 hover:bg-[#0e1626]'
                 }`}
               >
+                {/* Active Agent Sliding Glow Halo */}
+                {isSelected && (
+                  <motion.div
+                    layoutId="activeSwarmAgentHalo"
+                    className="absolute -inset-[1px] rounded-xl border-2 border-cyan-400 shadow-[0_0_15px_rgba(0,242,254,0.4)] pointer-events-none -z-10"
+                    transition={{ type: "spring", stiffness: 450, damping: 30 }}
+                  />
+                )}
+
                 {/* Step indicator badge */}
                 <div className="absolute top-2 left-2 text-[10px] font-mono font-bold text-slate-500 group-hover:text-cyan-400">
                   0{index + 1}
@@ -202,12 +249,12 @@ export function SwarmPipelineVisualizer() {
           })}
         </div>
 
-        {/* Selected Agent Deep Dive Card */}
+        {/* Selected Agent Deep Dive Card with Spring Re-mount */}
         <motion.div
           key={activeAgent.id}
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
+          initial={{ opacity: 0, y: 12, scale: 0.985 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
           className="bg-[#0b1220] border border-cyan-500/30 rounded-2xl p-6 md:p-8 shadow-2xl backdrop-blur-xl relative overflow-hidden"
         >
           <div className="absolute top-0 right-0 w-80 h-80 bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none" />
@@ -265,7 +312,7 @@ export function SwarmPipelineVisualizer() {
             </div>
           </div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }

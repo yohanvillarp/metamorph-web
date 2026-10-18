@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { GlassCard } from '@/shared/ui/GlassCard';
 import { ArrowRight, ArrowRightLeft } from 'lucide-react';
 import { cn } from '@/shared/lib/utils';
@@ -55,17 +55,16 @@ const allMigrations = generateAllMigrations();
 function MigrationCard({ mig, index }: { mig: MigrationData; index: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 15 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: (index % 6) * 0.06, duration: 0.35 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ delay: (index % 6) * 0.05, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+      whileHover={{ y: -6, transition: { duration: 0.2 } }}
     >
       <GlassCard 
         hoverEffect={false}
-        initial="initial"
-        whileHover="hover"
         className={cn(
-          "flex flex-col items-center justify-between p-5 text-center group h-full transition-all duration-300 hover:-translate-y-1.5 border border-slate-800/80 bg-[#0a101d]/90 rounded-2xl hover:border-cyan-500/50 hover:shadow-[0_0_20px_rgba(0,242,254,0.15)]",
+          "flex flex-col items-center justify-between p-5 text-center group h-full transition-all duration-300 border border-slate-800/80 bg-[#0a101d]/90 rounded-2xl hover:border-cyan-500/50 hover:shadow-[0_0_25px_rgba(0,242,254,0.18)]",
           mig.targetColorClass
         )}
       >
@@ -127,6 +126,16 @@ function MigrationCard({ mig, index }: { mig: MigrationData; index: number }) {
 
 export function SupportedTech() {
   const [filter, setFilter] = useState<'all' | 'frontend' | 'backend'>('all');
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'center center'],
+  });
+
+  const sectionY = useTransform(scrollYProgress, [0, 1], [50, 0]);
+  const sectionRotateX = useTransform(scrollYProgress, [0, 1], [8, 0]);
+  const sectionOpacity = useTransform(scrollYProgress, [0, 0.6], [0.3, 1]);
 
   const filteredMigrations = allMigrations.filter((m) => {
     if (filter === 'frontend') return m.isFrontend;
@@ -135,40 +144,72 @@ export function SupportedTech() {
   });
 
   return (
-    <section id="matrix" className="py-24 px-4 relative overflow-hidden bg-transparent">
-      <div className="max-w-7xl mx-auto relative z-10">
+    <section 
+      ref={sectionRef} 
+      id="matrix" 
+      className="py-24 px-4 relative overflow-hidden bg-transparent"
+      style={{ perspective: 1200 }}
+    >
+      <motion.div 
+        style={{
+          y: sectionY,
+          rotateX: sectionRotateX,
+          opacity: sectionOpacity,
+        }}
+        className="max-w-7xl mx-auto relative z-10 transform-gpu"
+      >
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+          <motion.h2 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4"
+          >
             Full Cross-Framework Compatibility
-          </h2>
-          <p className="text-slate-400 max-w-2xl mx-auto text-base md:text-lg">
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-slate-400 max-w-2xl mx-auto text-base md:text-lg"
+          >
             Every migration path is backed by domain-tested catalog rules, runtime invariants, and dependency scaffolds.
-          </p>
+          </motion.p>
 
-          {/* Filter Pills */}
+          {/* Filter Pills with Fluid Motion Pill */}
           <div className="flex items-center justify-center gap-2 mt-8">
             {[
               { id: 'all', label: 'All Migrations', count: allMigrations.length },
               { id: 'frontend', label: 'Frontend (React, Next, Vue, Svelte, Angular)', count: allMigrations.filter(m => m.isFrontend).length },
               { id: 'backend', label: 'Backend (Express, Fastify, NestJS, Hono)', count: allMigrations.filter(m => !m.isFrontend).length },
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setFilter(tab.id as 'all' | 'frontend' | 'backend')}
-                className={`px-4 py-2 rounded-xl text-xs md:text-sm font-mono font-medium transition-all cursor-pointer flex items-center gap-2 ${
-                  filter === tab.id
-                    ? 'bg-cyan-500 text-slate-950 font-bold shadow-[0_0_15px_rgba(0,242,254,0.4)]'
-                    : 'bg-[#0d1424] text-slate-400 hover:text-white border border-slate-800'
-                }`}
-              >
-                <span>{tab.label}</span>
-                <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-                  filter === tab.id ? 'bg-slate-900 text-cyan-300' : 'bg-slate-800 text-slate-300'
-                }`}>
-                  {tab.count}
-                </span>
-              </button>
-            ))}
+            ].map((tab) => {
+              const isSelected = filter === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setFilter(tab.id as 'all' | 'frontend' | 'backend')}
+                  className="relative px-4 py-2 rounded-xl text-xs md:text-sm font-mono font-medium transition-colors cursor-pointer flex items-center gap-2 z-10"
+                >
+                  {isSelected && (
+                    <motion.div
+                      layoutId="activeTechFilterTab"
+                      className="absolute inset-0 bg-cyan-500 rounded-xl shadow-[0_0_20px_rgba(0,242,254,0.35)] -z-10"
+                      transition={{ type: "spring", stiffness: 450, damping: 30 }}
+                    />
+                  )}
+                  <span className={isSelected ? 'text-slate-950 font-bold' : 'text-slate-400 hover:text-white'}>
+                    {tab.label}
+                  </span>
+                  <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
+                    isSelected ? 'bg-slate-950/80 text-cyan-300 font-bold' : 'bg-slate-800 text-slate-300'
+                  }`}>
+                    {tab.count}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -251,7 +292,7 @@ export function SupportedTech() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

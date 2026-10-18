@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ShieldCheck, CheckCircle2, Layers } from 'lucide-react';
 
 interface CodeExample {
@@ -148,28 +149,64 @@ start();`,
 export function CodeTransformationDemo() {
   const [activeTab, setActiveTab] = useState(EXAMPLES[0].id);
   const activeExample = EXAMPLES.find((e) => e.id === activeTab) || EXAMPLES[0];
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'center center'],
+  });
+
+  const sectionY = useTransform(scrollYProgress, [0, 1], [50, 0]);
+  const sectionRotateX = useTransform(scrollYProgress, [0, 1], [6, 0]);
+  const sectionScale = useTransform(scrollYProgress, [0, 1], [0.97, 1]);
+  const sectionOpacity = useTransform(scrollYProgress, [0, 0.6], [0.35, 1]);
 
   return (
-    <section id="demo" className="py-24 px-4 relative overflow-hidden bg-transparent">
+    <section 
+      ref={sectionRef} 
+      id="demo" 
+      className="py-24 px-4 relative overflow-hidden bg-transparent"
+      style={{ perspective: 1200 }}
+    >
       {/* Ambient background glow */}
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-cyan-500/10 blur-[130px] rounded-full pointer-events-none" />
       <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-blue-600/10 blur-[120px] rounded-full pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <motion.div 
+        style={{
+          y: sectionY,
+          rotateX: sectionRotateX,
+          scale: sectionScale,
+          opacity: sectionOpacity,
+        }}
+        className="max-w-6xl mx-auto relative z-10 transform-gpu"
+      >
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+          <motion.h2 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4"
+          >
             Not Regex. Not Naive Codemods. <br />
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-400">
               Architectural Metamorphosis.
             </span>
-          </h2>
-          <p className="text-slate-400 max-w-2xl mx-auto text-base md:text-lg">
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-slate-400 max-w-2xl mx-auto text-base md:text-lg"
+          >
             Metamorph respects your project’s public contracts, types, and architectural boundaries.
             Every change is generated, reviewed, and compiled inside the isolated shadow workspace.
-          </p>
+          </motion.p>
         </div>
 
-        {/* Transformation Pair Selector Tabs */}
+        {/* Transformation Pair Selector Tabs with Spring Layout */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
           {EXAMPLES.map((ex) => {
             const isSelected = ex.id === activeTab;
@@ -177,20 +214,32 @@ export function CodeTransformationDemo() {
               <button
                 key={ex.id}
                 onClick={() => setActiveTab(ex.id)}
-                className={`px-4 py-2.5 rounded-xl font-mono text-xs md:text-sm font-semibold transition-all cursor-pointer flex items-center gap-2 ${
-                  isSelected
-                    ? 'bg-cyan-500 text-slate-950 shadow-[0_0_20px_rgba(0,242,254,0.4)] border border-cyan-300'
-                    : 'bg-[#0d1424] text-slate-400 hover:text-white border border-slate-800 hover:border-slate-700'
-                }`}
+                className="relative px-4 py-2.5 rounded-xl font-mono text-xs md:text-sm font-semibold transition-colors cursor-pointer flex items-center gap-2 z-10"
               >
-                <span>{ex.title}</span>
+                {isSelected && (
+                  <motion.div
+                    layoutId="activeCodeDemoTab"
+                    className="absolute inset-0 bg-cyan-500 rounded-xl shadow-[0_0_20px_rgba(0,242,254,0.4)] border border-cyan-300 -z-10"
+                    transition={{ type: "spring", stiffness: 450, damping: 30 }}
+                  />
+                )}
+                <span className={isSelected ? 'text-slate-950 font-bold' : 'text-slate-400 hover:text-white'}>
+                  {ex.title}
+                </span>
               </button>
             );
           })}
         </div>
 
-        {/* Main Code Comparison Box */}
-        <div className="bg-[#0b111e] border border-cyan-500/20 rounded-2xl overflow-hidden shadow-2xl backdrop-blur-xl">
+        {/* Main Code Comparison Box with Cyber Laser Beam */}
+        <div className="relative bg-[#0b111e] border border-cyan-500/25 rounded-2xl overflow-hidden shadow-2xl backdrop-blur-xl">
+          {/* Animated Laser Beam */}
+          <motion.div
+            className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent z-20 pointer-events-none"
+            animate={{ x: ['-100%', '100%'] }}
+            transition={{ repeat: Infinity, duration: 4.5, ease: 'linear' }}
+          />
+
           {/* Box Header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between px-6 py-4 bg-[#0e1626] border-b border-white/5 gap-3">
             <div className="flex items-center gap-3">
@@ -208,8 +257,14 @@ export function CodeTransformationDemo() {
             </div>
           </div>
 
-          {/* Side by Side Code Views */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-white/10">
+          {/* Side by Side Code Views with Crossfade */}
+          <motion.div 
+            key={activeExample.id}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.25 }}
+            className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-white/10"
+          >
             {/* Left: Legacy Code */}
             <div className="p-5 flex flex-col">
               <div className="flex items-center justify-between mb-3 text-xs font-mono text-slate-400 pb-2 border-b border-white/5">
@@ -241,7 +296,7 @@ export function CodeTransformationDemo() {
                 <code>{activeExample.transformedCode}</code>
               </pre>
             </div>
-          </div>
+          </motion.div>
 
           {/* Highlights / Guarantees Footer */}
           <div className="px-6 py-4 bg-[#080d1a] border-t border-white/5">
@@ -259,7 +314,7 @@ export function CodeTransformationDemo() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
