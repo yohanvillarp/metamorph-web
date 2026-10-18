@@ -15,6 +15,5 @@ export const ROUTES = {
     CONTRIBUTING: '/docs/contributing',
     COMMUNITY: '/docs/community',
   },
-  LOGOS: '/logos',
 } as const;
 

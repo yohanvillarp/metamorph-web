@@ -20,7 +20,6 @@ const BackendMigrationsPage = lazy(() => import('./pages/migrations').then((m) =
 const FrontendMigrationsPage = lazy(() => import('./pages/migrations').then((m) => ({ default: m.FrontendMigrationsPage })));
 const CommunityPage = lazy(() => import('./pages/community').then((m) => ({ default: m.CommunityPage })));
 const CommunityHubPage = lazy(() => import('./pages/community').then((m) => ({ default: m.CommunityHubPage })));
-const LogoGalleryPage = lazy(() => import('./pages/LogoGalleryPage').then((m) => ({ default: m.LogoGalleryPage })));
 const NotFoundPage = lazy(() => import('./pages/not-found').then((m) => ({ default: m.NotFoundPage })));
 
 function App() {
@@ -37,7 +36,6 @@ function App() {
         <Routes>
           <Route path={ROUTES.HOME} element={<LandingPage />} />
           <Route path={ROUTES.COMMUNITY} element={<CommunityHubPage />} />
-          <Route path={ROUTES.LOGOS} element={<LogoGalleryPage />} />
           
           <Route path={ROUTES.DOCS.ROOT} element={<DocsLayout />}>
             <Route index element={<OverviewPage />} />

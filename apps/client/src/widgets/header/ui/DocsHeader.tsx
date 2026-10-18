@@ -1,7 +1,6 @@
 import { Menu, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PROJECT_LINKS } from '@/shared/config';
-import { useActiveLogo } from '@/shared/lib/useActiveLogo';
 import { MetamorphLogo } from '@/shared/ui/MetamorphLogo';
 
 interface DocsHeaderProps {
@@ -9,7 +8,6 @@ interface DocsHeaderProps {
 }
 
 export function DocsHeader({ onOpenSearch }: DocsHeaderProps) {
-  const [, , activeModelId, activePalette] = useActiveLogo();
   return (
     <header className="fixed top-0 w-full z-40 backdrop-blur-xl bg-[#06090e]/95 border-b border-cyan-500/15 px-3 sm:px-6 md:px-8 flex justify-between items-center h-16 sm:h-20 transition-all">
       {/* Left: Mobile Drawer Trigger + Brand Logo & Badge */}
@@ -29,7 +27,7 @@ export function DocsHeader({ onOpenSearch }: DocsHeaderProps) {
           title="Metamorph Home"
         >
           <div className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center drop-shadow-[0_0_10px_rgba(0,242,254,0.4)] group-hover:scale-105 transition-transform">
-            <MetamorphLogo modelId={activeModelId} palette={activePalette} />
+            <MetamorphLogo />
           </div>
           <div className="hidden md:flex items-center tracking-tight select-none">
             <span className="font-extrabold text-base sm:text-lg text-white group-hover:text-slate-100 transition-colors">

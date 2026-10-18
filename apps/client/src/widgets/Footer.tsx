@@ -2,12 +2,9 @@ import { Link } from 'react-router-dom';
 import { ExternalLink, ShieldCheck, Terminal, Cpu } from 'lucide-react';
 import { ROUTES } from '@/shared/config/routes';
 import { PROJECT_LINKS } from '@/shared/config/links';
-import { useActiveLogo } from '@/shared/lib/useActiveLogo';
 import { MetamorphLogo } from '@/shared/ui/MetamorphLogo';
 
 export function Footer() {
-  const [, , activeModelId, activePalette] = useActiveLogo();
-
   return (
     <footer className="border-t border-cyan-500/10 bg-[#04060a] text-slate-400 relative z-10 selection:bg-cyan-500/30 selection:text-white">
       {/* Subtle top ambient glow line */}
@@ -24,7 +21,7 @@ export function Footer() {
               title="Metamorph Home"
             >
               <div className="w-8 h-8 flex items-center justify-center drop-shadow-[0_0_10px_rgba(0,242,254,0.35)] group-hover:scale-105 transition-transform">
-                <MetamorphLogo modelId={activeModelId} palette={activePalette} />
+                <MetamorphLogo />
               </div>
               <div className="flex flex-col">
                 <div className="flex items-center tracking-tight select-none">
@@ -128,11 +125,6 @@ export function Footer() {
                   Contributors
                 </Link>
               </li>
-              <li>
-                <Link to={ROUTES.LOGOS} className="hover:text-cyan-300 transition-colors text-cyan-400 flex items-center gap-1">
-                  <span>Logo Suite</span>
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -198,10 +190,6 @@ export function Footer() {
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-slate-300">Swarm Ready</span>
             </span>
-            <span>•</span>
-            <Link to={ROUTES.LOGOS} className="hover:text-cyan-400 transition-colors">
-              Brand Assets
-            </Link>
           </div>
         </div>
       </div>

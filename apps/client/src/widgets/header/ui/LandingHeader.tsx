@@ -3,13 +3,11 @@ import { preloadDocsRoutes } from '@/shared/lib/routePreloader';
 import { motion } from 'framer-motion';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import { useActiveLogo } from '@/shared/lib/useActiveLogo';
 import { MetamorphLogo } from '@/shared/ui/MetamorphLogo';
 
 export function LandingHeader() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [, , activeModelId, activePalette] = useActiveLogo();
 
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -40,7 +38,7 @@ export function LandingHeader() {
           >
             <div className="absolute -inset-1 bg-cyan-400/25 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <div className="relative w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center drop-shadow-[0_0_10px_rgba(0,242,254,0.35)]">
-              <MetamorphLogo modelId={activeModelId} palette={activePalette} />
+              <MetamorphLogo />
             </div>
           </motion.div>
           <div className="flex items-center tracking-tight select-none">
