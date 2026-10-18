@@ -49,6 +49,21 @@ export function WindBreeze({ className = '' }: WindBreezeProps) {
     handleResize();
     window.addEventListener('resize', handleResize);
 
+    // Scroll Velocity Tracking (Reactive Wind Surge)
+    let lastScrollY = window.scrollY;
+    let targetVelocity = 0;
+    let currentVelocity = 0;
+
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      const delta = Math.abs(currentY - lastScrollY);
+      // Amplify scroll delta into dynamic wind velocity boost
+      targetVelocity = Math.min(delta * 0.15, 4.5);
+      lastScrollY = currentY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
     // Color palette: soft matte cyan and ethereal ice-white
     const colors = [
       'rgba(0, 242, 254, ',   // Cyan
@@ -58,7 +73,7 @@ export function WindBreeze({ className = '' }: WindBreezeProps) {
     ];
 
     // Initialize organic wind particles
-    const particleCount = 42;
+    const particleCount = 48;
     const particles: Particle[] = [];
 
     const createParticle = (spawnAnywhere = false): Particle => {
@@ -68,13 +83,13 @@ export function WindBreeze({ className = '' }: WindBreezeProps) {
         x,
         y,
         baseY: y,
-        size: 0.8 + Math.random() * 1.6, // Fine micro motes (0.8px - 2.4px)
-        speedX: 0.5 + Math.random() * 0.9, // Gentle horizontal draft
+        size: 0.8 + Math.random() * 1.8, // Fine micro motes (0.8px - 2.6px)
+        speedX: 0.6 + Math.random() * 0.9, // Gentle horizontal draft
         amplitude: 6 + Math.random() * 14, // Subtle sinusoidal wave (wind flutter)
         frequency: 0.0015 + Math.random() * 0.0025,
         phase: Math.random() * Math.PI * 2,
         opacity: 0,
-        maxOpacity: 0.15 + Math.random() * 0.25, // Soft, non-intrusive matte opacity
+        maxOpacity: 0.15 + Math.random() * 0.28, // Soft, non-intrusive matte opacity
         color: colors[Math.floor(Math.random() * colors.length)],
       };
     };
@@ -89,20 +104,26 @@ export function WindBreeze({ className = '' }: WindBreezeProps) {
       time += 1;
       ctx.clearRect(0, 0, width, height);
 
+      // Smooth decay of scroll velocity into natural breeze
+      currentVelocity += (targetVelocity - currentVelocity) * 0.08;
+      targetVelocity *= 0.93; // Inertial dampening
+
       // Center exclusion zone: gently fade out particles near the hero headline
-      // to guarantee zero distraction and perfect text legibility
       const centerX = width / 2;
-      const centerY = height * 0.36; // Headline vertical anchor
+      const centerY = height * 0.36;
       const exclusionRadiusX = Math.min(width * 0.38, 420);
       const exclusionRadiusY = 160;
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
 
-        // Organic horizontal drift
-        p.x += p.speedX;
-        // Natural harmonic wave (simulating butterfly wing flutter drafts)
-        p.y = p.baseY + Math.sin(time * p.frequency + p.phase) * p.amplitude;
+        // Reactive horizontal drift boosted by scroll velocity
+        const effectiveSpeed = p.speedX * (1 + currentVelocity * 2.2);
+        p.x += effectiveSpeed;
+
+        // Harmonic flutter wave with scroll turbulence expansion
+        const waveAmp = p.amplitude * (1 + currentVelocity * 0.6);
+        p.y = p.baseY + Math.sin(time * p.frequency + p.phase) * waveAmp;
 
         // Fade in when entering from the left, fade out near the right edge
         if (p.x < 100) {
@@ -121,8 +142,12 @@ export function WindBreeze({ className = '' }: WindBreezeProps) {
         // Apply smooth falloff if inside the text zone
         let effectiveOpacity = p.opacity;
         if (distSq < 1) {
-          // Smooth fade out: 0 opacity at center, ramping up towards edge
           effectiveOpacity *= Math.pow(distSq, 1.5) * 0.2;
+        }
+
+        // Slight luminous boost during high wind surges
+        if (currentVelocity > 0.5) {
+          effectiveOpacity = Math.min(0.65, effectiveOpacity * (1 + currentVelocity * 0.3));
         }
 
         if (effectiveOpacity > 0.01) {
@@ -132,8 +157,8 @@ export function WindBreeze({ className = '' }: WindBreezeProps) {
           ctx.fill();
         }
 
-        // Reset particle when it moves out of view
-        if (p.x > width + 30) {
+        // Reset particle when it leaves viewport boundary
+        if (p.x > width + 40) {
           particles[i] = createParticle(false);
         }
       }
@@ -145,6 +170,7 @@ export function WindBreeze({ className = '' }: WindBreezeProps) {
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', handleScroll);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
