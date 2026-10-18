@@ -38,7 +38,7 @@ export const DocsSidebar = ({ mobileOpen, setMobileOpen }: DocsSidebarProps) => 
           title="Metamorph Docs Overview"
         >
           <img 
-            src="/logo_metamorph.png" 
+            src="/favicon.svg" 
             alt="Logo" 
             className="w-5 h-5 object-contain group-hover:scale-110 transition-transform drop-shadow-[0_0_6px_rgba(0,242,254,0.4)]" 
           />
